@@ -8,15 +8,11 @@
 
 .. container:: center
 
-        |docs_badge| |lic_badge| |release_badge|
+        |docs_badge| |release_badge|
 
 .. |docs_badge| image:: https://gitlab.com/cblegare/420-611-BT/badges/main/pipeline.svg?job=pages&key_text=docs
     :target: https://gitlab.com/cblegare/420-611-BT/-/pipelines
     :alt: Gitlab - Docs
-
-.. |lic_badge| image:: https://img.shields.io/pypi/l/420-611-BT?color=blue
-    :target: https://gitlab.com/cblegare/420-611-BT/-/blob/main/LICENSE
-    :alt: PyPI - License
 
 .. |release_badge| image:: https://gitlab.com/cblegare/420-611-BT/-/badges/release.svg
     :target: https://gitlab.com/cblegare/420-611-BT/-/releases

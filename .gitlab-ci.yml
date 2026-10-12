@@ -103,7 +103,7 @@ pages:
   extends:
     - .release
   script:
-    - uvx nox -rs docs
+    - uvx nox -rs build_pdf build_html
     - mkdir public
     - mv build/sphinx/420-611-BT-notesdecours/html/* public/
   image: ghcr.io/astral-sh/uv:$UV_VERSION-python$DEFAULT_PYTHON-$BASE_LAYER
