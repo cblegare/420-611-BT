@@ -82,8 +82,9 @@ doc-review:
     - .release
     - .uv
   script:
+    - pipx install uv
     - uvx nox -rs build_pdf build_html
-  image: ghcr.io/astral-sh/uv:$UV_VERSION-python$DEFAULT_PYTHON-$BASE_LAYER
+  image: sphinxdoc/sphinx-latexpdf
   environment:
     name: doc-review/$CI_COMMIT_REF_SLUG
     deployment_tier: development
@@ -103,10 +104,11 @@ pages:
   extends:
     - .release
   script:
+    - pipx install uv
     - uvx nox -rs build_pdf build_html
     - mkdir public
     - mv build/sphinx/420-611-BT-notesdecours/html/* public/
-  image: ghcr.io/astral-sh/uv:$UV_VERSION-python$DEFAULT_PYTHON-$BASE_LAYER
+  image: sphinxdoc/sphinx-latexpdf
   environment:
     name: production
     deployment_tier: production
