@@ -82,7 +82,7 @@ doc-review:
     - .release
     - .uv
   script:
-    - pipx install uv
+    - pip install uv
     - uvx nox -rs build_pdf build_html
   image: sphinxdoc/sphinx-latexpdf
   environment:
@@ -104,7 +104,7 @@ pages:
   extends:
     - .release
   script:
-    - pipx install uv
+    - pip install uv
     - uvx nox -rs build_pdf build_html
     - mkdir public
     - mv build/sphinx/420-611-BT-notesdecours/html/* public/
