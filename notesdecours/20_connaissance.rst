@@ -467,9 +467,9 @@ règles du jeu. Nous savons avec certitude qu’une personne est le meurtrier,
 qu’une arme a été utilisée, et que le meurtre a eu lieu dans un endroit. Cela
 peut être représenté en logique propositionnelle de la manière suivante :
 
-* :math:`(Moutarde \lor Violet \lor Rose)`
-* :math:`(poignard \lor revolver \lor \text{clé anglaise})`
-* :math:`(salle de bal \lor cuisine \lor \text{bibliothèque})`
+* :math:`(\text{Moutarde} \lor \text{Violet} \lor \text{Rose})`
+* :math:`(\text{poignard} \lor \text{revolver} \lor \text{clé anglaise})`
+* :math:`(\text{salle de bal} \lor \text{cuisine} \lor \text{bibliothèque})`
 
 Le jeu commence avec chaque joueur voyant une personne, une arme et un lieu,
 sachant ainsi qu’ils ne sont pas liés au meurtre. Les joueurs ne partagent pas
@@ -477,9 +477,9 @@ les informations qu’ils ont vues sur ces cartes. Supposons que notre joueur
 reçoive les cartes Moutarde, cuisine et revolver. Ainsi, nous savons que ceux-ci
 ne sont pas liés au meurtre et nous pouvons ajouter à notre KB :
 
-* :math:`\lnot (Moutarde)`
-* :math:`\lnot (cuisine)`
-* :math:`\lnot (revolver)`
+* :math:`\lnot (\text{Moutarde})`
+* :math:`\lnot (\text{cuisine})`
+* :math:`\lnot (\text{revolver})`
 
 Dans d’autres situations du jeu, on peut faire une hypothèse, en suggérant une
 combinaison de personne, d’arme et de lieu. Supposons que l’hypothèse soit que
@@ -487,13 +487,13 @@ Rose a utilisé une clé anglaise pour commettre le crime dans la bibliothèque.
 cette hypothèse est fausse, alors ce qui suit peut être déduit et ajouté à la KB
 :
 
-* :math:`(\lnot Rose \lor \lnot \text{bibliothèque} \lor \lnot \text{clé
+* :math:`(\lnot \text{Rose} \lor \lnot \text{bibliothèque} \lor \lnot \text{clé
   anglaise})`
 
 Maintenant, supposons que quelqu’un nous montre la carte Violet. Ainsi, nous
 pouvons ajouter :
 
-* :math:`\lnot (Violet)`
+* :math:`\lnot (\text{Violet})`
 
 à notre KB.
 
@@ -505,7 +505,7 @@ L’ajout d’un seul élément de connaissance supplémentaire, par exemple, qu
 n’est pas la salle de bal, peut nous donner plus d’informations. Tout d’abord,
 nous mettons à jour notre KB :
 
-* :math:`\lnot (salle de bal)`
+* :math:`\lnot (\text{salle de bal})`
 
 Et maintenant, en utilisant plusieurs données précédentes, nous pouvons déduire
 que Rose a commis le meurtre avec un poignard dans la bibliothèque. Nous pouvons
@@ -558,16 +558,16 @@ représenter le fait que chaque personne appartient à une maison, une instructi
 « Ou » est requise avec toutes les assignations de maison possibles par personne
 :
 
-* :math:`(MinervaGryffondor \lor MinervaPoufsouffle \lor MinervaSerdaigle \lor MinervaSerpentard)`,
+* :math:`(\text{MinervaGryffondor} \lor \text{MinervaPoufsouffle} \lor \text{MinervaSerdaigle} \lor \text{MinervaSerpentard})`,
       à répéter pour chaque personne.
 
 Ensuite, pour coder le fait que si une personne est affectée à une maison, elle
 n’est pas affectée aux autres maisons, nous écrirons :
 
-* :math:`(MinervaGryffondor \implies \lnot MinervaPoufsouffle) \land
-  (MinervaGryffondor \implies \lnot MinervaSerdaigle) \land (MinervaGryffondor
-  \implies \lnot MinervaSerpentard) \land (MinervaPoufsouffle \implies \lnot
-  MinervaGryffondor)…`
+* :math:`(\text{MinervaGryffondor} \implies \lnot \text{MinervaPoufsouffle}) \land
+  (\text{MinervaGryffondor} \implies \lnot \text{MinervaSerdaigle}) \land (\text{MinervaGryffondor}
+  \implies \lnot \text{MinervaSerpentard}) \land (\text{MinervaPoufsouffle} \implies \lnot
+  \text{MinervaGryffondor})\text{...}`
 
 et ainsi de suite pour toutes les maisons et toutes les personnes. Une solution
 à cette inefficacité est proposée dans la section sur la logique du premier

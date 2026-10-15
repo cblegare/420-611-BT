@@ -25,12 +25,12 @@ Mondes possibles
     par la lettre grecque minuscule oméga :math:`\omega`. Par exemple, lancer un
     dé peut donner lieu à six mondes possibles : un monde où le dé donne 1, un
     monde où le dé donne 2, et ainsi de suite. Pour représenter la probabilité
-    d’un certain monde, nous écrivons :math:`P(*\omega*)`.
+    d’un certain monde, nous écrivons :math:`P(\omega)`.
 
 Axiomes des probabilités
 ========================
 
-* :math:`0 < P(*\omega*) < 1` : chaque valeur représentant une probabilité doit
+* :math:`0 < P(\omega) < 1` : chaque valeur représentant une probabilité doit
   être comprise entre 0 et 1.
 
       * Zéro est un événement impossible, comme lancer un dé standard et obtenir

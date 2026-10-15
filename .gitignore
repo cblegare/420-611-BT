@@ -6,6 +6,7 @@ __pycache__/
 build
 dist
 .idea/
+.nox/
 docs/apidoc/sphinx_compendia*.rst
 requirements.txt
 .dmypy.json
