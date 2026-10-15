@@ -17,3 +17,4 @@ requirements.lock
 .coverage
 uv.lock
 node_modules/
+notesdecours/_static/*.pdf

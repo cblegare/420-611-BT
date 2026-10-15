@@ -14,6 +14,7 @@
     :numbered:
     :maxdepth: 2
 
+    00_python/index
     10_recherche
     20_connaissance
     30_incertitude

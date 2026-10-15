@@ -16,16 +16,16 @@ contenant de multiples jours où l’humidité et la pression atmosphérique son
 déjà associées au fait qu’il ait plu ou non.
 
 Cette tâche peut être formalisée de la manière suivante. Nous observons la
-nature, où une fonction :math:`f(\text{humidité}, \text{pression})` associe l’entrée à une
-valeur discrète, soit Pluie, soit Pas de Pluie. Cette fonction nous est cachée,
-et elle est probablement affectée par de nombreuses autres variables auxquelles
-nous n’avons pas accès. Notre objectif est de créer une fonction
-:math:`h(\text{humidité}, \text{pression}` qui peut approximer le comportement de la fonction
-*f*. Une telle tâche peut être visualisée en traçant les jours sur les
-dimensions de l’humidité et de la pluie (l’entrée), en colorant chaque point de
-données en bleu s’il a plu ce jour-là et en rouge s’il n’a pas plu (la sortie).
-Le point de données blanc ne possède que l’entrée, et l’ordinateur doit deviner
-la sortie.
+nature, où une fonction :math:`f(\text{humidité}, \text{pression})` associe
+l’entrée à une valeur discrète, soit Pluie, soit Pas de Pluie. Cette fonction
+nous est cachée, et elle est probablement affectée par de nombreuses autres
+variables auxquelles nous n’avons pas accès. Notre objectif est de créer une
+fonction :math:`h(\text{humidité}, \text{pression}` qui peut approximer le
+comportement de la fonction *f*. Une telle tâche peut être visualisée en traçant
+les jours sur les dimensions de l’humidité et de la pluie (l’entrée), en
+colorant chaque point de données en bleu s’il a plu ce jour-là et en rouge s’il
+n’a pas plu (la sortie). Le point de données blanc ne possède que l’entrée, et
+l’ordinateur doit deviner la sortie.
 
 .. figure:: /assets/figures/classification.png
 
@@ -135,11 +135,11 @@ représente l’estimation. S’ils sont identiques, tout ce terme est égal à 
 et par conséquent le poids n’est pas modifié. Si nous avons sous-estimé (en
 prédisant Pas de pluie alors que Pluie a été observée), alors la valeur entre
 les parenthèses sera de 1 et le poids augmentera de la valeur de xᵢ mise à
-l’échelle par :math:`\alpha`, le coefficient d’apprentissage. Si nous avons surestimé (en
-prédisant Pluie alors que Pas de pluie a été observée), alors la valeur entre
-les parenthèses sera de -1 et le poids diminuera de la valeur de x mise à
-l’échelle par :math:`\alpha`. Plus :math:`\alpha` est élevé, plus l’influence de chaque nouvel événement
-sur le poids est forte.
+l’échelle par :math:`\alpha`, le coefficient d’apprentissage. Si nous avons
+surestimé (en prédisant Pluie alors que Pas de pluie a été observée), alors la
+valeur entre les parenthèses sera de -1 et le poids diminuera de la valeur de x
+mise à l’échelle par :math:`\alpha`. Plus :math:`\alpha` est élevé, plus
+l’influence de chaque nouvel événement sur le poids est forte.
 
 Le résultat de ce processus est une fonction à seuil qui passe de 0 à 1 une fois
 que la valeur estimée franchit un certain seuil.
@@ -296,9 +296,9 @@ additionnant sa perte et une mesure de sa complexité.
 
     \text{coût}(h) = perte(h) + \lambda \cdot \text{complexité}(h)
 
-Lambda (:math:`\lambda`) est une constante que nous pouvons utiliser pour moduler la force
-avec laquelle nous pénalisons la complexité dans notre fonction de coût. Plus :math:`\lambda`
-est élevé, plus la complexité est coûteuse.
+Lambda (:math:`\lambda`) est une constante que nous pouvons utiliser pour
+moduler la force avec laquelle nous pénalisons la complexité dans notre fonction
+de coût. Plus :math:`\lambda` est élevé, plus la complexité est coûteuse.
 
 Une façon de tester si nous avons surajusté le modèle est la **Validation
 croisée par maintien d’un échantillon de test** (Holdout Cross Validation). Dans
@@ -491,11 +491,11 @@ de zéro.
 La valeur mise à jour de :math:`Q(s, a)` est égale à la valeur précédente de
 :math:`Q(s, a)` à laquelle s’ajoute une valeur de mise à jour. Cette valeur est
 déterminée comme la différence entre la nouvelle valeur et l’ancienne valeur,
-multipliée par :math:`\alpha`, un coefficient d’apprentissage. Lorsque :math:`\alpha = 1`, la nouvelle
-estimation écrase simplement l’ancienne. Lorsque :math:`\alpha = 0`, la valeur estimée n’est
-jamais mise à jour. En augmentant et en diminuant :math:`\alpha`, nous pouvons déterminer à
-quelle vitesse les connaissances précédentes sont mises à jour par de nouvelles
-estimations.
+multipliée par :math:`\alpha`, un coefficient d’apprentissage. Lorsque
+:math:`\alpha = 1`, la nouvelle estimation écrase simplement l’ancienne. Lorsque
+:math:`\alpha = 0`, la valeur estimée n’est jamais mise à jour. En augmentant et
+en diminuant :math:`\alpha`, nous pouvons déterminer à quelle vitesse les
+connaissances précédentes sont mises à jour par de nouvelles estimations.
 
 La nouvelle estimation de valeur peut être exprimée comme la somme de la
 récompense (r) et de l’estimation de la récompense future. Pour obtenir
@@ -527,11 +527,11 @@ mêmes chansons à chaque fois, vous savez que vous les apprécierez, mais vous 
 découvrirez jamais de nouvelles chansons que vous pourriez aimer encore plus !
 
 Pour implémenter le concept d’exploration et d’exploitation, nous pouvons
-utiliser l’algorithme **:math:`\epsilon`-glouton**. Dans ce type d’algorithme, nous fixons :math:`\epsilon` en
-fonction de la fréquence à laquelle nous voulons nous déplacer de manière
-aléatoire. Avec une probabilité :math:`1 - \epsilon`, l’algorithme choisit le meilleur
-mouvement (exploitation). Avec une probabilité :math:`\epsilon`, l’algorithme choisit un
-mouvement aléatoire (exploration).
+utiliser l’algorithme **:math:`\epsilon`-glouton**. Dans ce type d’algorithme,
+nous fixons :math:`\epsilon` en fonction de la fréquence à laquelle nous voulons
+nous déplacer de manière aléatoire. Avec une probabilité :math:`1 - \epsilon`,
+l’algorithme choisit le meilleur mouvement (exploitation). Avec une probabilité
+:math:`\epsilon`, l’algorithme choisit un mouvement aléatoire (exploration).
 
 Une autre façon d’entraîner un modèle d’apprentissage par renforcement est de
 donner une rétroaction non pas à chaque mouvement, mais à la fin de l’ensemble

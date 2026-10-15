@@ -564,10 +564,10 @@ représenter le fait que chaque personne appartient à une maison, une instructi
 Ensuite, pour coder le fait que si une personne est affectée à une maison, elle
 n’est pas affectée aux autres maisons, nous écrirons :
 
-* :math:`(\text{MinervaGryffondor} \implies \lnot \text{MinervaPoufsouffle}) \land
-  (\text{MinervaGryffondor} \implies \lnot \text{MinervaSerdaigle}) \land (\text{MinervaGryffondor}
-  \implies \lnot \text{MinervaSerpentard}) \land (\text{MinervaPoufsouffle} \implies \lnot
-  \text{MinervaGryffondor})\text{...}`
+* :math:`(\text{MinervaGryffondor} \implies \lnot \text{MinervaPoufsouffle})
+  \land (\text{MinervaGryffondor} \implies \lnot \text{MinervaSerdaigle}) \land
+  (\text{MinervaGryffondor} \implies \lnot \text{MinervaSerpentard}) \land
+  (\text{MinervaPoufsouffle} \implies \lnot \text{MinervaGryffondor})\text{...}`
 
 et ainsi de suite pour toutes les maisons et toutes les personnes. Une solution
 à cette inefficacité est proposée dans la section sur la logique du premier
