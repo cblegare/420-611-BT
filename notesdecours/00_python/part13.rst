@@ -250,7 +250,6 @@ lever une exception en cas d'échec :
         Un style de conception de programme dans lequel la majorité des fonctions sont pures.
 
     invariant
-    invariant
         Une condition qui doit toujours être vraie pendant l'exécution d'un programme.
 
 ***********

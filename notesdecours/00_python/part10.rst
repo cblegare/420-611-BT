@@ -248,7 +248,6 @@ dictionnaires :
 .. glossary::
 
     tuple
-    tuple
         Une séquence immuable d'éléments.
 
     affectation de tuples

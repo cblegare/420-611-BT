@@ -144,7 +144,7 @@ L'expression ``box.corner.x`` signifie : « Va à l'objet auquel ``box`` fait r�
 Un objet qui est un attribut d'un autre objet est dit **imbriqué** (*embedded*).
 
 Instances comme valeurs de retour
---------------------------------
+---------------------------------
 
 Les fonctions peuvent retourner des instances. Par exemple, ``find_center`` prend un ``Rectangle`` en argument et renvoie un ``Point`` qui contient les coordonnées du centre du ``Rectangle`` :
 
@@ -289,7 +289,6 @@ Glossaire
     class object
         Un objet qui contient des informations sur un type défini par l'utilisateur. L'objet classe peut être utilisé pour créer des instances du type.
 
-    instance
     instance
         Un objet qui appartient à une classe.
 
