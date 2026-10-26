@@ -947,100 +947,110 @@ systèmes que nous utilisons pour représenter les connaissances dans notre IA.
  Exercices
 ***********
 
-..
-    :ia2:exercice:: 20.1
+.. ia2:exercice:: 20.1
     Logique propositionnelle et équivalence
 
-    La règle d'élimination de l'implication stipule que l'expression :math:`P \implies Q` est logiquement équivalente à :math:`\lnot P \lor Q`.
+    La règle d'élimination de l'implication stipule que l'expression :math:`P
+    \implies Q` est logiquement équivalente à :math:`\lnot P \lor Q`.
 
-    a. Dressez la table de vérité complète incluant les colonnes pour :math:`P`, :math:`Q`, :math:`\lnot P`, :math:`P \implies Q`, et :math:`\lnot P \lor Q`.
-    b. À l'aide de la table de vérité, prouvez que la proposition biconditionnelle :math:`(P \implies Q) \iff (\lnot P \lor Q)` est une tautologie (toujours vraie).
+    a. Dressez la table de vérité complète incluant les colonnes pour :math:`P`,
+       :math:`Q`, :math:`\lnot P`, :math:`P \implies Q`, et :math:`\lnot P \lor
+       Q`.
+    b. À l'aide de la table de vérité, prouvez que la proposition
+       biconditionnelle :math:`(P \implies Q) \iff (\lnot P \lor Q)` est une
+       tautologie (toujours vraie).
 
-    Solution: :ia2:sol:`20.1`
+    Solution: :ia2:solution:`20.1`
 
-..
-    :ia2:exercice:: 20.2
+.. ia2:exercice:: 20.2
     Inférence par vérification de modèles
 
-    Considérez les propositions suivantes :
-    * P : Il fait froid.
-    * Q : Il neige.
+    Considérez les propositions suivantes : * P : Il fait froid. * Q : Il neige.
     * R : Je mets un manteau.
 
-    Votre base de connaissances (KB) contient les règles et faits suivants :
-    1. S'il neige, alors il fait froid : :math:`Q \implies P`
-    2. S'il fait froid ou s'il neige, alors je mets un manteau : :math:`(P \lor Q) \implies R`
-    3. Il neige : :math:`Q`
+    Votre base de connaissances (KB) contient les règles et faits suivants : 1.
+    S'il neige, alors il fait froid : :math:`Q \implies P` 2. S'il fait froid ou
+    s'il neige, alors je mets un manteau : :math:`(P \lor Q) \implies R` 3. Il
+    neige : :math:`Q`
 
-    a. Combien de modèles possibles (assignations de vérité) existent pour cet univers à 3 propositions (P, Q, R) ?
-    b. En utilisant l'algorithme de vérification de modèles, éliminez les modèles où la KB est fausse.
-    c. Le système peut-il conclure que je mets un manteau (Est-ce que :math:`KB \models R`) ? Justifiez.
+    a. Combien de modèles possibles (assignations de vérité) existent pour cet
+       univers à 3 propositions (P, Q, R) ?
+    b. En utilisant l'algorithme de vérification de modèles, éliminez les
+       modèles où la KB est fausse.
+    c. Le système peut-il conclure que je mets un manteau (Est-ce que :math:`KB
+       \models R`) ? Justifiez.
 
-    Solution: :ia2:sol:`20.2`
+    Solution: :ia2:solution:`20.2`
 
-..
-    :ia2:exercice:: 20.3
+.. ia2:exercice:: 20.3
     Conversion en Forme Normale Conjonctive (CNF)
 
-    Pour utiliser l'algorithme de résolution, une base de connaissances doit être convertie sous Forme Normale Conjonctive (CNF), c'est-à-dire une conjonction de clauses (les clauses étant des disjonctions de littéraux).
+    Pour utiliser l'algorithme de résolution, une base de connaissances doit
+    être convertie sous Forme Normale Conjonctive (CNF), c'est-à-dire une
+    conjonction de clauses (les clauses étant des disjonctions de littéraux).
 
-    a. Convertissez la proposition suivante en CNF étape par étape : :math:`\lnot (A \implies B) \lor C`
-    b. Nommez explicitement la règle logique utilisée à chaque étape (ex: Élimination de l'implication, Loi de De Morgan, etc.).
+    a. Convertissez la proposition suivante en CNF étape par étape :
+       :math:`\lnot (A \implies B) \lor C`
+    b. Nommez explicitement la règle logique utilisée à chaque étape (ex:
+       Élimination de l'implication, Loi de De Morgan, etc.).
 
-    Solution: :ia2:sol:`20.3`
+    Solution: :ia2:solution:`20.3`
 
-..
-    :ia2:exercice:: 20.4
+.. ia2:exercice:: 20.4
     Preuve par résolution et contradiction
 
-    Soit une base de connaissances (KB) contenant les trois clauses (en CNF) suivantes :
-    1. :math:`(A \lor B)`
-    2. :math:`(\lnot A \lor C)`
-    3. :math:`(\lnot B \lor C)`
+    Soit une base de connaissances (KB) contenant les trois clauses (en CNF)
+    suivantes : 1. :math:`(A \lor B)` 2. :math:`(\lnot A \lor C)` 3.
+    :math:`(\lnot B \lor C)`
 
-    Vous souhaitez prouver que la proposition :math:`C` est une conséquence logique de cette KB (:math:`KB \models C`).
+    Vous souhaitez prouver que la proposition :math:`C` est une conséquence
+    logique de cette KB (:math:`KB \models C`).
 
-    a. Quelle clause devez-vous ajouter à la KB pour entamer une preuve par contradiction ?
-    b. Appliquez l'algorithme de résolution étape par étape sur les clauses pour arriver à la clause vide :math:`()`, prouvant ainsi la contradiction.
+    a. Quelle clause devez-vous ajouter à la KB pour entamer une preuve par
+       contradiction ?
+    b. Appliquez l'algorithme de résolution étape par étape sur les clauses pour
+       arriver à la clause vide :math:`()`, prouvant ainsi la contradiction.
 
-    Solution: :ia2:sol:`20.4`
+    Solution: :ia2:solution:`20.4`
 
-..
-    :ia2:exercice:: 20.5
+.. ia2:exercice:: 20.5
     Logique du premier ordre (Quantificateurs)
 
-    Traduisez les phrases suivantes en langage naturel vers la logique du premier ordre. Utilisez les prédicats :math:`Etudiant(x)`, :math:`Cours(x)`, :math:`Difficile(x)`, et :math:`Inscrit(x, y)` (qui signifie "x est inscrit à y").
+    Traduisez les phrases suivantes en langage naturel vers la logique du
+    premier ordre. Utilisez les prédicats :math:`Etudiant(x)`, :math:`Cours(x)`,
+    :math:`Difficile(x)`, et :math:`Inscrit(x, y)` (qui signifie "x est inscrit
+    à y").
 
     a. Tous les étudiants sont inscrits à au moins un cours.
     b. Il existe un cours difficile auquel aucun étudiant n'est inscrit.
 
-    Solution: :ia2:sol:`20.5`
+    Solution: :ia2:solution:`20.5`
 
 ***********
  Solutions
 ***********
 
 .. ia2:solution:: 20.1
-Logique propositionnelle et équivalence
+    Logique propositionnelle et équivalence
 
     Solution de :ia2:ex:`20.1`
 
     a. **Table de vérité :**
 
-       ========= ========= ============= ==================== ======================
+       ========= ========= =============== ==================== ======================
        :math:`P` :math:`Q` :math:`\lnot P` :math:`P \implies Q` :math:`\lnot P \lor Q`
-       ========= ========= ============= ==================== ======================
-       faux      faux      vrai          vrai                 vrai
-       faux      vrai      vrai          vrai                 vrai
-       vrai      faux      faux          faux                 faux
-       vrai      vrai      faux          vrai                 vrai
-       ========= ========= ============= ==================== ======================
+       ========= ========= =============== ==================== ======================
+       faux      faux      vrai            vrai                 vrai
+       faux      vrai      vrai            vrai                 vrai
+       vrai      faux      faux            faux                 faux
+       vrai      vrai      faux            vrai                 vrai
+       ========= ========= =============== ==================== ======================
 
     b. **Preuve de la tautologie :**
        Les valeurs de la colonne :math:`P \implies Q` et de la colonne :math:`\lnot P \lor Q` sont strictement identiques pour chaque ligne (modèle). Un biconditionnel (:math:`\iff`) est vrai si et seulement si les deux côtés ont la même valeur de vérité. Puisque c'est le cas pour les 4 modèles possibles, le résultat final est entièrement composé de "vrai". C'est donc une tautologie logique.
 
 .. ia2:solution:: 20.2
-Inférence par vérification de modèles
+    Inférence par vérification de modèles
 
     Solution de :ia2:ex:`20.2`
 
@@ -1048,6 +1058,7 @@ Inférence par vérification de modèles
        Il y a 3 symboles propositionnels (P, Q, R). Le nombre de modèles possibles est :math:`2^3 = 8` modèles.
 
     b. **Élimination des modèles falsifiant la KB :**
+
        * Fait 3 (:math:`Q` est vrai) : On élimine tous les modèles où :math:`Q` est faux (reste 4 modèles).
        * Règle 1 (:math:`Q \implies P`) : Sachant que :math:`Q` est vrai, pour que l'implication soit vraie, :math:`P` doit obligatoirement être vrai. On élimine les modèles où :math:`P` est faux (reste 2 modèles : {P=V, Q=V, R=F} et {P=V, Q=V, R=V}).
        * Règle 2 (:math:`(P \lor Q) \implies R`) : Sachant que P et Q sont vrais, l'antécédent :math:`(P \lor Q)` est vrai. Pour que la KB soit vraie, le conséquent :math:`R` doit donc être vrai. Le modèle où R est faux est éliminé.
@@ -1057,7 +1068,7 @@ Inférence par vérification de modèles
        Oui, :math:`KB \models R`. Dans l'unique modèle où l'entièreté de la KB est vraie, la proposition :math:`R` est également vraie. La conséquence logique est prouvée.
 
 .. ia2:solution:: 20.3
-Conversion en Forme Normale Conjonctive (CNF)
+    Conversion en Forme Normale Conjonctive (CNF)
 
     Solution de :ia2:ex:`20.3`
 
@@ -1072,18 +1083,21 @@ Conversion en Forme Normale Conjonctive (CNF)
        La forme finale en CNF est : :math:`(A \lor C) \land (\lnot B \lor C)`.
 
 .. ia2:solution:: 20.4
-Preuve par résolution et contradiction
+    Preuve par résolution et contradiction
 
     Solution de :ia2:ex:`20.4`
 
     a. **Clause à ajouter :**
+
        Pour une preuve par contradiction, nous devons supposer que le but est faux. Il faut donc ajouter la clause **:math:`(\lnot C)`** à la KB. La KB temporaire contient donc :
+
        1. :math:`(A \lor B)`
        2. :math:`(\lnot A \lor C)`
        3. :math:`(\lnot B \lor C)`
        4. :math:`(\lnot C)`
 
     b. **Résolution étape par étape :**
+
        * **Étape 1 :** Résolution des clauses (2) et (4). :math:`C` et :math:`\lnot C` sont complémentaires. On déduit la clause : **:math:`(\lnot A)`**.
        * **Étape 2 :** Résolution des clauses (3) et (4). :math:`C` et :math:`\lnot C` sont complémentaires. On déduit la clause : **:math:`(\lnot B)`**.
        * **Étape 3 :** Résolution de la clause (1) :math:`(A \lor B)` avec la déduction de l'étape 1 :math:`(\lnot A)`. :math:`A` et :math:`\lnot A` sont complémentaires. On déduit la clause : **:math:`(B)`**.
@@ -1092,14 +1106,16 @@ Preuve par résolution et contradiction
        La contradiction est atteinte, donc :math:`KB \models C` est vrai.
 
 .. ia2:solution:: 20.5
-Logique du premier ordre (Quantificateurs)
+    Logique du premier ordre (Quantificateurs)
 
     Solution de :ia2:ex:`20.5`
 
     a. **Tous les étudiants sont inscrits à au moins un cours :**
+
        * Logique : Pour tout x, si x est un étudiant, alors il existe un y tel que y est un cours et x est inscrit à y.
        * Formule : :math:`\forall x. Etudiant(x) \implies (\exists y. Cours(y) \land Inscrit(x, y))`
 
     b. **Il existe un cours difficile auquel aucun étudiant n'est inscrit :**
+
        * Logique : Il existe un c tel que c est un cours, c est difficile, et pour tout e, si e est un étudiant, alors e n'est pas inscrit à c.
        * Formule : :math:`\exists c. (Cours(c) \land Difficile(c) \land (\forall e. Etudiant(e) \implies \lnot Inscrit(e, c)))`

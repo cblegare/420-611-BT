@@ -992,15 +992,12 @@ pluie, pluie, soleil, soleil. Cette sortie représente quel est le schéma
 météorologique le plus probable compte tenu de nos observations de personnes
 apportant ou n’apportant pas de parapluies dans le bâtiment.
 
-====================================
-Exercices : Chapitre 3 - Incertitude
-====================================
 
 ***********
  Exercices
 ***********
 
-.. :ia2:exercice:: 30.1
+.. ia2:exercice:: 30.1
     Modélisation probabiliste en notation :math:`P(A)`
 
     Un système d'intelligence artificielle supervise une salle de classe intelligente afin d'optimiser l'apprentissage. On définit les événements suivants pour un étudiant donné à un moment précis :
@@ -1018,21 +1015,21 @@ Exercices : Chapitre 3 - Incertitude
     d. La probabilité qu'un étudiant ait remis son devoir sachant qu'il est présent et éveillé.
     e. Exprimez en langage naturel la signification de la notation :math:`P(X \mid \lnot P)`.
 
-    Solution: :ia2:sol:`30.1`
+    Solution: :ia2:solution:`30.1`
 
-.. :ia2:exercice:: 30.2
+.. ia2:exercice:: 30.2
     Indépendance et dépendance d'événements
 
     Pour chacune des situations contextuelles suivantes, déterminez si les deux événements :math:`A` et :math:`B` sont **indépendants** ou **dépendants**. Justifiez brièvement votre réponse en vous appuyant sur la définition de l'indépendance probabiliste (:math:`P(A \land B) = P(A)P(B)` ou :math:`P(A \mid B) = P(A)`).
 
-    a. **Situation 1 :** :math:`A` = Obtenir un 6 lors du lancer d'un dé équilibré ; :math:`B` = Obtenir « Pile » lors du lancer d'une pièce de monnaie.
-    b. **Situation 2 :** :math:`A` = Il tombe 30 cm de neige à Québec ce matin ; :math:`B` = Le cours en présentiel au collège est annulé ou retardé.
-    c. **Situation 3 :** :math:`A` = Tirer un As dans un jeu de 52 cartes sans remise ; :math:`B` = Tirer un second As au deuxième tirage.
-    d. **Situation 4 :** :math:`A` = Un étudiant étudie 15 heures pour son examen d'IA ; :math:`B` = L'étudiant obtient une note supérieure à 90 %.
+    a. :math:`A` = Obtenir un 6 lors du lancer d'un dé équilibré ; :math:`B` = Obtenir « Pile » lors du lancer d'une pièce de monnaie.
+    b. :math:`A` = Il tombe 30 cm de neige à Québec ce matin ; :math:`B` = Le cours en présentiel au collège est annulé ou retardé.
+    c. :math:`A` = Tirer un As dans un jeu de 52 cartes sans remise ; :math:`B` = Tirer un second As au deuxième tirage.
+    d. :math:`A` = Un étudiant étudie 15 heures pour son examen d'IA ; :math:`B` = L'étudiant obtient une note supérieure à 90 %.
 
-    Solution: :ia2:sol:`30.2`
+    Solution: :ia2:solution:`30.2`
 
-.. :ia2:exercice:: 30.3
+.. ia2:exercice:: 30.3
     Probabilité conditionnelle et Règle de Bayes
 
     Un serveur de plateforme Cloud est surveillé par une IA de diagnostic. On étudie la survenue de pannes de serveur (:math:`C`) et de pics d'utilisation du CPU (:math:`U`) :
@@ -1044,9 +1041,9 @@ Exercices : Chapitre 3 - Incertitude
     a. Calculez la probabilité conditionnelle qu'une panne soit en cours sachant qu'un pic de CPU est détecté, soit :math:`P(C \mid U)`, en utilisant la **règle de Bayes**.
     b. Si la probabilité globale d'un pic de CPU :math:`P(U)` augmente à :math:`0.30` sans changer :math:`P(C)` ni :math:`P(U \mid C)`, quel est le nouvel impact sur la certitude du diagnostic :math:`P(C \mid U)` ? Expliquez intuitivement ce résultat.
 
-    Solution: :ia2:sol:`30.3`
+    Solution: :ia2:solution:`30.3`
 
-.. :ia2:exercice:: 30.4
+.. ia2:exercice:: 30.4
     Réseaux bayésiens et probabilité conjointe
 
     Soit un réseau bayésien simple modélisant les facteurs d'un trajet. Le réseau est composé des variables aléatoires booléennes suivantes :
@@ -1067,9 +1064,9 @@ Exercices : Chapitre 3 - Incertitude
     a. Calculez la **probabilité conjointe** exacte de l'événement où il pleut, il y a des travaux et l'intervenant est en retard, soit :math:`P(P = \text{vrai}, T = \text{vrai}, R = \text{vrai})`.
     b. En utilisant la **marginalisation**, calculez la probabilité globale qu'il y ait des travaux :math:`P(T = \text{vrai})`.
 
-    Solution: :ia2:sol:`30.4`
+    Solution: :ia2:solution:`30.4`
 
-.. :ia2:exercice:: 30.5
+.. ia2:exercice:: 30.5
     Modèles de Markov et Modèles de Markov Cachés (HMM)
 
     Un robot mobile évolue dans une pièce et tente de déterminer la météo extérieure à travers les indices d'un capteur de luminosité :
@@ -1082,7 +1079,7 @@ Exercices : Chapitre 3 - Incertitude
     b. Sachant que l'observation à :math:`t=1` est :math:`E_1 = \text{Lumière forte}`, calculez la probabilité filtrée :math:`P(X_1 = \text{Soleil} \mid E_1 = \text{Lumière forte})` en appliquant la formule du conditionnement et en normalisant le résultat.
     c. Expliquez brièvement la différence entre les tâches de **filtrage**, de **prédiction** et de **lissage** dans un Modèle de Markov Caché.
 
-    Solution: :ia2:sol:`30.5`
+    Solution: :ia2:solution:`30.5`
 
 
 **********
@@ -1114,16 +1111,16 @@ Exercices : Chapitre 3 - Incertitude
 
     Solution de :ia2:ex:`30.2`
 
-    a. **Situation 1 : Événements INDÉPENDANTS.**
+    a. **Événements INDÉPENDANTS.**
        Le résultat du dé n'a aucun impact physique ni logique sur le lancer de la pièce (:math:`P(A \land B) = P(A) \cdot P(B) = \frac{1}{6} \cdot \frac{1}{2} = \frac{1}{12}`).
 
-    b. **Situation 2 : Événements DÉPENDANTS.**
+    b. **Événements DÉPENDANTS.**
        Une forte chute de neige augmente considérablement la probabilité que les cours soient annulés (:math:`P(B \mid A) > P(B)`).
 
-    c. **Situation 3 : Événements DÉPENDANTS.**
+    c. **Événements DÉPENDANTS.**
        Puisqu'il n'y a pas de remise, le premier tirage modifie la composition du paquet pour le second tirage. La probabilité d'obtenir un As au second tirage dépend directement du fait d'en avoir tiré un au premier (:math:`P(B \mid A) = \frac{3}{51} \neq P(B \mid \lnot A) = \frac{4}{51}`).
 
-    d. **Situation 4 : Événements DÉPENDANTS.**
+    d. **Événements DÉPENDANTS.**
        Le temps d'étude influence la maîtrise du sujet et augmente la probabilité de réussir l'examen (:math:`P(B \mid A) > P(B)`).
 
 .. ia2:solution:: 30.3

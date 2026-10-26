@@ -17,7 +17,7 @@ identifier ces string parce qu'ils sont placées entre des guillemets (``"``).
 Si vous ne savez pas quel type de valeur a une valeur, l'interprète peut vous
 aider.
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> type("Hello World!")
     <class 'str'>
@@ -41,7 +41,7 @@ référence à une valeur.
 Une instruction d'affectation (*assignment statement*) crée de nouvelles
 variables et leur donne des valeurs :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> message = "Voici quelque chose de différent"
     >>> n = 17
@@ -53,7 +53,7 @@ nouvelle variable nommée ``message`` ; la deuxième donne l'entier ``17`` à ``
 
 Le type d'une variable est le type de la valeur à laquelle elle fait référence.
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> type(message)
     <class 'str'>
@@ -85,9 +85,9 @@ Si vous donnez à une variable un nom illégal, vous obtenez une erreur de synta
 .. code-block:: text
 
     >>> 76trombones = 'big parade'
-    File "<stdin>", line 1
+      File "<input>", line 1
         76trombones = 'big parade'
-        ^
+         ^
     SyntaxError: invalid decimal literal
     >>> more@ = 1000000
       File "<stdin>", line 1
@@ -121,7 +121,7 @@ plaint d'un de vos noms de variables et que vous ne savez pas pourquoi, vérifie
 s'il figure dans cette liste. Vous pouvez aussi simplementdemander à
 l'interpréteur de vous la donner:
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> import keyword
     >>> print(keyword.kwlist)
@@ -183,7 +183,7 @@ script.
 
 Par exemple, si vous utilisez Python comme calculatrice, vous pourriez taper :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> miles = 26.2
     >>> miles * 1.61
@@ -437,11 +437,11 @@ L'erreur sémantique la plus fréquente vient souvent de l'ordre des opérations
        mile à un rythme facile à nouveau, à quelle heure rentré-je chez moi pour
        le petit-déjeuner ?
 
-..
-    :ia2:exercice:: 02.3
+.. ia2:exercice:: 02.3
     Évaluation d'expressions et types
 
-    Supposons que nous exécutions les instructions d'affectation suivantes[cite: 3] :
+    Supposons que nous exécutions les instructions d'affectation suivantes[cite:
+    3] :
 
     .. code-block:: python
 
@@ -449,7 +449,8 @@ L'erreur sémantique la plus fréquente vient souvent de l'ordre des opérations
         height = 12.0
         delimiter = "."
 
-    Pour chacune des expressions suivantes, déterminez la valeur de l'expression et le type (de la valeur de l'expression)[cite: 3] :
+    Pour chacune des expressions suivantes, déterminez la valeur de l'expression
+    et le type (de la valeur de l'expression) :
 
     a. ``width / 2``
     b. ``width / 2.0``
@@ -457,25 +458,35 @@ L'erreur sémantique la plus fréquente vient souvent de l'ordre des opérations
     d. ``1 + 2 * 5``
     e. ``delimiter * 5``
 
-    Solution: :ia2:sol:`02.3`
+    Solution: :ia2:solution:`02.3`
 
-..
-    :ia2:exercice:: 02.4
+.. ia2:exercice:: 02.4
     Python comme calculatrice
 
-    Pratiquez l'utilisation de l'interpréteur Python comme calculatrice en traduisant ces problèmes en expressions mathématiques Python[cite: 3] :
+    Pratiquez l'utilisation de l'interpréteur Python comme calculatrice en
+    traduisant ces problèmes en expressions mathématiques Python :
 
-    a. Le volume d'une sphère de rayon r est :math:`\frac{4}{3} \pi r^3`. Quel est le volume d'une sphère de rayon 5 ?[cite: 3]
-    b. Supposons que le prix de couverture d'un livre soit de 24,95 $, mais que les librairies obtiennent une réduction de 40%. Les frais d'expédition sont de 3 $ pour le premier exemplaire et de 75 cents pour chaque exemplaire supplémentaire. Quel est le coût total de gros pour 60 exemplaires ?[cite: 3]
-    c. Si je quitte ma maison à 6h52 et que je cours 1 mile à un rythme facile (8:15 par mile), puis 3 miles à un rythme soutenu (7:12 par mile) et 1 mile à un rythme facile à nouveau, à quelle heure rentré-je chez moi pour le petit-déjeuner ?[cite: 3]
+    a. Le volume d'une sphère de rayon r est :math:`\frac{4}{3} \pi r^3`. Quel
+       est le volume d'une sphère de rayon 5 ?
+    b. Supposons que le prix de couverture d'un livre soit de 24,95 $, mais que
+       les librairies obtiennent une réduction de 40%. Les frais d'expédition
+       sont de 3 $ pour le premier exemplaire et de 75 cents pour chaque
+       exemplaire supplémentaire. Quel est le coût total de gros pour 60
+       exemplaires ?
+    c. Si je quitte ma maison à 6h52 et que je cours 1 mile à un rythme facile
+       (8:15 par mile), puis 3 miles à un rythme soutenu (7:12 par mile) et 1
+       mile à un rythme facile à nouveau, à quelle heure rentré-je chez moi pour
+       le petit-déjeuner ?
 
-    Solution: :ia2:sol:`02.4`
+    Solution: :ia2:solution:`02.4`
 
-..
-    :ia2:exercice:: 02.5
+.. ia2:exercice:: 02.5
     Noms de variables et mots-clés
 
-    En Python, les noms de variables doivent respecter certaines règles et ne peuvent pas être des mots-clés réservés par l'interpréteur[cite: 3]. Parmi les noms de variables suivants, lesquels sont valides ? Pour ceux qui sont invalides, expliquez pourquoi (Erreur de syntaxe, mot-clé, etc.) :
+    En Python, les noms de variables doivent respecter certaines règles et ne
+    peuvent pas être des mots-clés réservés par l'interpréteur. Parmi
+    les noms de variables suivants, lesquels sont valides ? Pour ceux qui sont
+    invalides, expliquez pourquoi (Erreur de syntaxe, mot-clé, etc.) :
 
     a. ``mon_nom``
     b. ``1er_joueur``
@@ -483,84 +494,82 @@ L'erreur sémantique la plus fréquente vient souvent de l'ordre des opérations
     d. ``class``
     e. ``_compteur``
 
-    Solution: :ia2:sol:`02.5`
+    Solution: :ia2:solution:`02.5`
 
-..
-    :ia2:exercice:: 02.6
+.. ia2:exercice:: 02.6
     Opérations sur les chaînes de caractères
 
-    L'opérateur ``+`` effectue une concaténation et l'opérateur ``*`` effectue une répétition lorsqu'ils sont appliqués à des chaînes de caractères[cite: 3]. Quel sera le résultat évalué pour chacune de ces expressions ?
+    L'opérateur ``+`` effectue une concaténation et l'opérateur ``*`` effectue
+    une répétition lorsqu'ils sont appliqués à des chaînes de caractères[cite:
+    3]. Quel sera le résultat évalué pour chacune de ces expressions ?
 
     a. ``"Ba" + "na" * 2``
     b. ``"1" + "2"``
     c. ``3 * "0"``
 
-    Solution: :ia2:sol:`02.6`
+    Solution: :ia2:solution:`02.6`
 
-..
-    :ia2:exercice:: 02.7
+.. ia2:exercice:: 02.7
     Débogage et types d'erreurs
 
-    L'exécution de code peut lever différentes erreurs comme une ``SyntaxError`` (nom illégal, etc.) ou une ``NameError`` (utilisation d'une variable avant de lui avoir assigné une valeur)[cite: 3]. Il existe aussi des erreurs sémantiques (liées à l'ordre des opérations par exemple)[cite: 3].
+    L'exécution de code peut lever différentes erreurs comme une ``SyntaxError``
+    (nom illégal, etc.) ou une ``NameError`` (utilisation d'une variable avant
+    de lui avoir assigné une valeur). Il existe aussi des erreurs
+    sémantiques (liées à l'ordre des opérations par exemple).
     Identifiez le problème dans les extraits de code suivants :
 
-    a.
-        .. code-block:: python
+    a. .. code-block:: python
 
-            message = "Bonjour"
-            print(mesage)
+           message = "Bonjour"
+           print(mesage)
+    b. .. code-block:: python
 
-    b.
-        .. code-block:: python
+           moyenne = 10 + 20 / 2  # L'intention est de calculer la moyenne de 10 et 20
+    c. .. code-block:: python
 
-            moyenne = 10 + 20 / 2  # L'intention est de calculer la moyenne de 10 et 20
+           miles = 26.2
+           print(miles * 1.61)  # pourcentage d'un marathon
+           1000000 = more@
 
-    c.
-        .. code-block:: python
-
-            miles = 26.2
-            print(miles * 1.61)  # pourcentage d'un marathon
-            1000000 = more@
-
-    Solution: :ia2:sol:`02.7`
+    Solution: :ia2:solution:`02.7`
 
 ***********
  Solutions
 ***********
 
 .. ia2:solution:: 02.3
-Évaluation d'expressions et types
+    Évaluation d'expressions et types
 
     Solution de :ia2:ex:`02.3`
 
     a. ``width / 2``
        * **Valeur :** ``8.5``
-       * **Type :** ``float`` (en Python, la division avec ``/`` retourne toujours un nombre à virgule flottante)[cite: 3].
+       * **Type :** ``float`` (en Python, la division avec ``/`` retourne toujours un nombre à virgule flottante).
 
     b. ``width / 2.0``
        * **Valeur :** ``8.5``
-       * **Type :** ``float``[cite: 3]
+       * **Type :** ``float``
 
     c. ``height / 3``
        * **Valeur :** ``4.0``
-       * **Type :** ``float``[cite: 3]
+       * **Type :** ``float``
 
     d. ``1 + 2 * 5``
-       * **Valeur :** ``11`` (la multiplication est prioritaire sur l'addition)[cite: 3].
-       * **Type :** ``int``[cite: 3]
+       * **Valeur :** ``11`` (la multiplication est prioritaire sur l'addition).
+       * **Type :** ``int``
 
     e. ``delimiter * 5``
-       * **Valeur :** ``"....."`` (l'opérateur ``*`` effectue la répétition sur les chaînes de caractères)[cite: 3].
-       * **Type :** ``str``[cite: 3]
+       * **Valeur :** ``"....."`` (l'opérateur ``*`` effectue la répétition sur les chaînes de caractères).
+       * **Type :** ``str``
 
 .. ia2:solution:: 02.4
-Python comme calculatrice
+    Python comme calculatrice
 
     Solution de :ia2:ex:`02.4`
 
     a. **Volume d'une sphère de rayon 5 :**
 
-       En appliquant la formule :math:`V = \frac{4}{3} \pi r^3`[cite: 3] :
+       En appliquant la formule :math:`V = \frac{4}{3} \pi r^3` :
 
        .. code-block:: python
 
@@ -573,9 +582,9 @@ Python comme calculatrice
 
     b. **Coût total de gros pour 60 exemplaires :**
 
-       * Prix unitaire réduit : :math:`24.95 \times (1 - 0.40) = 14.97` $[cite: 3]
-       * Coût total des 60 livres : :math:`60 \times 14.97 = 898.20` $[cite: 3]
-       * Frais d'expédition : :math:`3.00 + (59 \times 0.75) = 3.00 + 44.25 = 47.25` $[cite: 3]
+       * Prix unitaire réduit : :math:`24.95 \times (1 - 0.40) = 14.97` $
+       * Coût total des 60 livres : :math:`60 \times 14.97 = 898.20` $
+       * Frais d'expédition : :math:`3.00 + (59 \times 0.75) = 3.00 + 44.25 = 47.25` $
        * Coût total : :math:`898.20 + 47.25 = 945.45` $
 
        .. code-block:: python
@@ -590,11 +599,11 @@ Python comme calculatrice
 
     c. **Heure de retour pour le petit-déjeuner :**
 
-       * Départ à 6h52 (soit 6h 52m 00s)[cite: 3].
+       * Départ à 6h52 (soit 6h 52m 00s).
        * Temps de course :
-         * 1 mile facile : 8 min 15 s[cite: 3]
-         * 3 miles soutenus : :math:`3 \times 7\text{ min } 12\text{ s} = 21\text{ min } 36\text{ s}`[cite: 3]
-         * 1 mile facile : 8 min 15 s[cite: 3]
+         * 1 mile facile : 8 min 15 s
+         * 3 miles soutenus : :math:`3 \times 7\text{ min } 12\text{ s} = 21\text{ min } 36\text{ s}`
+         * 1 mile facile : 8 min 15 s
          * Total minutes : :math:`8 + 21 + 8 = 37` min
          * Total secondes : :math:`15 + 36 + 15 = 66` s = 1 min 06 s
          * Durée totale : 38 min 06 s
@@ -603,40 +612,40 @@ Python comme calculatrice
        * **Résultat :** Vous rentrez chez vous à **7h30 et 6 secondes** (7:30:06).
 
 .. ia2:solution:: 02.5
-Noms de variables et mots-clés
+    Noms de variables et mots-clés
 
     Solution de :ia2:ex:`02.5`
 
-    a. ``mon_nom`` : **Valide**. Utilise des lettres minuscules et le trait de soulignement (*underscore*) pour composer le nom[cite: 3].
-    b. ``1er_joueur`` : **Invalide**. Commence par un chiffre (``1``), ce qui provoque une ``SyntaxError``[cite: 3].
-    c. ``vitesse-max`` : **Invalide**. Contient le caractère ``-`` (interprété comme l'opérateur de soustraction), ce qui provoque une ``SyntaxError``[cite: 3].
-    d. ``class`` : **Invalide**. ``class`` est un mot-clé réservé de Python[cite: 3].
-    e. ``_compteur`` : **Valide**. Les noms de variables peuvent débuter par un trait de soulignement[cite: 3].
+    a. ``mon_nom`` : **Valide**. Utilise des lettres minuscules et le trait de soulignement (*underscore*) pour composer le nom.
+    b. ``1er_joueur`` : **Invalide**. Commence par un chiffre (``1``), ce qui provoque une ``SyntaxError``.
+    c. ``vitesse-max`` : **Invalide**. Contient le caractère ``-`` (interprété comme l'opérateur de soustraction), ce qui provoque une ``SyntaxError``.
+    d. ``class`` : **Invalide**. ``class`` est un mot-clé réservé de Python.
+    e. ``_compteur`` : **Valide**. Les noms de variables peuvent débuter par un trait de soulignement.
 
 .. ia2:solution:: 02.6
-Opérations sur les chaînes de caractères
+    Opérations sur les chaînes de caractères
 
     Solution de :ia2:ex:`02.6`
 
     a. ``"Ba" + "na" * 2``
-       * **Résultat :** ``"Banana"`` (l'opérateur ``*`` répète ``"na"`` deux fois pour former ``"nana"``, puis ``+`` concatène avec ``"Ba"``)[cite: 3].
+       * **Résultat :** ``"Banana"`` (l'opérateur ``*`` répète ``"na"`` deux fois pour former ``"nana"``, puis ``+`` concatène avec ``"Ba"``).
 
     b. ``"1" + "2"``
-       * **Résultat :** ``"12"`` (concaténation de deux chaînes de caractères)[cite: 3].
+       * **Résultat :** ``"12"`` (concaténation de deux chaînes de caractères).
 
     c. ``3 * "0"``
-       * **Résultat :** ``"000"`` (répétition de la chaîne ``"0"`` trois fois)[cite: 3].
+       * **Résultat :** ``"000"`` (répétition de la chaîne ``"0"`` trois fois).
 
 .. ia2:solution:: 02.7
-Débogage et types d'erreurs
+    Débogage et types d'erreurs
 
     Solution de :ia2:ex:`02.7`
 
     a. **Erreur d'exécution (``NameError``) :**
-       La variable ``mesage`` comporte une faute de frappe (il manque un ``s``). Python ne la trouve pas dans la portée courante et lève une ``NameError``[cite: 3].
+       La variable ``mesage`` comporte une faute de frappe (il manque un ``s``). Python ne la trouve pas dans la portée courante et lève une ``NameError``.
 
     b. **Erreur sémantique (logique) :**
-       En raison de la priorité des opérateurs (PEMDAS), la division ``20 / 2`` s'exécute en premier (donnant ``10.0``), puis s'ajoute à ``10`` pour obtenir ``20.0``[cite: 3]. Pour calculer la moyenne, il faut ajouter des parenthèses : ``(10 + 20) / 2``[cite: 3].
+       En raison de la priorité des opérateurs (PEMDAS), la division ``20 / 2`` s'exécute en premier (donnant ``10.0``), puis s'ajoute à ``10`` pour obtenir ``20.0``. Pour calculer la moyenne, il faut ajouter des parenthèses : ``(10 + 20) / 2``.
 
     c. **Erreurs de syntaxe (``SyntaxError``) :**
-       L'instruction ``1000000 = more@`` comporte deux erreurs : l'affectation doit placer la variable à gauche du signe ``=``[cite: 3], et le nom de variable ``more@`` utilise le caractère interdit ``@``[cite: 3].
+       L'instruction ``1000000 = more@`` comporte deux erreurs : l'affectation doit placer la variable à gauche du signe ``=``, et le nom de variable ``more@`` utilise le caractère interdit ``@``.

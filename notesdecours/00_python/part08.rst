@@ -37,7 +37,7 @@ La syntaxe pour accéder aux éléments d'une liste est la même que pour les
 chaînes de caractères : l'opérateur de crochet. L'indice indique quel élément
 vous voulez (rappelez-vous que les indices commencent à 0) :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> devoirs[0]
     'maths'
@@ -47,7 +47,7 @@ Contrairement aux chaînes de caractères, les listes sont **mutables**
 réassigner un élément particulier. En utilisant l'opérateur de crochet du côté
 gauche d'une affectation, vous pouvez mettre à jour un élément :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> nombres = [17, 123]
     >>> nombres[1] = 5
@@ -63,7 +63,7 @@ pourquoi les listes sont des séquences.
 
 L'opérateur ``in`` fonctionne également avec les listes :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> devoirs = ['maths', 'programmation', 'physique']
     >>> 'maths' in devoirs
@@ -104,7 +104,7 @@ Une boucle ``for`` sur une liste vide ne s'exécute jamais :
 .. code-block:: python
 
     for x in []:
-        print(Ceci ne s'exécute jamais.)
+        print("Ceci ne s'exécute jamais.")
 
 ***************************
  Opérations sur les listes
@@ -112,7 +112,7 @@ Une boucle ``for`` sur une liste vide ne s'exécute jamais :
 
 L'opérateur ``+`` concatène les listes :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> a = [1, 2, 3]
     >>> b = [4, 5, 6]
@@ -122,7 +122,7 @@ L'opérateur ``+`` concatène les listes :
 
 L'opérateur ``*`` répète une liste un nombre donné de fois :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> [0] * 4
     [0, 0, 0, 0]
@@ -135,7 +135,7 @@ L'opérateur ``*`` répète une liste un nombre donné de fois :
 
 L'opérateur de tranche (*slice*) fonctionne également sur les listes :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> t = ['a', 'b', 'c', 'd', 'e', 'f']
     >>> t[1:3]
@@ -149,7 +149,7 @@ Si vous omettez le premier indice, la tranche commence au début. Si vous omette
 le second, elle va jusqu'à la fin. Si vous omettez les deux, la tranche est une
 copie de toute la liste :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> t[:]
     ['a', 'b', 'c', 'd', 'e', 'f']
@@ -160,7 +160,7 @@ de les modifier.
 Une tranche du côté gauche d'une affectation peut modifier plusieurs éléments à
 la fois :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> t = ['a', 'b', 'c', 'd', 'e', 'f']
     >>> t[1:3] = ['x', 'y']
@@ -174,7 +174,7 @@ la fois :
 Python fournit des méthodes qui s'appliquent aux listes. Par exemple, ``append``
 ajoute un nouvel élément à la fin d'une liste :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> t = ['a', 'b', 'c']
     >>> t.append('d')
@@ -183,7 +183,7 @@ ajoute un nouvel élément à la fin d'une liste :
 
 ``extend`` prend une liste comme argument et ajoute tous ses éléments :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> t1 = ['a', 'b', 'c']
     >>> t2 = ['d', 'e']
@@ -193,7 +193,7 @@ ajoute un nouvel élément à la fin d'une liste :
 
 ``sort`` trie les éléments de la liste par ordre croissant :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> t = ['d', 'c', 'e', 'b', 'a']
     >>> t.sort()
@@ -212,7 +212,7 @@ Il existe plusieurs façons de supprimer des éléments d'une liste. Si vous
 connaissez l'indice de l'élément que vous voulez supprimer, vous pouvez utiliser
 ``pop`` :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> t = ['a', 'b', 'c']
     >>> x = t.pop(1)
@@ -227,7 +227,7 @@ fournissez pas d'indice, il supprime et renvoie le dernier élément.
 Si vous ne connaissez pas l'indice mais que vous connaissez l'élément à
 supprimer, vous pouvez utiliser ``remove`` :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> t = ['a', 'b', 'c']
     >>> t.remove('b')
@@ -239,7 +239,7 @@ La valeur de retour de ``remove`` est ``None``.
 Pour supprimer plus d'un élément, vous pouvez utiliser une tranche avec une
 liste vide :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> t = ['a', 'b', 'c', 'd', 'e', 'f']
     >>> t[1:3] = []
@@ -255,7 +255,7 @@ séquence de valeurs, mais une liste de caractères n'est pas la même chose qu'
 chaîne. Pour convertir une chaîne en une liste de caractères, vous pouvez
 utiliser ``list`` :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> s = "spam"
     >>> t = list(s)
@@ -265,7 +265,7 @@ utiliser ``list`` :
 La fonction ``list`` sépare une chaîne en lettres individuelles. Si vous voulez
 diviser une chaîne en mots, vous pouvez utiliser la méthode ``split`` :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> s = "compter les mots de cette phrase"
     >>> t = s.split()
@@ -275,7 +275,7 @@ diviser une chaîne en mots, vous pouvez utiliser la méthode ``split`` :
 À l'inverse, ``join`` est l'opposé de ``split``. Elle prend une liste de chaînes
 et concatène les éléments :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> t = ['compter', 'les', 'mots', 'de', 'cette', 'phrase']
     >>> delimiteur = ' '
@@ -303,7 +303,7 @@ même valeur. De l'autre, ils peuvent se référer au même objet.
 Pour vérifier si deux variables font référence au même objet, vous pouvez
 utiliser l'opérateur ``is`` :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> a = "banane"
     >>> b = "banane"
@@ -314,7 +314,7 @@ Dans cet exemple, Python ne crée qu'une seule chaîne de caractères, et ``a`` 
 ``b`` font référence au même objet. Mais lorsque vous créez deux listes, vous
 obtenez deux objets :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> a = [1, 2, 3]
     >>> b = [1, 2, 3]
@@ -331,7 +331,7 @@ valeurs), mais pas **identiques** (elles ne sont pas le même objet).
 Si ``a`` fait référence à un objet et que vous assignez ``b = a``, alors les
 deux variables font référence au même objet :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> a = [1, 2, 3]
     >>> b = a
@@ -345,7 +345,7 @@ objet a plus d'une référence, il a plus d'un nom, et on dit que l'objet est
 Si l'objet crénelé est mutable, les modifications apportées à l'un des alias
 affectent l'autre :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> b[0] = 42
     >>> a

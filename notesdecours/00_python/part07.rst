@@ -15,7 +15,7 @@ apprendrez certaines des méthodes proposées par les chaînes.
 Une chaîne est une séquence de caractères. Vous pouvez accéder aux caractères un
 à la fois avec l'opérateur de crochet :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> fruit = 'banane'
     >>> lettre = fruit[1]
@@ -25,7 +25,7 @@ l'affecte à ``lettre``. L'expression entre crochets est appelée un indice
 (*index*). L'indice indique quel caractère de la séquence vous souhaitez (d'où
 son nom). Mais vous pourriez ne pas obtenir ce que vous attendez :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> lettre
     'a'
@@ -34,7 +34,7 @@ Pour la plupart des gens, la première lettre de ``'banane'`` est ``b``, pas
 ``a``. Mais pour les informaticiens, l'indice est un décalage par rapport au
 début de la chaîne, et le décalage de la première lettre est zéro.
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> lettre = fruit[0]
     >>> lettre
@@ -45,7 +45,7 @@ Ainsi, ``b`` est la 0-ième lettre (« zéro-ième ») de ``'banane'``, ``a`` es
 quelle expression, y compris des variables et des opérateurs, comme indice, mais
 la valeur de l'indice doit être un entier. Sinon, vous obtenez une exception :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> lettre = fruit[1.5]
     TypeError: string indices must be integers
@@ -57,7 +57,7 @@ la valeur de l'indice doit être un entier. Sinon, vous obtenez une exception :
 ``len`` est une fonction intégrée qui renvoie le nombre de caractères dans une
 chaîne :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> fruit = 'banane'
     >>> len(fruit)
@@ -66,7 +66,7 @@ chaîne :
 Pour obtenir la dernière lettre d'une chaîne, vous pourriez être tenté d'essayer
 quelque chose comme ceci :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> longueur = len(fruit)
     >>> derniere = fruit[longueur]
@@ -76,7 +76,7 @@ La raison de cette erreur est qu'il n'y a pas de lettre à l'indice 6 dans
 ``'banane'``. Les indices vont de 0 à 5. Pour obtenir le dernier caractère, vous
 devez soustraire 1 à la longueur :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> derniere = fruit[longueur-1]
     >>> derniere
@@ -127,7 +127,7 @@ caractères.
 Un segment d'une chaîne s'appelle une tranche (*slice*). La sélection d'une
 tranche est similaire à la sélection d'un caractère :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> s = 'Monty Python'
     >>> s[0:5]
@@ -141,7 +141,7 @@ m-ième caractère, en incluant le premier mais en excluant le dernier.
 Si vous omettez le premier indice, la tranche commence au début de la chaîne. Si
 vous omettez le second, la tranche va jusqu'à la fin de la chaîne :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> fruit = 'banane'
     >>> fruit[:3]
@@ -152,7 +152,7 @@ vous omettez le second, la tranche va jusqu'à la fin de la chaîne :
 Si le premier indice est supérieur ou égal au second, le résultat est une chaîne
 vide, représentée par deux guillemets :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> fruit[3:3]
     ''
@@ -168,7 +168,7 @@ Il est tentant d'utiliser l'opérateur de crochet du côté gauche d'une
 affectation, avec l'intention de changer un caractère dans une chaîne. Par
 exemple :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> salut = 'Bonjour, monde !'
     >>> salut[0] = 'J'
@@ -180,7 +180,7 @@ qui signifie que vous ne pouvez pas modifier une chaîne existante. Le mieux que
 vous puissiez faire est de créer une nouvelle chaîne qui est une variante de
 l'originale :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> salut = 'Bonjour, monde !'
     >>> nouveau_salut = 'J' + salut[1:]
@@ -250,7 +250,7 @@ Par exemple, la méthode ``upper`` prend une chaîne et retourne une nouvelle
 chaîne avec toutes les lettres en majuscules. Au lieu de la syntaxe de fonction
 ``upper(mot)``, elle utilise la syntaxe de méthode ``mot.upper()`` :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> mot = 'banane'
     >>> nouveau_mot = mot.upper()
@@ -265,7 +265,7 @@ dire que nous invoquons ``upper`` sur ``mot``.
 En fait, il existe une méthode de chaîne nommée ``find`` qui est remarquablement
 similaire à la fonction ``trouver`` que nous avons écrite :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> mot = 'banane'
     >>> index = mot.find('a')
@@ -279,7 +279,7 @@ similaire à la fonction ``trouver`` que nous avons écrite :
 Le mot-clé ``in`` est un opérateur booléen qui prend deux chaînes et renvoie
 ``True`` si la première apparaît en tant que sous-chaîne dans la seconde :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> 'a' in 'banane'
     True
@@ -348,7 +348,7 @@ Si nous testons cette fonction avec les mots ``"pots"`` et ``"stop"``, nous nous
 attendons à ce qu'elle renvoie ``True``, mais elle provoque une erreur
 ``IndexError`` :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> est_inverse('pots', 'stop')
     IndexError: string index out of range
@@ -438,7 +438,7 @@ corriger la deuxième erreur !
     Un pas de 2 signifie tous les deux caractères, et un pas de 3 signifie tous
     les trois caractères, etc.
 
-    .. code-block:: python
+    .. code-block:: python-console
 
         >>> fruit = 'banane'
         >>> fruit[0:5:2]

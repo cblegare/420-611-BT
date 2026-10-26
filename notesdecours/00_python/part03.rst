@@ -13,7 +13,7 @@ pouvez « appeler » la fonction par son nom.
 
 Nous avons déjà vu un exemple d'appel de fonction :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> print(32)
     32
@@ -33,7 +33,7 @@ Python fournit des fonctions intégrées qui convertissent les valeurs d'un type
 un autre. La fonction ``int`` prend n'importe quelle valeur et la convertit en
 entier, si elle le peut, ou signale une erreur sinon :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> int('32')
     32
@@ -45,7 +45,7 @@ entier, si elle le peut, ou signale une erreur sinon :
 ``int`` peut convertir des valeurs à virgule flottante en entiers, mais elle
 n'arrondit pas ; elle coupe simplement la partie fractionnaire :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> int(3.99999)
     3
@@ -55,7 +55,7 @@ n'arrondit pas ; elle coupe simplement la partie fractionnaire :
 La fonction ``float`` convertit les entiers et les chaînes de caractères en
 nombres à virgule flottante :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> float(32)
     32.0
@@ -64,7 +64,7 @@ nombres à virgule flottante :
 
 Enfin, ``str`` convertit son argument en une chaîne de caractères :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> str(32)
     '32'
@@ -82,7 +82,7 @@ de fonctions liées.
 Avant de pouvoir utiliser les fonctions d'un module, nous devons l'importer avec
 une instruction ``import`` :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> import math
 
@@ -90,7 +90,7 @@ Cette instruction crée un objet module nommé ``math``. Pour accéder à l'une 
 fonctions, vous devez spécifier le nom du module et le nom de la fonction,
 séparés par un point. Ce format est appelé la notation pointée (*dot notation*).
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> ratio = puissance_signal / puissance_bruit
     >>> decibels = 10 * math.log10(ratio)
@@ -106,7 +106,7 @@ arguments en radians.
 
 Pour convertir des degrés en radians, divisez par 180 et multipliez par π :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> degres = 45
     >>> radians = degres / 180.0 * math.pi
@@ -176,7 +176,7 @@ Par convention, l'indentation est toujours de quatre espaces.
 La syntaxe pour appeler la nouvelle fonction est la même que pour les fonctions
 intégrées :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> afficher_paroles()
     Je suis un bûcheron, et je vais bien.
@@ -260,7 +260,7 @@ Cette fonction affecte l'argument à un paramètre nommé ``bruce``. Lorsque la
 fonction est appelée, elle imprime la valeur du paramètre (quel qu'il soit) à
 deux reprises.
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> imprimer_deux_fois('Spam')
     Spam
@@ -289,7 +289,7 @@ ce qui signifie qu'elle n'existe qu'à l'intérieur de cette fonction. Par exemp
 Cette fonction prend deux arguments, les concatène et affiche le résultat deux
 fois.
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> ligne1 = 'Bing tiddle '
     >>> ligne2 = 'tiddle bang.'
@@ -301,7 +301,7 @@ Lorsque la fonction se termine, la variable ``chat`` est détruite. Si nous
 essayons de l'imprimer depuis l'extérieur de la fonction, nous obtenons une
 exception :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> print(chat)
     NameError: name 'chat' is not defined
@@ -332,7 +332,7 @@ variable :
 Les fonctions *void* peuvent afficher quelque chose à l'écran ou avoir un autre
 effet, mais leur valeur de retour est une valeur spéciale appelée ``None``.
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> resultat = imprimer_deux_fois('Bing')
     Bing
@@ -343,7 +343,7 @@ effet, mais leur valeur de retour est une valeur spéciale appelée ``None``.
 La valeur ``None`` n'est pas la même chose que la chaîne de caractères
 ``'None'``. C'est une valeur spéciale qui a son propre type :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> type(None)
     <class 'NoneType'>
@@ -456,7 +456,7 @@ quelles fonctions étaient en cours d'exécution au moment de l'erreur.
     suffisamment d'espaces de début pour que la dernière lettre de la chaîne se
     trouve dans la colonne 70 de l'affichage.
 
-    .. code-block:: python
+    .. code-block:: python-console
 
         >>> right_justify('monty')
                                                                          monty
@@ -493,46 +493,42 @@ quelles fonctions étaient en cours d'exécution au moment de l'erreur.
        fonction et une valeur, et appelle la fonction deux fois, en passant la
        valeur comme argument.
 
-..
-    :ia2:exercice:: 03.1
+.. ia2:exercice:: 03.1
     Justification à droite
 
-    Écrivez une fonction nommée ``right_justify`` qui prend une chaîne de caractères nommée ``s`` comme paramètre et imprime la chaîne avec suffisamment d'espaces au début pour que le dernier caractère de la chaîne se trouve dans la colonne 70 de l'affichage[cite: 4].
+    Écrivez une fonction nommée ``right_justify`` qui prend une chaîne de caractères nommée ``s`` comme paramètre et imprime la chaîne avec suffisamment d'espaces au début pour que le dernier caractère de la chaîne se trouve dans la colonne 70 de l'affichage.
 
-    .. code-block:: python
+    .. code-block:: python-console
 
         >>> right_justify('monty')
                                                                          monty
 
-    *Indice : Utilisez la concaténation (``+``) et la répétition de chaînes (``*``). La fonction intégrée ``len(s)`` renvoie la longueur d'une chaîne[cite: 4].*
+    *Indice : Utilisez la concaténation (``+``) et la répétition de chaînes (``*``). La fonction intégrée ``len(s)`` renvoie la longueur d'une chaîne.*
 
-    Solution: :ia2:sol:`03.1`
+    Solution: :ia2:solution:`03.1`
 
-..
-    :ia2:exercice:: 03.2
+.. ia2:exercice:: 03.2
     Passage de fonctions en arguments
 
-    Un objet de fonction est une valeur que vous pouvez affecter à une variable ou passer comme argument à une autre fonction[cite: 4].
+    Un objet de fonction est une valeur que vous pouvez affecter à une variable ou passer comme argument à une autre fonction.
 
-    a. Écrivez une fonction ``do_twice(f, val)`` qui prend deux arguments : un objet fonction ``f`` et une valeur ``val``, et appelle la fonction ``f`` deux fois en lui passant ``val`` comme argument[cite: 4].
-    b. Écrivez une fonction ``print_twice(chaine)`` qui prend une chaîne en argument et l'imprime deux fois[cite: 4].
-    c. Utilisez ``do_twice`` pour appeler ``print_twice`` en lui passant la chaîne ``'spam'``[cite: 4].
+    a. Écrivez une fonction ``do_twice(f, val)`` qui prend deux arguments : un objet fonction ``f`` et une valeur ``val``, et appelle la fonction ``f`` deux fois en lui passant ``val`` comme argument.
+    b. Écrivez une fonction ``print_twice(chaine)`` qui prend une chaîne en argument et l'imprime deux fois.
+    c. Utilisez ``do_twice`` pour appeler ``print_twice`` en lui passant la chaîne ``'spam'``.
     d. Écrivez une fonction ``do_four(f, val)`` qui prend un objet fonction ``f`` et une valeur ``val``, et appelle la fonction quatre fois en réutilisant la fonction ``do_twice``.
 
-    Solution: :ia2:sol:`03.2`
+    Solution: :ia2:solution:`03.2`
 
-..
-    :ia2:exercice:: 03.3
+.. ia2:exercice:: 03.3
     Conversions de types et module math
 
-    a. Écrivez une fonction ``degres_vers_radians(degres)`` qui prend un angle en degrés et retourne sa valeur en radians en utilisant la constante ``pi`` du module ``math``[cite: 4].
-    b. Que retourne l'expression ``int(float('3.9'))`` ? Expliquez le comportement des fonctions de conversion de type impliquées[cite: 4].
-    c. Expliquez la différence entre une fonction productive (*fruitful function*) et une fonction nulle (*void function*)[cite: 4]. Quel est le type et la valeur retournés par une fonction sans instruction ``return``[cite: 4] ?
+    a. Écrivez une fonction ``degres_vers_radians(degres)`` qui prend un angle en degrés et retourne sa valeur en radians en utilisant la constante ``pi`` du module ``math``.
+    b. Que retourne l'expression ``int(float('3.9'))`` ? Expliquez le comportement des fonctions de conversion de type impliquées.
+    c. Expliquez la différence entre une fonction productive (*fruitful function*) et une fonction nulle (*void function*). Quel est le type et la valeur retournés par une fonction sans instruction ``return`` ?
 
-    Solution: :ia2:sol:`03.3`
+    Solution: :ia2:solution:`03.3`
 
-..
-    :ia2:exercice:: 03.4
+.. ia2:exercice:: 03.4
     Variables locales et flux d'exécution
 
     Considérez le script Python suivant :
@@ -551,21 +547,21 @@ quelles fonctions étaient en cours d'exécution au moment de l'erreur.
         ligne2 = 'tiddle bang.'
         concatener_deux_fois(ligne1, ligne2)
 
-    a. Décrivez l'ordre exact d'exécution des instructions lors du fonctionnement de ce programme[cite: 4].
-    b. Que se passe-t-il si l'on tente d'exécuter ``print(chat)`` ou ``print(bruce)`` à la toute fin du script (hors des fonctions)[cite: 4] ? Expliquez pourquoi[cite: 4].
+    a. Décrivez l'ordre exact d'exécution des instructions lors du fonctionnement de ce programme.
+    b. Que se passe-t-il si l'on tente d'exécuter ``print(chat)`` ou ``print(bruce)`` à la toute fin du script (hors des fonctions) ? Expliquez pourquoi.
 
-    Solution: :ia2:sol:`03.4`
+    Solution: :ia2:solution:`03.4`
 
 ***********
  Solutions
 ***********
 
 .. ia2:solution:: 03.1
-Justification à droite
+    Justification à droite
 
     Solution de :ia2:ex:`03.1`
 
-    Pour placer le dernier caractère dans la colonne 70, il faut ajouter :math:`70 - \text{len}(s)` espaces avant la chaîne ``s``[cite: 4].
+    Pour placer le dernier caractère dans la colonne 70, il faut ajouter :math:`70 - \text{len}(s)` espaces avant la chaîne ``s``.
 
     .. code-block:: python
 
@@ -577,7 +573,7 @@ Justification à droite
         right_justify('monty')
 
 .. ia2:solution:: 03.2
-Passage de fonctions en arguments
+    Passage de fonctions en arguments
 
     Solution de :ia2:ex:`03.2`
 
@@ -604,7 +600,7 @@ Passage de fonctions en arguments
         do_four(print_twice, 'spam')
 
 .. ia2:solution:: 03.3
-Conversions de types et module math
+    Conversions de types et module math
 
     Solution de :ia2:ex:`03.3`
 
@@ -618,30 +614,30 @@ Conversions de types et module math
                return degres / 180.0 * math.pi
 
     b. **Évaluation de ``int(float('3.9'))`` :**
-       * ``float('3.9')`` convertit la chaîne ``'3.9'`` en nombre à virgule flottante ``3.9``[cite: 4].
-       * ``int(3.9)`` tronque la partie décimale (sans arrondir) et retourne l'entier ``3``[cite: 4].
+       * ``float('3.9')`` convertit la chaîne ``'3.9'`` en nombre à virgule flottante ``3.9``.
+       * ``int(3.9)`` tronque la partie décimale (sans arrondir) et retourne l'entier ``3``.
 
     c. **Fonctions productives vs fonctions nulles :**
-       * Une **fonction productive** retourne une valeur exploitable à l'aide de l'instruction ``return``[cite: 4].
-       * Une **fonction nulle** (*void function*) effectue un effet de bord (ex. afficher à l'écran avec ``print``) sans retourner de valeur[cite: 4].
-       * Lorsqu'une fonction n'a pas d'instruction ``return``, elle retourne automatiquement la valeur spéciale ``None``[cite: 4], qui est du type ``NoneType``[cite: 4].
+       * Une **fonction productive** retourne une valeur exploitable à l'aide de l'instruction ``return``.
+       * Une **fonction nulle** (*void function*) effectue un effet de bord (ex. afficher à l'écran avec ``print``) sans retourner de valeur.
+       * Lorsqu'une fonction n'a pas d'instruction ``return``, elle retourne automatiquement la valeur spéciale ``None``, qui est du type ``NoneType``.
 
 .. ia2:solution:: 03.4
-Variables locales et flux d'exécution
+    Variables locales et flux d'exécution
 
     Solution de :ia2:ex:`03.4`
 
     a. **Ordre d'exécution :**
-       1. Les définitions des fonctions ``concatener_deux_fois`` et ``imprimer_deux_fois`` sont lues et enregistrées par l'interpréteur (sans exécuter leur corps)[cite: 4].
-       2. Affectation de la chaîne ``'Bing tiddle '`` à ``ligne1``[cite: 4].
-       3. Affectation de la chaîne ``'tiddle bang.'`` à ``ligne2``[cite: 4].
-       4. Appel de ``concatener_deux_fois(ligne1, ligne2)``[cite: 4].
-       5. Entrée dans ``concatener_deux_fois`` : calcul de ``partie1 + partie2`` et affectation à la variable locale ``chat``[cite: 4].
-       6. Appel de ``imprimer_deux_fois(chat)``[cite: 4].
-       7. Entrée dans ``imprimer_deux_fois`` : affectation de la valeur à la variable locale/paramètre ``bruce``[cite: 4].
-       8. Exécution des deux instructions ``print(bruce)`` (affichage des deux lignes)[cite: 4].
-       9. Fin de ``imprimer_deux_fois``, puis fin de ``concatener_deux_fois``[cite: 4].
+       1. Les définitions des fonctions ``concatener_deux_fois`` et ``imprimer_deux_fois`` sont lues et enregistrées par l'interpréteur (sans exécuter leur corps).
+       2. Affectation de la chaîne ``'Bing tiddle '`` à ``ligne1``.
+       3. Affectation de la chaîne ``'tiddle bang.'`` à ``ligne2``.
+       4. Appel de ``concatener_deux_fois(ligne1, ligne2)``.
+       5. Entrée dans ``concatener_deux_fois`` : calcul de ``partie1 + partie2`` et affectation à la variable locale ``chat``.
+       6. Appel de ``imprimer_deux_fois(chat)``.
+       7. Entrée dans ``imprimer_deux_fois`` : affectation de la valeur à la variable locale/paramètre ``bruce``.
+       8. Exécution des deux instructions ``print(bruce)`` (affichage des deux lignes).
+       9. Fin de ``imprimer_deux_fois``, puis fin de ``concatener_deux_fois``.
 
     b. **TENTATIVE d'accès aux variables locales :**
-       L'exécution de ``print(chat)`` ou ``print(bruce)`` hors des fonctions lève une exception ``NameError`` (ex. ``NameError: name 'chat' is not defined``)[cite: 4].
-       **Explication :** ``chat`` et ``bruce`` sont des variables locales et des paramètres définis uniquement à l'intérieur de leurs fonctions respectives[cite: 4]. Dès que l'exécution d'une fonction se termine, ses variables locales sont détruites[cite: 4].
+       L'exécution de ``print(chat)`` ou ``print(bruce)`` hors des fonctions lève une exception ``NameError`` (ex. ``NameError: name 'chat' is not defined``).
+       **Explication :** ``chat`` et ``bruce`` sont des variables locales et des paramètres définis uniquement à l'intérieur de leurs fonctions respectives. Dès que l'exécution d'une fonction se termine, ses variables locales sont détruites.

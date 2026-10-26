@@ -35,7 +35,7 @@ Il y a deux façons d'utiliser le Interprète: mode interactif et mode script.
 Dans mode interactif, vous tapez des programmes Python et l'interpréteur affiche
 le résultat:
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> 1 + 1
     2

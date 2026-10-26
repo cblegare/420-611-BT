@@ -103,7 +103,8 @@ def build_html(session: nox.Session):
         session,
         sourcedir=DOCS_ROOT,
         pipeline="html",
-        session_name="420-611-BT-notesdecours"
+        session_name="420-611-BT-notesdecours",
+        verbose=True,
     )
 
     session.log(output_file)
@@ -153,7 +154,7 @@ def sphinx_build(
     doctrees_dir.mkdir(parents=True, exist_ok=True)
 
     tags = tags or ()
-    _jobs = jobs or "auto"
+    _jobs = jobs or 1
     defines = defines or {}
     html_defines = html_defines or {}
     outputdir = outputdir or _build_root / session_name

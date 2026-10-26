@@ -82,7 +82,7 @@ conditions n'est vraie, et la fonction se termine sans toucher à une instructio
 ``return``. Si le flux d'exécution atteint la fin d'une fonction, la valeur de
 retour est ``None``, ce qui n'est pas la valeur absolue de 0.
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> print(valeur_absolue(0))
     None
@@ -129,7 +129,7 @@ signifie que vous pouvez la tester avant de la rendre plus compliquée.
 
 Pour tester la nouvelle fonction, appelez-la avec des exemples d'arguments :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> distance(1, 2, 4, 6)
     0.0
@@ -269,7 +269,7 @@ pour indiquer si ``x`` est divisible par ``y``.
 
 Voici un exemple :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> est_divisible(6, 4)
     False
@@ -354,67 +354,89 @@ Mais la comparaison supplémentaire est inutile.
     Écrivez une fonction booléenne ``est_entre(x, y, z)`` qui retourne ``True``
     si ``x ≤ y ≤ z`` et ``False`` sinon.
 
-..
-    :ia2:exercice:: 05.1
+.. ia2:exercice:: 05.1
     Valeurs de retour et développement incrémental
 
-    Le développement incrémental consiste à construire et tester du code par de petites étapes vérifiables afin d'éviter les erreurs complexes.
+    Le développement incrémental consiste à construire et tester du code par de
+    petites étapes vérifiables afin d'éviter les erreurs complexes.
 
-    a. Écrivez la formule mathématique permettant de calculer la distance euclidienne entre deux points :math:`(x_1, y_1)` et :math:`(x_2, y_2)`.
-    b. Proposez l'implémentation d'une fonction ``distance(x1, y1, x2, y2)`` en appliquant la démarche du développement incrémental (calcul des écarts :math:`dx` et :math:`dy`, somme des carrés, puis racine carrée avec ``math.sqrt``).
+    a. Écrivez la formule mathématique permettant de calculer la distance
+       euclidienne entre deux points :math:`(x_1, y_1)` et :math:`(x_2, y_2)`.
+    b. Proposez l'implémentation d'une fonction ``distance(x1, y1, x2, y2)`` en
+       appliquant la démarche du développement incrémental (calcul des écarts
+       :math:`dx` et :math:`dy`, somme des carrés, puis racine carrée avec
+       ``math.sqrt``).
 
-    Solution: :ia2:sol:`05.1`
+    Solution: :ia2:solution:`05.1`
 
-..
-    :ia2:exercice:: 05.2
+.. ia2:exercice:: 05.2
     Composition de fonctions
 
-    Une fois qu'une fonction a été écrite et vérifiée, elle peut être utilisée à l'intérieur d'une autre fonction.
+    Une fois qu'une fonction a été écrite et vérifiée, elle peut être utilisée à
+    l'intérieur d'une autre fonction.
 
-    a. Écrivez une fonction ``aire_disque(rayon)`` qui calcule l'aire d'un disque de rayon donné (:math:`A = \pi r^2`) en utilisant ``math.pi``.
-    b. Écrivez une fonction ``aire_disque_depuis_points(xc, yc, xp, yp)`` qui prend le centre d'un cercle :math:`(x_c, y_c)` et un point situé sur sa circonférence :math:`(x_p, y_p)`, et retourne l'aire du disque en composant les fonctions ``distance`` et ``aire_disque``.
+    a. Écrivez une fonction ``aire_disque(rayon)`` qui calcule l'aire d'un
+       disque de rayon donné (:math:`A = \pi r^2`) en utilisant ``math.pi``.
+    b. Écrivez une fonction ``aire_disque_depuis_points(xc, yc, xp, yp)`` qui
+       prend le centre d'un cercle :math:`(x_c, y_c)` et un point situé sur sa
+       circonférence :math:`(x_p, y_p)`, et retourne l'aire du disque en
+       composant les fonctions ``distance`` et ``aire_disque``.
 
-    Solution: :ia2:sol:`05.2`
+    Solution: :ia2:solution:`05.2`
 
-..
-    :ia2:exercice:: 05.3
+.. ia2:exercice:: 05.3
     Fonctions booléennes et simplification
 
-    Les fonctions peuvent retourner des valeurs booléennes (``True`` ou ``False``), ce qui est particulièrement utile pour masquer des tests complexes.
+    Les fonctions peuvent retourner des valeurs booléennes (``True`` ou
+    ``False``), ce qui est particulièrement utile pour masquer des tests
+    complexes.
 
-    a. Écrivez une fonction ``est_entre(x, y, z)`` qui retourne ``True`` si :math:`x \le y \le z` et ``False`` sinon.
-    b. Expliquez pourquoi il est inutile d'utiliser une structure ``if ... else`` pour retourner directement un résultat booléen et montrez la version simplifiée en une seule ligne.
+    a. Écrivez une fonction ``est_entre(x, y, z)`` qui retourne ``True`` si
+       :math:`x \le y \le z` et ``False`` sinon.
+    b. Expliquez pourquoi il est inutile d'utiliser une structure ``if ...
+       else`` pour retourner directement un résultat booléen et montrez la
+       version simplifiée en une seule ligne.
 
-    Solution: :ia2:sol:`05.3`
+    Solution: :ia2:solution:`05.3`
 
-..
-    :ia2:exercice:: 05.4
+.. ia2:exercice:: 05.4
     Récursivité et validation des arguments (Gardes)
 
-    Si l'on passe une valeur inattendue (comme un nombre négatif ou un nombre à virgule flottante) à une fonction récursive comme la factorielle, le cas de base risque de ne jamais être atteint.
+    Si l'on passe une valeur inattendue (comme un nombre négatif ou un nombre à
+    virgule flottante) à une fonction récursive comme la factorielle, le cas de
+    base risque de ne jamais être atteint.
 
-    a. Écrivez la définition récursive standard de la fonction ``factorielle(n)``.
-    b. Ajoutez des vérifications de garde à l'aide de la fonction intégrée ``isinstance`` pour vous assurer que ``n`` est bien un entier positif ou nul. Si ce n'est pas le cas, affichez un message d'erreur approprié et retournez ``None``.
+    a. Écrivez la définition récursive standard de la fonction
+       ``factorielle(n)``.
+    b. Ajoutez des vérifications de garde à l'aide de la fonction intégrée
+       ``isinstance`` pour vous assurer que ``n`` est bien un entier positif ou
+       nul. Si ce n'est pas le cas, affichez un message d'erreur approprié et
+       retournez ``None``.
 
-    Solution: :ia2:sol:`05.4`
+    Solution: :ia2:solution:`05.4`
 
-..
-    :ia2:exercice:: 05.5
+.. ia2:exercice:: 05.5
     Suite de Fibonacci et l'acte de foi
 
-    L'« acte de foi » (*leap of faith*) consiste à assumer que les appels récursifs sur des sous-problèmes plus petits fonctionnent correctement sans chercher à suivre mentalement toute l'arborescence des appels.
+    L'« acte de foi » (*leap of faith*) consiste à assumer que les appels
+    récursifs sur des sous-problèmes plus petits fonctionnent correctement sans
+    chercher à suivre mentalement toute l'arborescence des appels.
 
-    a. Écrivez la fonction récursive ``fibonacci(n)`` pour calculer le :math:`n`-ième terme de la suite de Fibonacci, définie par :math:`F_0 = 0`, :math:`F_1 = 1` et :math:`F_n = F_{n-1} + F_{n-2}` pour :math:`n \ge 2`.
-    b. Tracez l'arbre d'exécution des appels récursifs générés lors de l'évaluation de ``fibonacci(4)`` et donnez la valeur finale retournée.
+    a. Écrivez la fonction récursive ``fibonacci(n)`` pour calculer le
+       :math:`n`-ième terme de la suite de Fibonacci, définie par :math:`F_0 =
+       0`, :math:`F_1 = 1` et :math:`F_n = F_{n-1} + F_{n-2}` pour :math:`n \ge
+       2`.
+    b. Tracez l'arbre d'exécution des appels récursifs générés lors de
+       l'évaluation de ``fibonacci(4)`` et donnez la valeur finale retournée.
 
-    Solution: :ia2:sol:`05.5`
+    Solution: :ia2:solution:`05.5`
 
 **********
  Solutons
 **********
 
 .. ia2:solution:: 05.1
-Valeurs de retour et développement incrémental
+    Valeurs de retour et développement incrémental
 
     Solution de :ia2:ex:`05.1`
 
@@ -438,7 +460,7 @@ Valeurs de retour et développement incrémental
                return resultat
 
 .. ia2:solution:: 05.2
-Composition de fonctions
+    Composition de fonctions
 
     Solution de :ia2:ex:`05.2`
 
@@ -460,7 +482,7 @@ Composition de fonctions
                return aire_disque(rayon)
 
 .. ia2:solution:: 05.3
-Fonctions booléennes et simplification
+    Fonctions booléennes et simplification
 
     Solution de :ia2:ex:`05.3`
 
@@ -484,7 +506,7 @@ Fonctions booléennes et simplification
                return x <= y <= z
 
 .. ia2:solution:: 05.4
-Récursivité et validation des arguments (Gardes)
+    Récursivité et validation des arguments (Gardes)
 
     Solution de :ia2:ex:`05.4`
 
@@ -508,7 +530,7 @@ Récursivité et validation des arguments (Gardes)
                return n * factorielle(n - 1)
 
 .. ia2:solution:: 05.5
-Suite de Fibonacci et l'acte de foi
+    Suite de Fibonacci et l'acte de foi
 
     Solution de :ia2:ex:`05.5`
 

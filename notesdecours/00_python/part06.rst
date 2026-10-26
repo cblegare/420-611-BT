@@ -11,7 +11,7 @@ affectation sur la même variable. Une nouvelle affectation fait en sorte qu'une
 variable existante se réfère à une nouvelle valeur (et cesse de se référer à
 l'ancienne).
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> x = 5
     >>> x
@@ -56,7 +56,7 @@ jour ``x`` avec la nouvelle valeur. »
 Si vous essayez de mettre à jour une variable qui n'existe pas, vous obtenez une
 erreur, car Python évalue le côté droit avant d'affecter la valeur à ``x`` :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> x = x + 1
     NameError: name 'x' is not defined
@@ -64,7 +64,7 @@ erreur, car Python évalue le côté droit avant d'affecter la valeur à ``x`` :
 Avant de pouvoir mettre à jour une variable, vous devez l'initialiser
 (*initialize*), généralement par une affectation simple :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> x = 0
     >>> x = x + 1
@@ -156,7 +156,7 @@ meilleure estimation avec la formule suivante :
 
 Par exemple, si $a$ vaut 4 et $x$ vaut 3 :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> a = 4
     >>> x = 3
@@ -168,7 +168,7 @@ Le résultat est plus proche de la bonne réponse ($\sqrt{4} = 2$). Si nous
 répétons le processus avec la nouvelle estimation, le résultat s'améliore encore
 :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> x = y
     >>> y = (x + a/x) / 2

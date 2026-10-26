@@ -465,206 +465,312 @@ quel point l’échiquier est favorable pour un joueur par rapport à l’autre.
 valeurs peuvent être utilisées pour décider de la bonne action, et plus la
 fonction d’évaluation est bonne, meilleur sera l’algorithme Minimax qui s’y fie.
 
+
 ***********
  Exercices
 ***********
 
-=================================================
-Exercices : Chapitre 2 - Connaissances et Logique
-=================================================
+.. ia2:exercice:: 10.1
+    Formalisation d'un problème de recherche (Jeu de Taquin)
 
-.. :ia2:exercice:: 20.1
-    Logique propositionnelle et équivalence
+    Un jeu de taquin consiste à déplacer des tuiles numérotées sur une grille
+    pour atteindre un ordre précis.
 
-    La règle d'élimination de l'implication stipule que l'expression
-    :math:`P \implies Q` est logiquement équivalente à :math:`\lnot P \lor Q`.
+    a. Modélisez ce qu'est un **état** du système dans ce contexte précis.
+    b. Définissez la fonction **Actions(s)** pour ce problème.
+    c. Quel serait un **test de but** approprié ?
 
-    a. Dressez la table de vérité complète incluant les colonnes pour
-        :math:`P`, :math:`Q`, :math:`\lnot P`, :math:`P \implies Q`, et
-        :math:`\lnot P \lor Q`.
+    Solution: :ia2:solution:`10.1`
 
-    b. À l'aide de la table de vérité, prouvez que la proposition
-        biconditionnelle
-        :math:`(P \implies Q) \iff (\lnot P \lor Q)` est une tautologie
-        (toujours vraie).
+.. ia2:exercice:: 10.2
+    Recherche non informée (DFS vs BFS)
 
-    Solution: :ia2:sol:`20.1`
+    Un agent de navigation doit trouver un chemin dans un graphe d'états.
+    Le mécanisme de frontière détermine l'ordre d'exploration des nœuds.
 
-.. :ia2:exercice:: 20.2
-    Inférence par vérification de modèles
+    a. Si l'agent utilise la **recherche en profondeur (DFS)**, quelle
+       structure de données régit la frontière et quel est le risque principal
+       lié à la qualité de la solution ?
 
-    Considérez les propositions suivantes :
+    b. Si l'agent utilise la **recherche en largeur (BFS)**, quelle structure
+       de données régit la frontière et quelle garantie l'algorithme offre-t-il ?
 
-    * P : Il fait froid.
-    * Q : Il neige.
-    * R : Je mets un manteau.
+    Solution: :ia2:solution:`10.2`
 
-    Votre base de connaissances (KB) contient les règles et faits suivants :
+.. ia2:exercice:: 10.3
+    Recherche A* et Heuristiques
 
-    1. S'il neige, alors il fait froid : :math:`Q \implies P`
+    Dans le cadre d'un algorithme de recherche A*, l'agent utilise une fonction
+    heuristique :math:`h(n)` pour estimer la distance vers l'objectif.
 
-    2. S'il fait froid ou s'il neige, alors je mets un manteau :
-        :math:`(P \lor Q) \implies R`
+    a. Quelle condition absolue la fonction :math:`h(n)` doit-elle respecter
+       pour être qualifiée d'**admissible** ?
 
-    3. Il neige : :math:`Q`
+    b. Expliquez la condition de **cohérence** (ou consistance) pour une
+       heuristique à l'aide de l'équation mathématique appropriée impliquant
+       le coût d'étape :math:`c`.
 
-    a. Combien de modèles possibles (assignations de vérité) existent pour
-        cet univers à 3 propositions (P, Q, R) ?
+    Solution: :ia2:solution:`10.3`
 
-    b. En utilisant l'algorithme de vérification de modèles, éliminez les
-        modèles où la KB est fausse.
+.. ia2:exercice:: 10.4
+    Recherche antagoniste (Minimax et Élagage Alpha-Bêta)
 
-    c. Le système peut-il conclure que je mets un manteau
-        (est-ce que :math:`KB \models R`) ? Justifiez.
+    Dans un jeu de Tic-Tac-Toe, une IA simule de manière récursive toutes
+    les parties possibles jusqu'à atteindre un état terminal pour choisir
+    son coup.
 
-    Solution: :ia2:sol:`20.2`
+    a. Comment la fonction **Utility(a)** évalue-t-elle les conditions de
+       victoire pour le camp maximisant et le camp minimisant ?
 
-.. :ia2:exercice:: 20.3
-    Conversion en Forme Normale Conjonctive (CNF)
+    b. Expliquez le rôle de l'**élagage Alpha-Bêta** dans l'optimisation
+       de ce processus récursif.
 
-    Pour utiliser l'algorithme de résolution, une base de connaissances
-    doit être convertie sous Forme Normale Conjonctive (CNF), c'est-à-dire
-    une conjonction de clauses (les clauses étant des disjonctions de littéraux).
+    Solution: :ia2:solution:`10.4`
 
-    a. Convertissez la proposition suivante en CNF étape par étape :
-        :math:`\lnot (A \implies B) \lor C`
+.. ia2:exercice:: 10.5
+    Implémentation de la frontière en Python (DFS vs BFS)
 
-    b. Nommez explicitement la règle logique utilisée à chaque étape
-        (ex: Élimination de l'implication, Loi de De Morgan, etc.).
+    Le cours présente la façon dont on retire un nœud de la frontière en
+    Python selon que l'on utilise une recherche en profondeur (DFS) ou en
+    largeur (BFS).
+    Supposons que nous avons une classe avec un attribut `self.frontier`
+    (une liste Python).
 
-    Solution: :ia2:sol:`20.3`
+    a. Complétez la méthode Python suivante pour qu'elle implémente la logique
+       d'une **pile** (recherche en profondeur - DFS), en utilisant le
+       découpage (*slicing*) de liste comme démontré dans le cours.
 
-.. :ia2:exercice:: 20.4
-    Preuve par résolution et contradiction
+    .. code-block:: python
 
-    Soit une base de connaissances (KB) contenant les trois clauses
-    (en CNF) suivantes :
+        def remove(self):
+            if self.empty():
+                raise Exception("frontière vide")
+            else:
+                # À compléter : extraire le nœud (LIFO) et mettre à jour la frontière
+                pass
 
-    1. :math:`(A \lor B)`
+    b. Modifiez ensuite cette méthode pour implémenter la logique d'une
+       **file d'attente** (recherche en largeur - BFS) en respectant le
+       principe FIFO.
 
-    2. :math:`(\lnot A \lor C)`
+    Solution: :ia2:solution:`10.5`
 
-    3. :math:`(\lnot B \lor C)`
+.. ia2:exercice:: 10.6
+    Calcul de l'heuristique : Distance de Manhattan en Python
 
-    Vous souhaitez prouver que la proposition :math:`C` est une conséquence
-    logique de cette KB (:math:`KB \models C`).
+    La recherche gloutonne et la recherche A* utilisent souvent la distance
+    de Manhattan comme fonction heuristique pour estimer le coût restant
+    dans un labyrinthe. Cette distance ignore les murs et compte le nombre
+    de pas vers le haut, le bas ou les côtés nécessaires pour relier deux
+    points.
 
-    a. Quelle clause devez-vous ajouter à la KB pour entamer une preuve
-        par contradiction ?
+    a. Écrivez une fonction Python `distance_manhattan(pos_actuelle, pos_cible)` qui accepte deux tuples représentant des coordonnées (x, y) et retourne la distance de Manhattan entre ces deux points.
 
-    b. Appliquez l'algorithme de résolution étape par étape sur les clauses
-        pour arriver à la clause vide :math:`()`, prouvant ainsi la
-        contradiction.
+    Solution: :ia2:solution:`10.6`
 
-    Solution: :ia2:sol:`20.4`
+.. ia2:exercice:: 10.7
+    Propriétés des heuristiques : Admissibilité et Cohérence
 
-.. :ia2:exercice:: 20.5
-    Logique du premier ordre (Quantificateurs)
+    Rappelons que pour l'algorithme A*, une heuristique :math:`h(n)` est :
 
-    Traduisez les phrases suivantes en langage naturel vers la logique du
-    premier ordre. Utilisez les prédicats :math:`Etudiant(x)`,
-    :math:`Cours(x)`, :math:`Difficile(x)`, et :math:`Inscrit(x, y)`
-    (qui signifie "x est inscrit à y").
+    * **Admissible** si elle ne surestime jamais le coût réel vers la cible
+      (:math:`h(n) \le h^*(n)`).
 
-    a. Tous les étudiants sont inscrits à au moins un cours.
+    * **Cohérente** si elle respecte l'inégalité triangulaire pour chaque
+      étape (:math:`h(n) \le c(n, n') + h(n')`), où :math:`c` est le coût
+      de transition.
 
-    b. Il existe un cours difficile auquel aucun étudiant n'est inscrit.
+    Pour chacune des 8 mises en situation suivantes
+    (composées d'un environnement et d'une heuristique),
+    déterminez si l'heuristique est **admissible** et si elle est **cohérente**.
 
-    Solution: :ia2:sol:`20.5`
+    a. **Système de navigation GPS :** L'agent est une voiture cherchant le trajet le plus court sur un réseau routier (le coût est la distance physique de la route). L'heuristique utilise la distance à vol d'oiseau (euclidienne) entre la position actuelle et la destination.
 
+    b. **Robot d'entrepôt :** Un robot déplace des palettes mal rangées (coût = 1 par déplacement). L'heuristique correspond au nombre de palettes qui ne se trouvent pas encore dans leur baie de destination finale.
 
-***********
+    c. **Drone à capteurs hétérogènes :** Un drone cartographe estime la batterie restante nécessaire pour rentrer. Dans la zone A (haute résolution), son capteur estime :math:`h(A) = 15\%`. Il se déplace vers la zone B adjacente (coût = :math:`1\%` de batterie). Or, dans la zone B, un capteur bas de gamme prend le relais et sous-estime grossièrement le retour : :math:`h(B) = 2\%`. (Le vrai coût est de :math:`20\%`).
+
+    d. **Randonneur et table de référence :** Le coût est le temps de marche. Le randonneur utilise une table créée par un guide qui n'a jamais surestimé les temps. Au point X, la table indique :math:`h(X) = 60` minutes. Le randonneur marche 5 minutes pour atteindre le point Y, mais pour Y, le guide avait oublié d'entrer une valeur et a inscrit :math:`h(Y) = 0`.
+
+    e. **Camion de livraison pessimiste :** Le coût est la distance en km. Le système calcule la distance exacte du chemin le plus court (:math:`h^*`), mais y ajoute systématiquement une pénalité fixe de 10 km (même à l'arrivée) pour compenser d'éventuelles routes barrées non prévues.
+
+    f. **IA de gestion de projet :** Le coût est évalué en heures. Une IA possède un algorithme parfait capable de prédire le nombre d'heures exactes pour finir un projet. Toutefois, pour être certaine de ne pas décevoir le client, elle ajoute un "coussin de sécurité" de 24 heures à toutes les étapes de sa planification.
+
+    g. **Jeu de rôle / D&D 5e :** Un personnage navigue sur une grille où les déplacements orthogonaux ET diagonaux coûtent exactement 1 point de mouvement. Le programmeur décide d'utiliser la **distance de Manhattan** (qui compte les pas orthogonaux uniquement) comme heuristique.
+
+    h. **Covoiturage et tarification dynamique :** Le coût est le prix en dollars pour atteindre la destination. L'heuristique IA est instable : le point B est en zone de forte demande (surge pricing) et l'IA estime :math:`h(B) = 40$`. Le point A, situé à :math:`2$` de trajet de B, est hors de la zone et l'IA estime :math:`h(A) = 10$`. Le vrai coût depuis ces deux points vers la destination finale est d'environ :math:`15$`. L'agent évalue le trajet de B vers A.
+
+    Solution: :ia2:solution:`10.7`
+
+**********
  Solutions
-***********
+**********
+
+.. ia2:solution:: 10.1
+    Formalisation d'un problème de recherche (Jeu de Taquin)
+
+    Solution de :ia2:ex:`10.1`
+
+    a. **État :** Une configuration spécifique de l'agent dans son environnement.
+       Pour le taquin, un état correspond à la disposition spatiale exacte
+       de tous les nombres sur le plateau de jeu à un moment donné.
+
+    b. **Actions(s) :** Les choix exécutables depuis un état.
+       Dans le taquin, il s'agit des directions possibles pour faire glisser
+       les carrés adjacents vers l'espace vide (haut, bas, gauche, droite).
+
+    c. **Test de but :** La condition vérifiant si l'état actuel est l'état
+       cible. Le test consisterait à vérifier si toutes les tuiles sont
+       ordonnées séquentiellement (de 1 à 15), avec l'espace vide positionné
+       dans le coin inférieur droit.
+
+.. ia2:solution:: 10.2
+    Recherche non informée (DFS vs BFS)
+
+    Solution de :ia2:ex:`10.2`
+
+    a. **Recherche en profondeur (DFS) :** La frontière est gérée par une
+       **pile** (stack), fonctionnant sur le principe « dernier entré,
+       premier sorti » (LIFO). Le risque principal est que la solution
+       trouvée peut ne pas être optimale.
+
+    b. **Recherche en largeur (BFS) :** La frontière est gérée par une
+       **file d'attente** (queue), fonctionnant sur le principe « premier
+       entré, premier sorti » (FIFO). Cette structure garantit de toujours
+       trouver la solution optimale.
+
+.. ia2:solution:: 10.3
+    Recherche A* et Heuristiques
+
+    Solution de :ia2:ex:`10.3`
+
+    a. **Admissibilité :** Une fonction heuristique est admissible si elle
+       ne surestime jamais le coût réel du chemin pour atteindre l'objectif.
+
+    b. **Cohérence :** Une heuristique est cohérente si le coût estimé depuis
+       un nœud actuel vers l'objectif est inférieur ou égal au coût réel
+       de transition vers le nœud suivant, additionné au coût estimé de
+       ce nœud suivant vers l'objectif. L'équation mathématique est
+       :math:`h(n) \le h(n') + c`.
+
+.. ia2:solution:: 10.4
+    Recherche antagoniste (Minimax et Élagage Alpha-Bêta)
+
+    Solution de :ia2:ex:`10.4`
+
+    a. **Évaluation (Utility) :** L'état terminal se voit attribuer une valeur 
+       de (+1) pour une victoire du camp maximisant 
+       (qui cherche le score le plus élevé), de (-1) pour une victoire du 
+       camp minimisant (qui cherche le score le plus bas), et de 0 pour 
+       une égalité.
+
+    b. **Élagage Alpha-Bêta :** Cette technique optimise l'algorithme Minimax 
+       en ignorant les branches de calcul récursif qui sont décidément 
+       défavorables. Dès que l'algorithme prouve qu'une action permettra 
+       à l'adversaire d'obtenir un meilleur score qu'une option déjà explorée, 
+       il cesse d'évaluer cette branche.
+
+.. ia2:solution:: 10.5
+    Implémentation de la frontière en Python (DFS vs BFS)
+
+    Solution de :ia2:ex:`10.5`
+
+    a. **Recherche en profondeur (DFS - Pile / Stack) :**
+       Pour appliquer le principe LIFO, on retire le dernier élément ajouté. 
+       
+       .. code-block:: python
+
+           def remove(self):
+               if self.empty():
+                   raise Exception("frontière vide")
+               else:
+                   node = self.frontier[-1]
+                   self.frontier = self.frontier[:-1]
+                   return node
+
+    b. **Recherche en largeur (BFS - File d'attente / Queue) :**
+       Pour appliquer le principe FIFO, on retire le plus ancien élément
+       de la liste, situé à l'indice 0.
+
+       .. code-block:: python
+
+           def remove(self):
+               if self.empty():
+                   raise Exception("frontière vide")
+               else:
+                   node = self.frontier[0]
+                   self.frontier = self.frontier[1:]
+                   return node
+
+.. ia2:solution:: 10.6
+    Calcul de l'heuristique : Distance de Manhattan en Python
+
+    Solution de :ia2:ex:`10.6`
+
+    a. **Fonction `distance_manhattan` :**
+       La distance de Manhattan correspond à la somme des différences absolues
+       des coordonnées cartésiennes de deux points.
+
+       .. code-block:: python
+
+           def distance_manhattan(pos_actuelle, pos_cible):
+               # Déballage des tuples
+               x1, y1 = pos_actuelle
+               x2, y2 = pos_cible
+
+               # Calcul de la distance
+               return abs(x1 - x2) + abs(y1 - y2)
 
 
+.. ia2:solution:: 10.7
+    Propriétés des heuristiques : Admissibilité et Cohérence
 
+    Solution de :ia2:ex:`10.7`
 
-.. ia2:solution:: 20.1
-    Logique propositionnelle et équivalence
+    a. **GPS - Distance Euclidienne :**
 
-    Solution de :ia2:ex:`20.1`
+       * **Admissible (Oui) :** La ligne droite (vol d'oiseau) est le chemin mathématiquement le plus court entre deux points. Il est impossible que la route réelle soit plus courte, donc l'heuristique ne surestime jamais.
 
-    a. **Table de vérité :**
+       * **Cohérente (Oui) :** En géométrie, la distance euclidienne respecte toujours l'inégalité triangulaire. La distance en ligne droite de A vers la cible sera toujours inférieure ou égale à la distance de A vers B plus la ligne droite de B vers la cible.
 
-        ========= ========= ============= ==================== ======================
-        :math:`P` :math:`Q` :math:`\lnot P` :math:`P \implies Q` :math:`\lnot P \lor Q`
-        ========= ========= ============= ==================== ======================
-        faux      faux      vrai          vrai                 vrai
-        faux      vrai      vrai          vrai                 vrai
-        vrai      faux      faux          faux                 faux
-        vrai      vrai      faux          vrai                 vrai
-        ========= ========= ============= ==================== ======================
+    b. **Robot d'entrepôt - Palettes mal rangées :**
 
-    b. **Preuve de la tautologie :**
-        Les valeurs de la colonne :math:`P \implies Q` et de la colonne
-        :math:`\lnot P \lor Q` sont strictement identiques pour chaque ligne
-        (modèle). Un biconditionnel (:math:`\iff`) est vrai si et seulement
-        si les deux côtés ont la même valeur de vérité. Puisque c'est le
-        cas pour les 4 modèles possibles, le résultat final est entièrement
-        composé de "vrai". C'est donc une tautologie logique.
+       * **Admissible (Oui) :** Chaque palette mal rangée nécessitera obligatoirement au moins un déplacement pour être corrigée. L'estimation est donc toujours inférieure ou égale au coût réel.
 
-.. ia2:solution:: 20.2
-    Inférence par vérification de modèles
+       * **Cohérente (Oui) :** Une action (coût = 1) ne peut ranger qu'au maximum une seule palette à la fois. L'heuristique :math:`h` baissera donc d'au maximum 1. L'équation :math:`h(n) - h(n') \le 1 \implies h(n) \le 1 + h(n')` est respectée.
 
-    Solution de :ia2:ex:`20.2`
+    c. **Drone - Capteurs hétérogènes :**
 
-    a. **Nombre de modèles :**
-        Il y a 3 symboles propositionnels (P, Q, R). Le nombre de modèles
-        possibles est :math:`2^3 = 8` modèles.
+       * **Admissible (Oui) :** Les deux capteurs sous-estiment la batterie réelle de :math:`20\%` (:math:`15\% \le 20\%` et :math:`2\% \le 19\%`).
 
-    b. **Élimination des modèles falsifiant la KB :**
-        * Fait 3 (:math:`Q` est vrai) : On élimine tous les modèles où
-            :math:`Q` est faux (reste 4 modèles).
+       * **Cohérente (Non) :** Lors du passage de la zone A à B, l'estimation chute brusquement à cause du changement de capteur. On a :math:`h(A) \le c(A,B) + h(B) \implies 15 \le 1 + 2`, ce qui est faux (:math:`15 \not\le 3`).
 
-        * Règle 1 (:math:`Q \implies P`) : Sachant que :math:`Q` est vrai,
-            pour que l'implication soit vraie, :math:`P` doit obligatoirement
-            être vrai. On élimine les modèles où :math:`P` est faux
-            (reste 2 modèles : {P=V, Q=V, R=F} et {P=V, Q=V, R=V}).
+    d. **Randonneur - Valeur manquante :**
 
-        * Règle 2 (:math:`(P \lor Q) \implies R`) : Sachant que P et Q sont
-            vrais, l'antécédent :math:`(P \lor Q)` est vrai.
-            Pour que la KB soit vraie, le conséquent :math:`R` doit donc
-            être vrai. Le modèle où R est faux est éliminé.
+       * **Admissible (Oui) :** Le guide n'a jamais surestimé les temps (et :math:`0 \le` temps réel).
 
-        * Il ne reste qu'un seul modèle valide : {P=Vrai, Q=Vrai, R=Vrai}.
+       * **Cohérente (Non) :** En faisant un pas qui coûte 5 minutes, l'heuristique chute de 60 minutes. L'inéquation de cohérence donne : :math:`60 \le 5 + 0`, ce qui est faux. L'heuristique est trop instable.
 
-    c. **Conclusion :**
-        Oui, :math:`KB \models R`. Dans l'unique modèle où l'entièreté de
-        la KB est vraie, la proposition :math:`R` est également vraie.
-        La conséquence logique est prouvée.
+    e. **Camion - Pénalité de 10 km :**
 
-.. ia2:solution:: 20.3
-    Conversion en Forme Normale Conjonctive (CNF)
+       * **Admissible (Non) :** L'heuristique est :math:`h(n) = h^*(n) + 10`. Elle surestimera toujours la distance réelle exacte de 10 km.
 
-    Solution de :ia2:ex:`20.3`
+       * **Cohérente (Oui) :** Le malus de 10 km s'applique à tous les nœuds uniformément. Dans l'inéquation :math:`h(n) \le c(n,n') + h(n')`, la constante de 10 km est présente des deux côtés et s'annule mathématiquement (:math:`h^*(n) + 10 \le c + h^*(n') + 10 \implies h^*(n) \le c + h^*(n')`). Puisque la distance réelle :math:`h^*` est cohérente, la version avec constante l'est aussi.
 
-    a et b. **Étapes de conversion :**
+    f. **Gestion de projet - Coussin de 24h :**
 
-    1. :math:`\lnot (A \implies B) \lor C`
-        *(Proposition initiale)*
+       * **Admissible (Non) :** L'ajout de 24 heures aux estimations parfaites signifie que l'IA surestime volontairement le temps restant, ce qui casse l'admissibilité.
 
-    2. :math:`\lnot (\lnot A \lor B) \lor C`
-        *(Application de l'élimination de l'implication sur ce qui est entre
-        parenthèses)*
+       * **Cohérente (Oui) :** Comme pour la situation précédente, le biais de 24h est constant sur tous les états. Une heure travaillée fait baisser l'estimation d'exactement une heure. L'inégalité :math:`h(n) \le 1 + h(n')` est toujours préservée.
 
-    3. :math:`(\lnot(\lnot A) \land \lnot B) \lor C`
-        *(Application de la Loi de De Morgan pour distribuer la négation
-        à l'intérieur)*
+    g. **D&D 5e - Diagonale vs Manhattan :**
 
-    4. :math:`(A \land \lnot B) \lor C`
-        *(Application de l'élimination de la double négation sur A)*
+       * **Admissible (Non) :** La distance de Manhattan surestime le coût. Si la cible est à 5 cases en diagonale, le coût réel est de 5 (puisqu'une diagonale coûte 1). La distance de Manhattan comptera 5 pas horizontaux et 5 pas verticaux, donnant une heuristique de 10 (:math:`10 > 5`).
 
-    5. :math:`(A \lor C) \land (\lnot B \lor C)`
-        *(Application de la propriété de distributivité du OU sur le ET)*
+       * **Cohérente (Non) :** Imaginons le départ à :math:`(0,0)` avec une cible à :math:`(5,5)`. :math:`h(0,0) = 10`. Le personnage fait un pas diagonal vers :math:`(1,1)` pour un coût de 1. La nouvelle heuristique est :math:`h(1,1) = 8`. Vérification de la cohérence : :math:`10 \le 1 + 8 \implies 10 \le 9`. C'est faux, l'heuristique chute trop vite par rapport au coût.
 
-    La forme finale en CNF est : :math:`(A \lor C) \land (\lnot B \lor C)`.
+    h. **Covoiturage - Modèle tarifaire instable :**
 
-.. ia2:solution:: 20.4
-    Preuve par résolution et contradiction
+       * **Admissible (Non) :** L'estimation au point B est de :math:`40$`, alors que le vrai coût vers l'objectif n'est que de :math:`15$`. L'algorithme surestime massivement.
 
-    Solution de :ia2:ex:`20.4`
-
-    a. **Clause à ajouter :**
-       Pour une preuve par contradiction, nous devons supposer que le but
-        est faux. Il faut donc ajouter la
+       * **Cohérente (Non) :** Le déplacement du point B vers le point A coûte :math:`2$`. L'estimation au point A est de :math:`10$`. L'équation donne : :math:`h(B) \le c(B,A) + h(A) \implies 40 \le 2 + 10 \implies 40 \le 12`, ce qui est manifestement faux. Le modèle tarifaire chute de :math:`30$` alors que l'agent n'a dépensé que :math:`2$`.

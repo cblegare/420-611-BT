@@ -22,3 +22,9 @@ dev = [
 members = [
     "notesdecours",
 ]
+
+[tool.docstrfmt]
+custom_directives = [
+    { name = "ia2:exercice", raw = false, has_content = true, required_arguments = 1, optional_arguments = 1},
+    { name = "ia2:solution", raw = false, has_content = true, required_arguments = 1, optional_arguments = 1},
+]

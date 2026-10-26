@@ -555,7 +555,7 @@ def setup(app: Sphinx):
     # app.add_css_file("https://cdn.jsdelivr.net/gh/aaaakshat/cm-web-fonts@latest/fonts.css")
     from sphinx_compendia import make_compendium, Constituent
     app.add_css_file(
-        "https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Crimson+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        "https://fullonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Crimson+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap"
     )
     make_compendium(
         "ia2",
@@ -570,7 +570,9 @@ def setup(app: Sphinx):
                 xrefrole_aliases=["sol"],
                 directive_aliases=["sol"]
             )
-        ]
+        ],
+        namespace_separator="/",
+        app=app,
     )
 
 

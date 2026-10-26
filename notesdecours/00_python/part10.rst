@@ -12,21 +12,21 @@ différence est que les tuples sont **immuables** (*immutable*).
 
 Syntaxiquement, un tuple est une liste de valeurs séparées par des virgules :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> t = 'a', 'b', 'c', 'd', 'e'
 
 Bien que ce ne soit pas obligatoire, il est courant de placer les tuples entre
 parenthèses :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> t = ('a', 'b', 'c', 'd', 'e')
 
 Pour créer un tuple avec un seul élément, vous devez inclure une virgule finale
 :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> t1 = ('a',)
     >>> type(t1)
@@ -35,7 +35,7 @@ Pour créer un tuple avec un seul élément, vous devez inclure une virgule fina
 Sans la virgule, Python traite ``('a')`` comme une simple chaîne entre
 parenthèses :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> t2 = ('a')
     >>> type(t2)
@@ -43,7 +43,7 @@ parenthèses :
 
 Pour créer un tuple vide, vous utilisez des parenthèses vides :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> t = ()
     >>> type(t)
@@ -52,7 +52,7 @@ Pour créer un tuple vide, vous utilisez des parenthèses vides :
 Vous pouvez également utiliser la fonction intégrée ``tuple`` pour créer un
 tuple à partir d'une séquence :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> t = tuple('lump')
     >>> t
@@ -62,7 +62,7 @@ La plupart des opérateurs de listes fonctionnent également sur les tuples.
 L'opérateur de crochet indexe un élément, et l'opérateur de tranche extrait une
 section :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> t = ('a', 'b', 'c', 'd', 'e')
     >>> t[0]
@@ -73,7 +73,7 @@ section :
 Cependant, si vous essayez de modifier l'un des éléments du tuple, vous
 obtiendrez une erreur, car les tuples sont immuables :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> t[0] = 'A'
     TypeError: 'tuple' object does not support item assignment
@@ -81,7 +81,7 @@ obtiendrez une erreur, car les tuples sont immuables :
 Bien que vous ne puissiez pas modifier les éléments d'un tuple, vous pouvez
 remplacer un tuple par un autre :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> t = ('A',) + t[1:]
     >>> t
@@ -95,7 +95,7 @@ Il est souvent utile de permuter les valeurs de deux variables. Dans les
 langages traditionnels, vous devez utiliser une variable temporaire. En Python,
 l'affectation de tuples permet une syntaxe élégante :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> x, y = y, x
 
@@ -107,7 +107,7 @@ correspondante du côté gauche. Toutes les expressions du côté droit sont
 Le nombre de variables à gauche et le nombre de valeurs à droite doivent être
 égaux :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> x, y = 1, 2, 3
     ValueError: too many values to unpack
@@ -124,7 +124,7 @@ tuple, l'effet est le même que de retourner plusieurs valeurs. Par exemple, la
 fonction ``divmod`` prend deux entiers et renvoie un tuple de deux valeurs : le
 quotient et le reste.
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> t = divmod(7, 3)
     >>> t
@@ -133,7 +133,7 @@ quotient et le reste.
 Vous pouvez également utiliser l'affectation de tuples pour stocker les éléments
 séparément :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> quotient, reste = divmod(7, 3)
     >>> quotient
@@ -158,18 +158,17 @@ commençant par un astérisque (``*``) **rassemble** les arguments en un tuple.
 Par exemple, ``somme_tous`` prend un nombre quelconque d'arguments et calcule
 leur somme :
 
-.. code-block:: python
+.. code-block:: python-console
 
-    def somme_tous(*args):
-        return sum(args)
-
+    >>> def somme_tous(*args):
+    ...     return sum(args)
     >>> somme_tous(1, 2, 3)
     6
 
 À l'inverse, l'opérateur ``*`` peut être utilisé pour **répartir** une séquence
 en tant qu'arguments d'une fonction :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> t = (7, 3)
     >>> divmod(*t)
@@ -182,7 +181,7 @@ en tant qu'arguments d'une fonction :
 La fonction ``zip`` prend deux ou plusieurs séquences et les combine en un
 itérateur de tuples, où chaque tuple contient un élément de chaque séquence.
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> s = 'abc'
     >>> t = [1, 2, 3]
@@ -192,7 +191,7 @@ itérateur de tuples, où chaque tuple contient un élément de chaque séquence
 Pour utiliser le résultat de ``zip``, vous pouvez le convertir en liste de
 tuples ou utiliser une boucle ``for`` :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> list(zip(s, t))
     [('a', 1), ('b', 2), ('c', 3)]
@@ -216,7 +215,7 @@ affectation de tuples dans une boucle ``for`` :
 Les dictionnaires possèdent une méthode appelée ``items`` qui renvoie une
 séquence de paires clé-valeur sous forme de tuples.
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> d = {'a': 0, 'b': 1, 'c': 2}
     >>> t = list(d.items())
@@ -226,7 +225,7 @@ séquence de paires clé-valeur sous forme de tuples.
 À l'inverse, vous pouvez utiliser une liste de tuples pour initialiser un
 nouveau dictionnaire :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> d = dict([('a', 0), ('b', 1), ('c', 2)])
     >>> d
@@ -235,7 +234,7 @@ nouveau dictionnaire :
 La combinaison de ``dict`` et ``zip`` permet de créer rapidement des
 dictionnaires :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> d = dict(zip('abc', range(3)))
     >>> d

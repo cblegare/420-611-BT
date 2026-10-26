@@ -19,7 +19,7 @@ Un fichier texte est une séquence de caractères stockée sur un support perman
 
 Pour écrire dans un fichier, vous devez l'ouvrir avec le mode ``'w'`` comme second paramètre :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> fout = open('output.txt', 'w')
     >>> print(fout)
@@ -29,30 +29,31 @@ Si le fichier existe déjà, l'ouvrir en mode écriture efface les anciennes don
 
 La méthode ``write`` place des données dans le fichier :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> line1 = "This here's the wattle,\n"
     >>> fout.write(line1)
 
 Encore une fois, l'objet fichier garde une trace de sa position, donc si vous appelez ``write`` à nouveau, il ajoute les nouvelles données à la fin.
 
-.. code:: python
+.. code-block:: python-console
 
     >>> line2 = "the emblem of our land.\n"
     >>> fout.write(line2)
 
 Lorsque vous avez fini d'écrire, vous devez fermer le fichier :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> fout.close()
+
 
 Opérateur de formatage
 ----------------------
 
 L'argument de ``write`` doit être une chaîne de caractères, donc si nous voulons placer d'autres valeurs dans un fichier, nous devons les convertir en chaînes. Le moyen le plus simple d'y parvenir est d'utiliser ``str`` :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> x = 52
     >>> fout.write(str(x))
@@ -63,7 +64,7 @@ Le premier opérande est la chaîne de format, qui contient une ou plusieurs sé
 
 Par exemple, la séquence de format ``'%d'`` signifie que le second opérande doit être formaté en tant qu'entier (le « d » signifie « décimal ») :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> camels = 42
     >>> '%d' % camels
@@ -73,7 +74,7 @@ Le résultat est la chaîne ``'42'``, à ne pas confondre avec la valeur entièr
 
 Une séquence de format peut apparaître n'importe où dans la chaîne, ce qui vous permet d'intégrer une valeur dans une phrase :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> camels = 42
     >>> 'I have spotted %d camels.' % camels
@@ -83,14 +84,14 @@ S'il y a plus d'une séquence de format dans la chaîne, le second argument doit
 
 L'exemple suivant utilise ``'%d'`` pour formater un entier, ``'%g'`` pour formater un nombre à virgule flottante (ne demandez pas pourquoi), et ``'%s'`` pour formater une chaîne :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> 'In %d years I have spotted %g %s.' % (3, 0.1, 'camels')
     'In 3 years I have spotted 0.1 camels.'
 
 Le nombre d'éléments dans le tuple doit correspondre au nombre de séquences de format dans la chaîne. De plus, les types des éléments doivent correspondre aux séquences de format :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> '%d %d %d' % (1, 2)
     TypeError: not enough arguments for format string
@@ -110,7 +111,7 @@ Par exemple, lorsque vous ouvrez un fichier en lecture, Python le recherche dans
 
 Le module ``os`` fournit des fonctions pour travailler avec les fichiers et les répertoires (« os » signifie « operating system »). ``os.getcwd`` renvoie le nom du répertoire courant :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> import os
     >>> cwd = os.getcwd()
@@ -123,21 +124,21 @@ Une chaîne comme ``cwd`` qui identifie un fichier est appelée un **chemin** (*
 
 Les chemins que nous avons vus jusqu'à présent sont de simples noms de fichiers, ils sont donc relatifs au répertoire courant. Pour trouver le chemin absolu d'un fichier, vous pouvez utiliser ``os.path.abspath`` :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> os.path.abspath('memo.txt')
     '/home/dinsdale/memo.txt'
 
 ``os.path.exists`` vérifie si un fichier ou un répertoire existe :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> os.path.exists('memo.txt')
     True
 
 S'il existe, ``os.path.isdir`` vérifie s'il s'agit d'un répertoire :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> os.path.isdir('memo.txt')
     False
@@ -148,14 +149,14 @@ De même, ``os.path.isfile`` vérifie s'il s'agit d'un fichier.
 
 ``os.listdir`` renvoie une liste des fichiers (et autres répertoires) dans le répertoire donné :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> os.listdir(cwd)
     ['music', 'photos', 'memo.txt']
 
 Pour illustrer ces fonctions, l'exemple suivant « parcourt » (*walks*) un répertoire, affiche les noms de tous les fichiers et s'appelle lui-même de manière récursive sur tous les répertoires.
 
-.. code:: python
+.. code-block::python
 
     def walk(dirname):
         for name in os.listdir(dirname):
@@ -178,21 +179,21 @@ Capture d'exceptions
 
 Beaucoup de choses peuvent mal tourner lorsque vous essayez de lire et d'écrire des fichiers. Si vous essayez d'ouvrir un fichier qui n'existe pas, vous obtenez une ``IOError`` :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> fin = open('bad_file')
     IOError: [Errno 2] No such file or directory: 'bad_file'
 
 Si vous n'avez pas la permission d'accéder à un fichier :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> fout = open('/etc/passwd', 'w')
     IOError: [Errno 13] Permission denied: '/etc/passwd'
 
 Et si vous essayez d'ouvrir un répertoire en lecture, vous obtenez :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> fin = open('/home')
     IOError: [Errno 21] Is a directory
@@ -201,7 +202,7 @@ Pour éviter ces erreurs, vous pourriez utiliser des fonctions comme ``os.path.e
 
 Il vaut mieux foncer et essayer — et gérer les problèmes s'ils surviennent —, ce qui est précisément ce que fait l'instruction ``try``. La syntaxe est similaire à une instruction ``if`` :
 
-.. code:: python
+.. code-block::python
 
     try:
         fin = open('bad_file')
@@ -230,7 +231,7 @@ Le module ``anydbm`` fournit une interface pour créer et mettre à jour des fic
 
 L'ouverture d'une base de données est similaire à l'ouverture d'autres fichiers :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> import anydbm
     >>> db = anydbm.open('captions.db', 'c')
@@ -239,20 +240,20 @@ Le mode ``'c'`` signifie que la base de données doit être créée si elle n'ex
 
 Si vous créez un nouvel élément, ``anydbm`` met à jour le fichier de la base de données :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> db['cleese.png'] = 'Photo of John Cleese.'
 
 Lorsque vous accédez à l'un des éléments, ``anydbm`` lit le fichier :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> print(db['cleese.png'])
     Photo of John Cleese.
 
 Si vous effectuez une autre affectation sur une clé existante, ``anydbm`` remplace l'ancienne valeur :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> db['cleese.png'] = 'Photo of John Cleese doing a silly walk.'
     >>> print(db['cleese.png'])
@@ -260,14 +261,14 @@ Si vous effectuez une autre affectation sur une clé existante, ``anydbm`` rempl
 
 De nombreuses méthodes de dictionnaires, comme ``keys`` et ``items``, fonctionnent également avec les objets de bases de données. L'itération avec une instruction ``for`` fonctionne de même.
 
-.. code:: python
+.. code-block::python
 
     for key in db:
         print(key)
 
 Comme avec les autres fichiers, vous devez fermer la base de données lorsque vous avez terminé :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> db.close()
 
@@ -280,7 +281,7 @@ Le module ``pickle`` peut aider. Il traduit presque n'importe quel type d'objet 
 
 ``pickle.dumps`` prend un objet en paramètre et renvoie une représentation sous forme de chaîne (« dumps » est l'abréviation de « dump string ») :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> import pickle
     >>> t = [1, 2, 3]
@@ -289,7 +290,7 @@ Le module ``pickle`` peut aider. Il traduit presque n'importe quel type d'objet 
 
 Le format n'est pas évident pour les lecteurs humains ; il est conçu pour être facilement interprété par ``pickle``. ``pickle.loads`` (« load string ») reconstitue l'objet :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> t1 = [1, 2, 3]
     >>> s = pickle.dumps(t1)
@@ -299,7 +300,7 @@ Le format n'est pas évident pour les lecteurs humains ; il est conçu pour êtr
 
 Bien que le nouvel objet ait la même valeur que l'ancien, ce n'est (en général) pas le même objet :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> t1 == t2
     True
@@ -325,20 +326,20 @@ N'importe quel programme que vous pouvez lancer depuis le shell peut également 
 
 Par exemple, la commande Unix ``ls -l`` affiche normalement le contenu du répertoire courant (en format long). Vous pouvez lancer ``ls`` avec ``os.popen`` :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> cmd = 'ls -l'
     >>> fp = os.popen(cmd)
 
 L'argument est une chaîne qui contient une commande shell. La valeur de retour est un objet qui se comporte exactement comme un fichier ouvert. Vous pouvez lire la sortie du processus ``ls`` une ligne à la fois avec ``readline`` ou récupérer l'ensemble en une seule fois avec ``read`` :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> res = fp.read()
 
 Lorsque vous avez terminé, vous fermez le pipe comme un fichier :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> stat = fp.close()
     >>> print(stat)
@@ -350,7 +351,7 @@ Par exemple, la plupart des systèmes Unix fournissent une commande appelée ``m
 
 Vous pouvez utiliser un pipe pour exécuter ``md5sum`` depuis Python et obtenir le résultat :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> filename = 'book.tex'
     >>> cmd = 'md5sum ' + filename
@@ -375,7 +376,7 @@ Vous pouvez utiliser un pipe pour exécuter ``md5sum`` depuis Python et obtenir 
 
 N'importe quel fichier qui contient du code Python peut être importé en tant que module. Par exemple, supposons que vous ayez un fichier nommé ``wc.py`` avec le code suivant :
 
-.. code:: python
+.. code-block::python
 
     def linecount(filename):
         count = 0
@@ -389,21 +390,21 @@ Si vous exécutez ce programme, il se lit lui-même et affiche le nombre de lign
 
 Vous pouvez également l'importer de cette façon :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> import wc
     7
 
 Vous disposez désormais d'un objet module ``wc`` :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> print(wc)
     <module 'wc' from 'wc.py'>
 
 Qui fournit une fonction appelée ``linecount`` :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> wc.linecount('wc.py')
     7
@@ -414,7 +415,7 @@ Le seul problème avec cet exemple est que lorsque vous importez le module, il e
 
 Les programmes qui seront importés comme modules utilisent souvent l'idiome suivant :
 
-.. code:: python
+.. code-block::python
 
     if __name__ == '__main__':
         print(linecount('wc.py'))
@@ -431,7 +432,7 @@ Débogage
 
 Lorsque vous lisez et écrivez des fichiers, vous pourriez rencontrer des problèmes avec les espaces blancs. Ces erreurs peuvent être difficiles à déboguer parce que les espaces, les tabulations et les retours à la ligne sont normalement invisibles :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> s = '1 2\t 3\n 4'
     >>> print(s)
@@ -440,7 +441,7 @@ Lorsque vous lisez et écrivez des fichiers, vous pourriez rencontrer des probl�
 
 La fonction intégrée ``repr`` peut aider. Elle prend n'importe quel objet comme argument et renvoie une représentation sous forme de chaîne de l'objet. Pour les chaînes, elle représente les caractères d'espacement avec des séquences d'antislash :
 
-.. code:: python
+.. code-block:: python-console
 
     >>> print(repr(s))
     '1 2\t 3\n 4'
@@ -507,7 +508,7 @@ Exercices
 
     Le module ``urllib`` fournit des méthodes pour manipuler les URL et télécharger des informations depuis le web. Le code suivant télécharge et affiche un message secret provenant de thinkpython.com :
 
-    .. code:: python
+    .. code-block::python
 
         import urllib
 

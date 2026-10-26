@@ -15,7 +15,7 @@ La fonction ``dict`` crée un nouveau dictionnaire sans aucun élément. Comme l
 crochets pour les listes, les accolades (``{`` et ``}``) représentent un
 dictionnaire littéral.
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> anglais_francais = dict()
     >>> anglais_francais
@@ -27,28 +27,28 @@ dictionnaire littéral.
 L'ordre des paires clé-valeur n'est pas prévisible. Pour afficher un élément,
 vous utilisez une clé entre crochets :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> print(eng2fr['deux'])
     'two'
 
 Si la clé n'est pas dans le dictionnaire, vous obtenez une exception :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> print(eng2fr['quatre'])
     KeyError: 'quatre'
 
 La fonction ``len`` renvoie le nombre de paires clé-valeur :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> len(eng2fr)
     3
 
 L'opérateur ``in`` vous indique si une clé apparaît dans le dictionnaire :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> 'un' in eng2fr
     True
@@ -60,7 +60,7 @@ une valeur apparaît dans un dictionnaire, vous pouvez utiliser la méthode
 ``values``, qui renvoie les valeurs sous forme de collection, puis utiliser
 l'opérateur ``in`` :
 
-.. code-block:: python
+.. code-block:: python-console
 
     >>> valeurs = eng2fr.values()
     >>> 'one' in valeurs

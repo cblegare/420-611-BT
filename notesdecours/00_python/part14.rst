@@ -234,15 +234,14 @@ hiding*).
 
     langage orienté objet
     object-oriented language
-        Un langage qui fournit des fonctionnalités, telles que des classes définies par l'utilisateur et une syntaxe de méthode, qui facilitent la programmation orientée objet.
+        Un langage qui fournit des fonctionnalités, telles que des classes
+        définies par l'utilisateur et une syntaxe de méthode, qui facilitent
+        la programmation orientée objet.
 
     programmation orientée objet
     object-oriented programming
-        Un style de programmation dans lequel les données et les opérations qui les manipulent sont organisées en classes et en méthodes.
-
-    méthode
-    method
-        Une fonction qui est définie à l'intérieur d'une définition de classe et est invoquée sur des instances de cette classe.
+        Un style de programmation dans lequel les données et les opérations
+        qui les manipulent sont organisées en classes et en méthodes.
 
     sujet
     subject
@@ -250,11 +249,13 @@ hiding*).
 
     surcharge des opérateurs
     operator overloading
-        Modifier le comportement d'un opérateur comme ``+`` pour qu'il fonctionne avec un type défini par l'utilisateur.
+        Modifier le comportement d'un opérateur comme ``+`` pour qu'il
+        fonctionne avec un type défini par l'utilisateur.
 
     répartition basée sur le type
     type-based dispatch
-        Un modèle de programmation qui vérifie le type d'un opérande et invoque différentes fonctions pour différents types.
+        Un modèle de programmation qui vérifie le type d'un opérande et
+        invoque différentes fonctions pour différents types.
 
     polymorphe
     polymorphic
@@ -262,7 +263,8 @@ hiding*).
 
     masquage de l'information
     information hiding
-        Le principe selon lequel l'interface fournie par un objet ne doit pas dépendre de son implémentation, en particulier de la représentation de ses attributs.
+        Le principe selon lequel l'interface fournie par un objet ne doit
+        pas dépendre de son implémentation, en particulier de la représentation de ses attributs.
 
 ***********
  Exercices
