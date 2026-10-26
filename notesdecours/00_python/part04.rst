@@ -405,3 +405,194 @@ la compréhension du chemin réellement emprunté par votre programme.
     2. Écrivez une fonction qui invite l'utilisateur à saisir trois longueurs de
        bâton, les convertit en entiers, et utilise ``est_un_triangle`` pour
        vérifier si des bâtons de ces longueurs peuvent former un triangle.
+
+..
+    :ia2:exercice:: 04.1
+    Le dernier théorème de Fermat
+
+    Le dernier théorème de Fermat stipule qu'il n'existe aucun entier strictement positif :math:`a`, :math:`b` et :math:`c` tel que :math:`a^n + b^n = c^n` pour toutes les valeurs de :math:`n > 2`[cite: 5].
+
+    a. Écrivez une fonction nommée ``verifier_fermat(a, b, c, n)`` qui prend quatre entiers en paramètres et vérifie si le théorème de Fermat est respecté[cite: 5]. Si :math:`n > 2` et que :math:`a^n + b^n = c^n`, la fonction doit afficher « Bon sang, Fermat avait tort ! »[cite: 5]. Sinon, elle doit afficher « Non, cela ne fonctionne pas. »[cite: 5].
+    b. Écrivez une fonction ``tester_saisie_fermat()`` qui invite l'utilisateur à saisir des valeurs pour ``a``, ``b``, ``c`` et ``n`` à l'aide de la fonction ``input()``[cite: 5], les convertit en entiers[cite: 5], et appelle ``verifier_fermat``[cite: 5].
+
+    Solution: :ia2:sol:`04.1`
+
+..
+    :ia2:exercice:: 04.2
+    Test d'inégalité triangulaire
+
+    Pour tout ensemble de trois longueurs de bâtons, il existe une règle simple pour déterminer s'il est possible de former un triangle : si l'une des trois longueurs est strictement supérieure à la somme des deux autres, il est impossible de former un triangle[cite: 5].
+
+    a. Écrivez une fonction nommée ``est_un_triangle(a, b, c)`` qui prend trois entiers comme arguments et affiche « Oui » ou « Non » selon qu'il est possible ou non de former un triangle[cite: 5].
+    b. Écrivez une fonction ``tester_saisie_triangle()`` qui invite l'utilisateur à saisir trois longueurs[cite: 5], les convertit en entiers[cite: 5], et utilise ``est_un_triangle`` pour vérifier le résultat[cite: 5].
+
+    Solution: :ia2:sol:`04.2`
+
+..
+    :ia2:exercice:: 04.3
+    Division entière, modulo et expressions booléennes
+
+    a. Qu'affichent les expressions suivantes et quel est leur type[cite: 5] ?
+
+       1. ``105 // 60``
+       2. ``105 % 60``
+       3. ``12 % 2 == 0 and 12 % 3 == 0``
+       4. ``not (5 > 10)``
+
+    b. Écrivez une fonction ``est_pair_et_divisible_par_5(n)`` qui retourne ``True`` si l'entier ``n`` est pair ET divisible par 5, et ``False`` sinon, en utilisant les opérateurs modulo (``%``)[cite: 5] et logique (``and``)[cite: 5].
+
+    Solution: :ia2:sol:`04.3`
+
+..
+    :ia2:exercice:: 04.4
+    Conditionnelles enchaînées et simplification
+
+    a. Écrivez une fonction ``evaluer_nombre(n)`` qui utilise une conditionnelle enchaînée (``if``, ``elif``, ``else``)[cite: 5] pour afficher « Positif », « Négatif » ou « Zéro ».
+    b. Simplifiez le bloc conditionnel imbriqué[cite: 5] suivant en une seule instruction ``if`` sans imbrication en utilisant l'opérateur ``and``[cite: 5] :
+
+       .. code-block:: python
+
+           if x > 0:
+               if x % 2 == 0:
+                   print("x est un entier strictement positif et pair.")
+
+    Solution: :ia2:sol:`04.4`
+
+..
+    :ia2:exercice:: 04.5
+    Récursivité, cas de base et traçage
+
+    Considérez la fonction récursive suivante[cite: 5] :
+
+    .. code-block:: python
+
+        def somme_rec(n):
+            if n <= 0:
+                return 0
+            else:
+                return n + somme_rec(n - 1)
+
+    a. Identifiez le cas de base[cite: 5] et le cas récursif de la fonction ``somme_rec``.
+    b. Tracez le flux d'exécution et l
+
+**********
+ Solutons
+**********
+
+.. ia2:solution:: 04.1
+Le dernier théorème de Fermat
+
+    Solution de :ia2:ex:`04.1`
+
+    a. **Fonction ``verifier_fermat`` :**
+
+       .. code-block:: python
+
+           def verifier_fermat(a, b, c, n):
+               if n > 2 and (a**n + b**n == c**n):
+                   print("Bon sang, Fermat avait tort !")
+               else:
+                   print("Non, cela ne fonctionne pas.")
+
+    b. **Fonction ``tester_saisie_fermat`` :**
+
+       .. code-block:: python
+
+           def tester_saisie_fermat():
+               a = int(input("Entrez la valeur de a : "))
+               b = int(input("Entrez la valeur de b : "))
+               c = int(input("Entrez la valeur de c : "))
+               n = int(input("Entrez la valeur de n : "))
+               verifier_fermat(a, b, c, n)
+
+.. ia2:solution:: 04.2
+Test d'inégalité triangulaire
+
+    Solution de :ia2:ex:`04.2`
+
+    a. **Fonction ``est_un_triangle`` :**
+
+       .. code-block:: python
+
+           def est_un_triangle(a, b, c):
+               if a > b + c or b > a + c or c > a + b:
+                   print("Non")
+               else:
+                   print("Oui")
+
+    b. **Fonction ``tester_saisie_triangle`` :**
+
+       .. code-block:: python
+
+           def tester_saisie_triangle():
+               a = int(input("Entrez la longueur du premier bâton : "))
+               b = int(input("Entrez la longueur du deuxième bâton : "))
+               c = int(input("Entrez la longueur du troisième bâton : "))
+               est_un_triangle(a, b, c)
+
+.. ia2:solution:: 04.3
+Division entière, modulo et expressions booléennes
+
+    Solution de :ia2:ex:`04.3`
+
+    a. **Évaluation des expressions :**
+
+       1. ``105 // 60`` : **Valeur :** ``1``, **Type :** ``int`` (division entière qui tronque la partie fractionnaire)[cite: 5].
+       2. ``105 % 60`` : **Valeur :** ``45``, **Type :** ``int`` (opérateur modulo qui retourne le reste de la division)[cite: 5].
+       3. ``12 % 2 == 0 and 12 % 3 == 0`` : **Valeur :** ``True``, **Type :** ``bool`` (12 est pair ET divisible par 3)[cite: 5].
+       4. ``not (5 > 10)`` : **Valeur :** ``True``, **Type :** ``bool`` (5 > 10 s'évalue à ``False``, puis l'opérateur ``not`` inverse en ``True``)[cite: 5].
+
+    b. **Fonction ``est_pair_et_divisible_par_5`` :**
+
+       .. code-block:: python
+
+           def est_pair_et_divisible_par_5(n):
+               return n % 2 == 0 and n % 5 == 0
+
+.. ia2:solution:: 04.4
+Conditionnelles enchaînées et simplification
+
+    Solution de :ia2:ex:`04.4`
+
+    a. **Fonction ``evaluer_nombre`` :**
+
+       .. code-block:: python
+
+           def evaluer_nombre(n):
+               if n > 0:
+                   print("Positif")
+               elif n < 0:
+                   print("Négatif")
+               else:
+                   print("Zéro")
+
+    b. **Simplification du bloc conditionnel imbriqué :**
+
+       .. code-block:: python
+
+           if x > 0 and x % 2 == 0:
+               print("x est un entier strictement positif et pair.")
+
+.. ia2:solution:: 04.5
+Récursivité, cas de base et traçage
+
+    Solution de :ia2:ex:`04.5`
+
+    a. **Cas de base et cas récursif :**
+       * **Cas de base :** ``if n <= 0: return 0`` (branche qui n'effectue aucun appel récursif et stoppe la récursion)[cite: 5].
+       * **Cas récursif :** ``return n + somme_rec(n - 1)`` (branche où la fonction s'appelle elle-même avec un paramètre décrémenté)[cite: 5].
+
+    b. **Tracé de l'exécution pour ``somme_rec(3)`` :**
+       * ``somme_rec(3)`` appelle ``3 + somme_rec(2)``[cite: 5]
+       * ``somme_rec(2)`` appelle ``2 + somme_rec(1)``[cite: 5]
+       * ``somme_rec(1)`` appelle ``1 + somme_rec(0)``[cite: 5]
+       * ``somme_rec(0)`` atteint le cas de base (``0 <= 0``) et retourne ``0``[cite: 5]
+       * Dépilage des cadres de la pile :
+         * ``somme_rec(1)`` retourne ``1 + 0 = 1``
+         * ``somme_rec(2)`` retourne ``2 + 1 = 3``
+         * ``somme_rec(3)`` retourne ``3 + 3 = 6``
+       * **Valeur finale retournée :** ``6``.
+
+    c. **Comportement sans cas de base :**
+       * Sans cas de base, la fonction s'appellerait indéfiniment en décrémentant ``n`` (récursivité infinie)[cite: 5].
+       * Python interrompt l'exécution et lève une exception ``RecursionError`` lorsque la profondeur maximale de la pile d'appels est atteinte[cite: 5].

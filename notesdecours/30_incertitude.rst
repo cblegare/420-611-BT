@@ -31,17 +31,19 @@ Axiomes des probabilités
 ========================
 
 * :math:`0 < P(\omega) < 1` : chaque valeur représentant une probabilité doit
-  être comprise entre 0 et 1.
+    être comprise entre 0 et 1.
 
-      * Zéro est un événement impossible, comme lancer un dé standard et obtenir
+    * Zéro est un événement impossible, comme lancer un dé standard et obtenir
         un 7.
-      * Un est un événement certain de se produire, comme lancer un dé standard
+
+    * Un est un événement certain de se produire, comme lancer un dé standard
         et obtenir une valeur inférieure à 10.
-      * En général, plus la valeur est élevée, plus l’événement a de chances de
+
+    * En général, plus la valeur est élevée, plus l’événement a de chances de
         se produire.
 
 * Les probabilités de chaque événement possible, lorsqu’elles sont additionnées,
-  sont égales à 1.
+    sont égales à 1.
 
 .. figure:: /assets/figures/lotp.png
 
@@ -189,7 +191,7 @@ s’il y a des nuages le matin, ou :math:`P(pluie | nuages)`. Nous commençons a
 les informations suivantes :
 
 * 80 % des après-midis pluvieux commencent par des matinées nuageuses, ou
-  :math:`P(nuages | pluie)`.
+    :math:`P(nuages | pluie)`.
 * 40 % des jours ont des matinées nuageuses, ou :math:`P(nuages)`.
 * 10 % des jours ont des après-midis pluvieux, ou :math:`P(pluie)`.
 
@@ -358,63 +360,66 @@ notre capacité à arriver à l’heure à notre rendez-vous.
 Décrivons ce réseau bayésien de haut en bas :
 
 * La Pluie (*Rain*) est le nœud racine dans ce réseau. Cela signifie que sa
-      distribution de probabilité ne dépend d’aucun événement antérieur. Dans
-      notre exemple, *Rain* est une variable aléatoire qui peut prendre les
-      valeurs {*aucune, légère, forte*} avec la distribution de probabilité
-      suivante :
+    distribution de probabilité ne dépend d’aucun événement antérieur. Dans
+    notre exemple, *Rain* est une variable aléatoire qui peut prendre les
+    valeurs {*aucune, légère, forte*} avec la distribution de probabilité
+    suivante :
 
-      ======== ======== =======
-      *aucune* *légère* *forte*
-      ======== ======== =======
-      0.7      0.2      0.1
-      ======== ======== =======
+    ======== ======== =======
+    *aucune* *légère* *forte*
+    ======== ======== =======
+    0.7      0.2      0.1
+    ======== ======== =======
+
 * La Maintenance (*Maintenance*), dans notre exemple, encode le fait qu’il y ait
-      ou non un entretien des voies ferrées, prenant les valeurs {*oui, non*}.
-      La Pluie (*Rain*) est un nœud parent de *Maintenance*, ce qui signifie que
-      la distribution de probabilité de *Maintenance* est affectée par *Rain*.
+    ou non un entretien des voies ferrées, prenant les valeurs {*oui, non*}.
+    La Pluie (*Rain*) est un nœud parent de *Maintenance*, ce qui signifie que
+    la distribution de probabilité de *Maintenance* est affectée par *Rain*.
 
-      ======== ===== =====
-      R        *oui* *non*
-      ======== ===== =====
-      *aucune* 0.4   0.6
-      *légère* 0.2   0.8
-      *forte*  0.1   0.9
-      ======== ===== =====
+    ======== ===== =====
+    R        *oui* *non*
+    ======== ===== =====
+    *aucune* 0.4   0.6
+    *légère* 0.2   0.8
+    *forte*  0.1   0.9
+    ======== ===== =====
+
 * Le Train (*Train*) est la variable qui encode si le train est à l’heure ou
-      retardé, prenant les valeurs {*à l’heure, retardé*}. Notez que *Train* a
-      des flèches pointant vers lui provenant à la fois de *Maintenance* et de
-      *Rain*. Cela signifie que tous deux sont des parents de *Train*, et que
-      leurs valeurs affectent la distribution de probabilité de *Train*.
+    retardé, prenant les valeurs {*à l’heure, retardé*}. Notez que *Train* a
+    des flèches pointant vers lui provenant à la fois de *Maintenance* et de
+    *Rain*. Cela signifie que tous deux sont des parents de *Train*, et que
+    leurs valeurs affectent la distribution de probabilité de *Train*.
 
-      ======== === =========== =========
-      R        M   *à l’heure* *retardé*
-      ======== === =========== =========
-      *aucune* oui 0.8         0.2
-      *aucune* non 0.9         0.1
-      *légère* oui 0.6         0.4
-      *légère* non 0.7         0.3
-      *forte*  oui 0.4         0.6
-      *forte*  non 0.5         0.5
-      ======== === =========== =========
+    ======== === =========== =========
+    R        M   *à l’heure* *retardé*
+    ======== === =========== =========
+    *aucune* oui 0.8         0.2
+    *aucune* non 0.9         0.1
+    *légère* oui 0.6         0.4
+    *légère* non 0.7         0.3
+    *forte*  oui 0.4         0.6
+    *forte*  non 0.5         0.5
+    ======== === =========== =========
+
 * Le Rendez-vous (*Appointment*) est une variable aléatoire qui représente le
-      fait que nous assistions ou non à notre rendez-vous, prenant les valeurs
-      {*présent, raté*}. Notez que son seul parent est *Train*. Ce point sur le
-      réseau bayésien est à souligner : les parents n’incluent que les relations
-      directes. Il est vrai que l’entretien affecte la ponctualité du train, et
-      que la ponctualité du train affecte notre présence au rendez-vous.
-      Cependant, au final, ce qui affecte directement nos chances d’assister au
-      rendez-vous, c’est de savoir si le train est arrivé à l’heure, et c’est ce
-      qui est représenté dans le réseau bayésien. Par exemple, si le train est
-      arrivé à l’heure, il a pu y avoir de fortes pluies et un entretien des
-      voies, mais cela n’a aucun effet sur le fait que nous soyons arrivés à
-      notre rendez-vous.
+    fait que nous assistions ou non à notre rendez-vous, prenant les valeurs
+    {*présent, raté*}. Notez que son seul parent est *Train*. Ce point sur le
+    réseau bayésien est à souligner : les parents n’incluent que les relations
+    directes. Il est vrai que l’entretien affecte la ponctualité du train, et
+    que la ponctualité du train affecte notre présence au rendez-vous.
+    Cependant, au final, ce qui affecte directement nos chances d’assister au
+    rendez-vous, c’est de savoir si le train est arrivé à l’heure, et c’est ce
+    qui est représenté dans le réseau bayésien. Par exemple, si le train est
+    arrivé à l’heure, il a pu y avoir de fortes pluies et un entretien des
+    voies, mais cela n’a aucun effet sur le fait que nous soyons arrivés à
+    notre rendez-vous.
 
-      =========== ========= ======
-      T           *présent* *raté*
-      =========== ========= ======
-      *à l’heure* 0.9       0.1
-      *retardé*   0.6       0.4
-      =========== ========= ======
+    =========== ========= ======
+    T           *présent* *raté*
+    =========== ========= ======
+    *à l’heure* 0.9       0.1
+    *retardé*   0.6       0.4
+    =========== ========= ======
 
 Par exemple, si nous voulons trouver la probabilité de rater la réunion alors
 que le train était en retard un jour sans entretien et avec une pluie légère, ou
@@ -445,19 +450,19 @@ certitude, cela nous permet de calculer les distributions de probabilités pour
 certaines valeurs. L’inférence a de multiples propriétés.
 
 * Requête **X**\
-      distribution de probabilité.
+    distribution de probabilité.
 * Variables de preuve **E**\
-      pour l’événement **e**. Par exemple, nous pourrions avoir observé qu’il y
-      a une pluie légère, et cette observation nous aide à calculer la
-      probabilité que le train soit en retard.
+    pour l’événement **e**. Par exemple, nous pourrions avoir observé qu’il y
+    a une pluie légère, et cette observation nous aide à calculer la
+    probabilité que le train soit en retard.
 * Variables cachées **Y**\
-      pas non plus été observées. Par exemple, debout à la gare, nous pouvons
-      observer s’il pleut, mais nous ne pouvons pas savoir s’il y a des travaux
-      sur la voie plus loin. Ainsi, *Maintenance* serait une variable cachée
-      dans cette situation.
+    pas non plus été observées. Par exemple, debout à la gare, nous pouvons
+    observer s’il pleut, mais nous ne pouvons pas savoir s’il y a des travaux
+    sur la voie plus loin. Ainsi, *Maintenance* serait une variable cachée
+    dans cette situation.
 * L’objectif
-      de probabilité de la variable *Train* (la requête) en fonction de la
-      preuve **e** selon laquelle nous savons qu’il y a une pluie légère.
+    de probabilité de la variable *Train* (la requête) en fonction de la
+    preuve **e** selon laquelle nous savons qu’il y a une pluie légère.
 
 Prenons un exemple. Nous voulons calculer la distribution de probabilité de la
 variable *Appointment* (Rendez-vous) compte tenu de la preuve qu’il y a une
@@ -735,10 +740,12 @@ façon de contourner cela est la pondération par vraisemblance, en utilisant le
 étapes suivantes :
 
 * Commencez par fixer les valeurs pour les variables de preuve.
+
 * Échantillonnez les variables qui ne sont pas des preuves en utilisant des
-      probabilités conditionnelles dans le réseau bayésien.
+    probabilités conditionnelles dans le réseau bayésien.
+
 * Pondérez chaque échantillon par sa **vraisemblance**\
-      toutes les preuves se produisent.
+    toutes les preuves se produisent.
 
 Par exemple, si nous avons l’observation que le train était à l’heure, nous
 commencerons l’échantillonnage comme avant. Nous échantillonnons une valeur de
@@ -850,13 +857,15 @@ caché** et quelles que soient les données auxquelles l’IA a accès, ce sont 
 **observations**. Voici quelques exemples de ceci :
 
 * Pour un robot explorant un territoire inexploré, l’état caché est sa position,
-      et l’observation correspond aux données enregistrées par les capteurs du
-      robot.
+    et l’observation correspond aux données enregistrées par les capteurs du
+    robot.
+
 * Dans la reconnaissance vocale, l’état caché correspond aux mots qui ont été
-      prononcés, et l’observation correspond aux formes d’ondes audio.
+    prononcés, et l’observation correspond aux formes d’ondes audio.
+
 * Lors de la mesure de l’engagement des utilisateurs sur les sites Web, l’état
-      caché est le degré d’engagement de l’utilisateur, et l’observation
-      correspond aux analyses (analytics) du site Web ou de l’application.
+    caché est le degré d’engagement de l’utilisateur, et l’observation
+    correspond aux analyses (analytics) du site Web ou de l’application.
 
 Pour notre discussion, nous utiliserons l’exemple suivant. Notre IA veut déduire
 la météo (l’état caché), mais elle n’a accès qu’à une caméra intérieure qui
@@ -895,20 +904,23 @@ En s’appuyant sur des modèles de Markov cachés, de multiples tâches peuvent
 réalisées :
 
 * Filtrage
-      aujourd’hui, calculer la distribution de probabilité pour l’état actuel.
-      Par exemple, compte tenu des informations sur les moments où les gens
-      apportent des parapluies depuis le début des temps jusqu’à aujourd’hui,
-      nous générons une distribution de probabilité quant à savoir s’il pleut
-      aujourd’hui ou non.
+    aujourd’hui, calculer la distribution de probabilité pour l’état actuel.
+    Par exemple, compte tenu des informations sur les moments où les gens
+    apportent des parapluies depuis le début des temps jusqu’à aujourd’hui,
+    nous générons une distribution de probabilité quant à savoir s’il pleut
+    aujourd’hui ou non.
+
 * Prédiction
-      calculer la distribution de probabilité pour un état futur.
+    calculer la distribution de probabilité pour un état futur.
+
 * Lissage
-      maintenant, calculer la distribution de probabilité pour un état passé.
-      Par exemple, calculer la probabilité de pluie d’hier sachant que les gens
-      ont apporté des parapluies aujourd’hui.
+    maintenant, calculer la distribution de probabilité pour un état passé.
+    Par exemple, calculer la probabilité de pluie d’hier sachant que les gens
+    ont apporté des parapluies aujourd’hui.
+
 * L’explication la plus probable
-      observations du début jusqu’à maintenant, calculer la séquence
-      d’événements la plus probable.
+    observations du début jusqu’à maintenant, calculer la séquence
+    d’événements la plus probable.
 
 La tâche de l’explication la plus probable peut être utilisée dans des processus
 tels que la reconnaissance vocale, où, sur la base de multiples formes d’ondes,
@@ -979,3 +991,235 @@ Dans ce cas, la sortie du programme sera pluie, pluie, soleil, pluie, pluie,
 pluie, pluie, soleil, soleil. Cette sortie représente quel est le schéma
 météorologique le plus probable compte tenu de nos observations de personnes
 apportant ou n’apportant pas de parapluies dans le bâtiment.
+
+====================================
+Exercices : Chapitre 3 - Incertitude
+====================================
+
+***********
+ Exercices
+***********
+
+.. :ia2:exercice:: 30.1
+    Modélisation probabiliste en notation :math:`P(A)`
+
+    Un système d'intelligence artificielle supervise une salle de classe intelligente afin d'optimiser l'apprentissage. On définit les événements suivants pour un étudiant donné à un moment précis :
+
+    * :math:`P` : L'étudiant est présent en classe.
+    * :math:`E` : L'étudiant est éveillé et attentif.
+    * :math:`X` : C'est un jour d’examen.
+    * :math:`D` : L'étudiant a remis son devoir.
+
+    Modélisez les affirmations suivantes à l'aide de la notation formelle des probabilités (probabilités inconditionnelles ou conditionnelles) :
+
+    a. La probabilité qu'un étudiant soit présent et éveillé.
+    b. La probabilité qu'un étudiant soit présent sachant que c'est un jour d'examen.
+    c. La probabilité qu'un étudiant ne soit pas éveillé sachant qu'il est présent et que ce n'est pas un jour d'examen.
+    d. La probabilité qu'un étudiant ait remis son devoir sachant qu'il est présent et éveillé.
+    e. Exprimez en langage naturel la signification de la notation :math:`P(X \mid \lnot P)`.
+
+    Solution: :ia2:sol:`30.1`
+
+.. :ia2:exercice:: 30.2
+    Indépendance et dépendance d'événements
+
+    Pour chacune des situations contextuelles suivantes, déterminez si les deux événements :math:`A` et :math:`B` sont **indépendants** ou **dépendants**. Justifiez brièvement votre réponse en vous appuyant sur la définition de l'indépendance probabiliste (:math:`P(A \land B) = P(A)P(B)` ou :math:`P(A \mid B) = P(A)`).
+
+    a. **Situation 1 :** :math:`A` = Obtenir un 6 lors du lancer d'un dé équilibré ; :math:`B` = Obtenir « Pile » lors du lancer d'une pièce de monnaie.
+    b. **Situation 2 :** :math:`A` = Il tombe 30 cm de neige à Québec ce matin ; :math:`B` = Le cours en présentiel au collège est annulé ou retardé.
+    c. **Situation 3 :** :math:`A` = Tirer un As dans un jeu de 52 cartes sans remise ; :math:`B` = Tirer un second As au deuxième tirage.
+    d. **Situation 4 :** :math:`A` = Un étudiant étudie 15 heures pour son examen d'IA ; :math:`B` = L'étudiant obtient une note supérieure à 90 %.
+
+    Solution: :ia2:sol:`30.2`
+
+.. :ia2:exercice:: 30.3
+    Probabilité conditionnelle et Règle de Bayes
+
+    Un serveur de plateforme Cloud est surveillé par une IA de diagnostic. On étudie la survenue de pannes de serveur (:math:`C`) et de pics d'utilisation du CPU (:math:`U`) :
+
+    * La probabilité a priori qu'un serveur subisse une panne est :math:`P(C) = 0.02`.
+    * La probabilité a priori d'observer un pic de CPU est :math:`P(U) = 0.15`.
+    * Lorsqu'une panne se produit, un pic de CPU est observé dans 90 % des cas, soit :math:`P(U \mid C) = 0.90`.
+
+    a. Calculez la probabilité conditionnelle qu'une panne soit en cours sachant qu'un pic de CPU est détecté, soit :math:`P(C \mid U)`, en utilisant la **règle de Bayes**.
+    b. Si la probabilité globale d'un pic de CPU :math:`P(U)` augmente à :math:`0.30` sans changer :math:`P(C)` ni :math:`P(U \mid C)`, quel est le nouvel impact sur la certitude du diagnostic :math:`P(C \mid U)` ? Expliquez intuitivement ce résultat.
+
+    Solution: :ia2:sol:`30.3`
+
+.. :ia2:exercice:: 30.4
+    Réseaux bayésiens et probabilité conjointe
+
+    Soit un réseau bayésien simple modélisant les facteurs d'un trajet. Le réseau est composé des variables aléatoires booléennes suivantes :
+
+    * :math:`P` : Pluie fine (Variables parents : Aucune)
+    * :math:`T` : Travaux routiers (Dépend de :math:`P`)
+    * :math:`R` : Retard à la réunion (Dépend de :math:`P` et :math:`T`)
+
+    Les tables de probabilités conditionnelles (CPT) sont fournies comme suit :
+
+    * :math:`P(P = \text{vrai}) = 0.30`
+    * :math:`P(T = \text{vrai} \mid P = \text{vrai}) = 0.60` ; :math:`P(T = \text{vrai} \mid P = \text{faux}) = 0.20`
+    * :math:`P(R = \text{vrai} \mid P = \text{vrai}, T = \text{vrai}) = 0.90`
+    * :math:`P(R = \text{vrai} \mid P = \text{vrai}, T = \text{faux}) = 0.50`
+    * :math:`P(R = \text{vrai} \mid P = \text{faux}, T = \text{vrai}) = 0.70`
+    * :math:`P(R = \text{vrai} \mid P = \text{faux}, T = \text{faux}) = 0.10`
+
+    a. Calculez la **probabilité conjointe** exacte de l'événement où il pleut, il y a des travaux et l'intervenant est en retard, soit :math:`P(P = \text{vrai}, T = \text{vrai}, R = \text{vrai})`.
+    b. En utilisant la **marginalisation**, calculez la probabilité globale qu'il y ait des travaux :math:`P(T = \text{vrai})`.
+
+    Solution: :ia2:sol:`30.4`
+
+.. :ia2:exercice:: 30.5
+    Modèles de Markov et Modèles de Markov Cachés (HMM)
+
+    Un robot mobile évolue dans une pièce et tente de déterminer la météo extérieure à travers les indices d'un capteur de luminosité :
+
+    * **États cachés (:math:`X_t`) :** Météo à l'instant :math:`t` (:math:`\text{Soleil}` ou :math:`\text{Pluie}`).
+    * **Modèle de transition :** :math:`P(X_{t+1} = \text{Soleil} \mid X_t = \text{Soleil}) = 0.80`, :math:`P(X_{t+1} = \text{Pluie} \mid X_t = \text{Pluie}) = 0.70`.
+    * **Modèle de capteur (Émission) :** :math:`P(E_t = \text{Lumière forte} \mid X_t = \text{Soleil}) = 0.90`, :math:`P(E_t = \text{Lumière forte} \mid X_t = \text{Pluie}) = 0.10`.
+
+    a. Si l'état initial à :math:`t=0` est certain d'être :math:`X_0 = \text{Soleil}`, calculez la distribution de probabilité pour l'état à :math:`t=1`, soit :math:`P(X_1)`.
+    b. Sachant que l'observation à :math:`t=1` est :math:`E_1 = \text{Lumière forte}`, calculez la probabilité filtrée :math:`P(X_1 = \text{Soleil} \mid E_1 = \text{Lumière forte})` en appliquant la formule du conditionnement et en normalisant le résultat.
+    c. Expliquez brièvement la différence entre les tâches de **filtrage**, de **prédiction** et de **lissage** dans un Modèle de Markov Caché.
+
+    Solution: :ia2:sol:`30.5`
+
+
+**********
+ Solutons
+**********
+
+.. ia2:solution:: 30.1
+    Modélisation probabiliste en notation :math:`P(A)`
+
+    Solution de :ia2:ex:`30.1`
+
+    a. **Présent et éveillé :**
+       :math:`P(P \land E)` (ou :math:`P(P, E)`).
+
+    b. **Présent sachant que c'est un jour d'examen :**
+       :math:`P(P \mid X)`.
+
+    c. **Pas éveillé sachant qu'il est présent et que ce n'est pas un jour d'examen :**
+       :math:`P(\lnot E \mid P \land \lnot X)`.
+
+    d. **Remis son devoir sachant qu'il est présent et éveillé :**
+       :math:`P(D \mid P \land E)`.
+
+    e. **Signification de :math:`P(X \mid \lnot P)` :**
+       C'est la probabilité que ce soit un jour d'examen sachant que l'étudiant est absent (non présent).
+
+.. ia2:solution:: 30.2
+    Indépendance et dépendance d'événements
+
+    Solution de :ia2:ex:`30.2`
+
+    a. **Situation 1 : Événements INDÉPENDANTS.**
+       Le résultat du dé n'a aucun impact physique ni logique sur le lancer de la pièce (:math:`P(A \land B) = P(A) \cdot P(B) = \frac{1}{6} \cdot \frac{1}{2} = \frac{1}{12}`).
+
+    b. **Situation 2 : Événements DÉPENDANTS.**
+       Une forte chute de neige augmente considérablement la probabilité que les cours soient annulés (:math:`P(B \mid A) > P(B)`).
+
+    c. **Situation 3 : Événements DÉPENDANTS.**
+       Puisqu'il n'y a pas de remise, le premier tirage modifie la composition du paquet pour le second tirage. La probabilité d'obtenir un As au second tirage dépend directement du fait d'en avoir tiré un au premier (:math:`P(B \mid A) = \frac{3}{51} \neq P(B \mid \lnot A) = \frac{4}{51}`).
+
+    d. **Situation 4 : Événements DÉPENDANTS.**
+       Le temps d'étude influence la maîtrise du sujet et augmente la probabilité de réussir l'examen (:math:`P(B \mid A) > P(B)`).
+
+.. ia2:solution:: 30.3
+    Probabilité conditionnelle et Règle de Bayes
+
+    Solution de :ia2:ex:`30.3`
+
+    a. **Calcul de :math:`P(C \mid U)` par la règle de Bayes :**
+
+       Selon la règle de Bayes :
+
+       .. math::
+
+          P(C \mid U) = \frac{P(U \mid C) \cdot P(C)}{P(U)}
+
+       En substituant les valeurs :
+
+       .. math::
+
+          P(C \mid U) = \frac{0.90 \cdot 0.02}{0.15} = \frac{0.018}{0.15} = 0.12
+
+       La probabilité qu'il y ait une panne sachant qu'un pic de CPU est détecté est de **12 %**.
+
+    b. **Impact d'une augmentation de :math:`P(U)` à 0.30 :**
+
+       .. math::
+
+          P(C \mid U) = \frac{0.90 \cdot 0.02}{0.30} = \frac{0.018}{0.30} = 0.06 \quad (6 \%)
+
+       *Explication intuitive :* Si les pics de CPU deviennent très fréquents de manière générale (ex. charges de travail ordinaires élevées), l'observation d'un pic de CPU devient un indicateur moins spécifique d'une panne réelle (augmentation des faux positifs).
+
+.. ia2:solution:: 30.4
+    Réseaux bayésiens et probabilité conjointe
+
+    Solution de :ia2:ex:`30.4`
+
+    a. **Calcul de la probabilité conjointe :**
+
+       D'après la propriété de décomposition d'un réseau bayésien :
+
+       .. math::
+
+          P(P, T, R) = P(P) \cdot P(T \mid P) \cdot P(R \mid P, T)
+
+       Pour :math:`P = \text{vrai}, T = \text{vrai}, R = \text{vrai}` :
+
+       .. math::
+
+          P(P=\text{vrai}, T=\text{vrai}, R=\text{vrai}) = 0.30 \cdot 0.60 \cdot 0.90 = 0.162 \quad (16.2 \%)
+
+    b. **Calcul de :math:`P(T = \text{vrai})` par marginalisation :**
+
+       Par marginalisation sur la variable parent :math:`P` :
+
+       .. math::
+
+          P(T=\text{vrai}) = P(T=\text{vrai} \mid P=\text{vrai}) \cdot P(P=\text{vrai}) + P(T=\text{vrai} \mid P=\text{faux}) \cdot P(P=\text{faux})
+
+       Sachant que :math:`P(P=\text{faux}) = 1 - 0.30 = 0.70` :
+
+       .. math::
+
+          P(T=\text{vrai}) = (0.60 \cdot 0.30) + (0.20 \cdot 0.70) = 0.18 + 0.14 = 0.32 \quad (32 \%)
+
+.. ia2:solution:: 30.5
+    Modèles de Markov et Modèles de Markov Cachés (HMM)
+
+    Solution de :ia2:ex:`30.5`
+
+    a. **Distribution de probabilité à :math:`t=1` (:math:`P(X_1)`) :**
+
+       Sachant :math:`X_0 = \text{Soleil}` :
+
+       * :math:`P(X_1 = \text{Soleil}) = P(X_1 = \text{Soleil} \mid X_0 = \text{Soleil}) = 0.80`
+       * :math:`P(X_1 = \text{Pluie}) = P(X_1 = \text{Pluie} \mid X_0 = \text{Soleil}) = 1 - 0.80 = 0.20`
+
+       Donc, :math:`P(X_1) = \langle 0.80, 0.20 \rangle`.
+
+    b. **Probabilité filtrée :math:`P(X_1 \mid E_1 = \text{Lumière forte})` :**
+
+       On applique le théorème de Bayes / la formule du conditionnement avec le facteur de normalisation :math:`\alpha` :
+
+       .. math::
+
+          P(X_1 \mid E_1) = \alpha \cdot P(E_1 \mid X_1) \cdot P(X_1)
+
+       * Pour :math:`X_1 = \text{Soleil}` : :math:`0.90 \cdot 0.80 = 0.72`
+       * Pour :math:`X_1 = \text{Pluie}` : :math:`0.10 \cdot 0.20 = 0.02`
+
+       Normalisation (:math:`\alpha = \frac{1}{0.72 + 0.02} = \frac{1}{0.74}`) :
+
+       * :math:`P(X_1 = \text{Soleil} \mid E_1) = \frac{0.72}{0.74} \approx 0.973 \quad (97.3 \%)`
+       * :math:`P(X_1 = \text{Pluie} \mid E_1) = \frac{0.02}{0.74} \approx 0.027 \quad (2.7 \%)`
+
+    c. **Différences entre Filtrage, Prédiction et Lissage :**
+
+       * **Filtrage :** Calculer la distribution de probabilité de l'état *actuel* :math:`X_t` en fonction de toutes les observations reçues jusqu'à présent :math:`E_1, \dots, E_t`.
+       * **Prédiction :** Calculer la distribution de probabilité d'un état *futur* :math:`X_{t+k}` (:math:`k > 0`) en fonction des observations jusqu'à aujourd'hui.
+       * **Lissage :** Recalculer la distribution de probabilité d'un état *passé* :math:`X_k` (:math:`k < t`) en utilisant l'ensemble des observations passées et ultérieures :math:`E_1, \dots, E_t`.

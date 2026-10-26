@@ -353,3 +353,192 @@ Mais la comparaison supplémentaire est inutile.
 
     Écrivez une fonction booléenne ``est_entre(x, y, z)`` qui retourne ``True``
     si ``x ≤ y ≤ z`` et ``False`` sinon.
+
+..
+    :ia2:exercice:: 05.1
+    Valeurs de retour et développement incrémental
+
+    Le développement incrémental consiste à construire et tester du code par de petites étapes vérifiables afin d'éviter les erreurs complexes.
+
+    a. Écrivez la formule mathématique permettant de calculer la distance euclidienne entre deux points :math:`(x_1, y_1)` et :math:`(x_2, y_2)`.
+    b. Proposez l'implémentation d'une fonction ``distance(x1, y1, x2, y2)`` en appliquant la démarche du développement incrémental (calcul des écarts :math:`dx` et :math:`dy`, somme des carrés, puis racine carrée avec ``math.sqrt``).
+
+    Solution: :ia2:sol:`05.1`
+
+..
+    :ia2:exercice:: 05.2
+    Composition de fonctions
+
+    Une fois qu'une fonction a été écrite et vérifiée, elle peut être utilisée à l'intérieur d'une autre fonction.
+
+    a. Écrivez une fonction ``aire_disque(rayon)`` qui calcule l'aire d'un disque de rayon donné (:math:`A = \pi r^2`) en utilisant ``math.pi``.
+    b. Écrivez une fonction ``aire_disque_depuis_points(xc, yc, xp, yp)`` qui prend le centre d'un cercle :math:`(x_c, y_c)` et un point situé sur sa circonférence :math:`(x_p, y_p)`, et retourne l'aire du disque en composant les fonctions ``distance`` et ``aire_disque``.
+
+    Solution: :ia2:sol:`05.2`
+
+..
+    :ia2:exercice:: 05.3
+    Fonctions booléennes et simplification
+
+    Les fonctions peuvent retourner des valeurs booléennes (``True`` ou ``False``), ce qui est particulièrement utile pour masquer des tests complexes.
+
+    a. Écrivez une fonction ``est_entre(x, y, z)`` qui retourne ``True`` si :math:`x \le y \le z` et ``False`` sinon.
+    b. Expliquez pourquoi il est inutile d'utiliser une structure ``if ... else`` pour retourner directement un résultat booléen et montrez la version simplifiée en une seule ligne.
+
+    Solution: :ia2:sol:`05.3`
+
+..
+    :ia2:exercice:: 05.4
+    Récursivité et validation des arguments (Gardes)
+
+    Si l'on passe une valeur inattendue (comme un nombre négatif ou un nombre à virgule flottante) à une fonction récursive comme la factorielle, le cas de base risque de ne jamais être atteint.
+
+    a. Écrivez la définition récursive standard de la fonction ``factorielle(n)``.
+    b. Ajoutez des vérifications de garde à l'aide de la fonction intégrée ``isinstance`` pour vous assurer que ``n`` est bien un entier positif ou nul. Si ce n'est pas le cas, affichez un message d'erreur approprié et retournez ``None``.
+
+    Solution: :ia2:sol:`05.4`
+
+..
+    :ia2:exercice:: 05.5
+    Suite de Fibonacci et l'acte de foi
+
+    L'« acte de foi » (*leap of faith*) consiste à assumer que les appels récursifs sur des sous-problèmes plus petits fonctionnent correctement sans chercher à suivre mentalement toute l'arborescence des appels.
+
+    a. Écrivez la fonction récursive ``fibonacci(n)`` pour calculer le :math:`n`-ième terme de la suite de Fibonacci, définie par :math:`F_0 = 0`, :math:`F_1 = 1` et :math:`F_n = F_{n-1} + F_{n-2}` pour :math:`n \ge 2`.
+    b. Tracez l'arbre d'exécution des appels récursifs générés lors de l'évaluation de ``fibonacci(4)`` et donnez la valeur finale retournée.
+
+    Solution: :ia2:sol:`05.5`
+
+**********
+ Solutons
+**********
+
+.. ia2:solution:: 05.1
+Valeurs de retour et développement incrémental
+
+    Solution de :ia2:ex:`05.1`
+
+    a. **Formule de la distance euclidienne :**
+
+       .. math::
+
+          d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
+
+    b. **Implémentation par développement incrémental :**
+
+       .. code-block:: python
+
+           import math
+
+           def distance(x1, y1, x2, y2):
+               dx = x2 - x1
+               dy = y2 - y1
+               carres = dx**2 + dy**2
+               resultat = math.sqrt(carres)
+               return resultat
+
+.. ia2:solution:: 05.2
+Composition de fonctions
+
+    Solution de :ia2:ex:`05.2`
+
+    a. **Fonction ``aire_disque`` :**
+
+       .. code-block:: python
+
+           import math
+
+           def aire_disque(rayon):
+               return math.pi * (rayon**2)
+
+    b. **Composition dans ``aire_disque_depuis_points`` :**
+
+       .. code-block:: python
+
+           def aire_disque_depuis_points(xc, yc, xp, yp):
+               rayon = distance(xc, yc, xp, yp)
+               return aire_disque(rayon)
+
+.. ia2:solution:: 05.3
+Fonctions booléennes et simplification
+
+    Solution de :ia2:ex:`05.3`
+
+    a. **Version initiale (avec ``if/else``) :**
+
+       .. code-block:: python
+
+           def est_entre(x, y, z):
+               if x <= y <= z:
+                   return True
+               else:
+                   return False
+
+    b. **Explication et version simplifiée :**
+
+       L'expression de comparaison ``x <= y <= z`` évalue déjà directement un booléen (``True`` ou ``False``). Il est donc redondant d'utiliser un bloc ``if ... else`` pour retourner ce même booléen.
+
+       .. code-block:: python
+
+           def est_entre(x, y, z):
+               return x <= y <= z
+
+.. ia2:solution:: 05.4
+Récursivité et validation des arguments (Gardes)
+
+    Solution de :ia2:ex:`05.4`
+
+    a et b. **Implémentation récursive avec gardes :**
+
+       .. code-block:: python
+
+           def factorielle(n):
+               # Vérification du type (garde)
+               if not isinstance(n, int):
+                   print("La factorielle est définie uniquement pour les entiers.")
+                   return None
+               # Vérification du domaine (garde)
+               if n < 0:
+                   print("La factorielle n'est pas définie pour les entiers négatifs.")
+                   return None
+               # Cas de base
+               if n == 0:
+                   return 1
+               # Cas récursif
+               return n * factorielle(n - 1)
+
+.. ia2:solution:: 05.5
+Suite de Fibonacci et l'acte de foi
+
+    Solution de :ia2:ex:`05.5`
+
+    a. **Fonction récursive ``fibonacci`` :**
+
+       .. code-block:: python
+
+           def fibonacci(n):
+               if n == 0:
+                   return 0
+               if n == 1:
+                   return 1
+               return fibonacci(n - 1) + fibonacci(n - 2)
+
+    b. **Arbre d'exécution pour ``fibonacci(4)`` :**
+
+       ::
+
+           fibonacci(4)
+           ├── fibonacci(3)
+           │   ├── fibonacci(2)
+           │   │   ├── fibonacci(1) -> 1
+           │   │   └── fibonacci(0) -> 0
+           │   └── fibonacci(1) -> 1
+           └── fibonacci(2)
+               ├── fibonacci(1) -> 1
+               └── fibonacci(0) -> 0
+
+       * ``fibonacci(2)`` vaut :math:`1 + 0 = 1`
+       * ``fibonacci(3)`` vaut :math:`1 + 1 = 2`
+       * ``fibonacci(4)`` vaut :math:`2 + 1 = 3`
+
+       **Valeur finale retournée :** ``3``.

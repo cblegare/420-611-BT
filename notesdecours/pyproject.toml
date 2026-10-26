@@ -8,6 +8,7 @@ dependencies = []
 dev = [
     "pydata-sphinx-theme>=0.21.0",
     "sphinx>=9.1.0",
+    "sphinx-compendia>=0.4.0",
     "sphinx-copybutton>=0.5.2",
     "sphinx-tabs>=3.5.0",
 ]

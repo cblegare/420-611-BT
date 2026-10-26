@@ -492,3 +492,156 @@ quelles fonctions étaient en cours d'exécution au moment de l'erreur.
     2. Modifiez ``do_twice`` afin qu'elle prenne deux arguments, un objet
        fonction et une valeur, et appelle la fonction deux fois, en passant la
        valeur comme argument.
+
+..
+    :ia2:exercice:: 03.1
+    Justification à droite
+
+    Écrivez une fonction nommée ``right_justify`` qui prend une chaîne de caractères nommée ``s`` comme paramètre et imprime la chaîne avec suffisamment d'espaces au début pour que le dernier caractère de la chaîne se trouve dans la colonne 70 de l'affichage[cite: 4].
+
+    .. code-block:: python
+
+        >>> right_justify('monty')
+                                                                         monty
+
+    *Indice : Utilisez la concaténation (``+``) et la répétition de chaînes (``*``). La fonction intégrée ``len(s)`` renvoie la longueur d'une chaîne[cite: 4].*
+
+    Solution: :ia2:sol:`03.1`
+
+..
+    :ia2:exercice:: 03.2
+    Passage de fonctions en arguments
+
+    Un objet de fonction est une valeur que vous pouvez affecter à une variable ou passer comme argument à une autre fonction[cite: 4].
+
+    a. Écrivez une fonction ``do_twice(f, val)`` qui prend deux arguments : un objet fonction ``f`` et une valeur ``val``, et appelle la fonction ``f`` deux fois en lui passant ``val`` comme argument[cite: 4].
+    b. Écrivez une fonction ``print_twice(chaine)`` qui prend une chaîne en argument et l'imprime deux fois[cite: 4].
+    c. Utilisez ``do_twice`` pour appeler ``print_twice`` en lui passant la chaîne ``'spam'``[cite: 4].
+    d. Écrivez une fonction ``do_four(f, val)`` qui prend un objet fonction ``f`` et une valeur ``val``, et appelle la fonction quatre fois en réutilisant la fonction ``do_twice``.
+
+    Solution: :ia2:sol:`03.2`
+
+..
+    :ia2:exercice:: 03.3
+    Conversions de types et module math
+
+    a. Écrivez une fonction ``degres_vers_radians(degres)`` qui prend un angle en degrés et retourne sa valeur en radians en utilisant la constante ``pi`` du module ``math``[cite: 4].
+    b. Que retourne l'expression ``int(float('3.9'))`` ? Expliquez le comportement des fonctions de conversion de type impliquées[cite: 4].
+    c. Expliquez la différence entre une fonction productive (*fruitful function*) et une fonction nulle (*void function*)[cite: 4]. Quel est le type et la valeur retournés par une fonction sans instruction ``return``[cite: 4] ?
+
+    Solution: :ia2:sol:`03.3`
+
+..
+    :ia2:exercice:: 03.4
+    Variables locales et flux d'exécution
+
+    Considérez le script Python suivant :
+
+    .. code-block:: python
+
+        def concatener_deux_fois(partie1, partie2):
+            chat = partie1 + partie2
+            imprimer_deux_fois(chat)
+
+        def imprimer_deux_fois(bruce):
+            print(bruce)
+            print(bruce)
+
+        ligne1 = 'Bing tiddle '
+        ligne2 = 'tiddle bang.'
+        concatener_deux_fois(ligne1, ligne2)
+
+    a. Décrivez l'ordre exact d'exécution des instructions lors du fonctionnement de ce programme[cite: 4].
+    b. Que se passe-t-il si l'on tente d'exécuter ``print(chat)`` ou ``print(bruce)`` à la toute fin du script (hors des fonctions)[cite: 4] ? Expliquez pourquoi[cite: 4].
+
+    Solution: :ia2:sol:`03.4`
+
+***********
+ Solutions
+***********
+
+.. ia2:solution:: 03.1
+Justification à droite
+
+    Solution de :ia2:ex:`03.1`
+
+    Pour placer le dernier caractère dans la colonne 70, il faut ajouter :math:`70 - \text{len}(s)` espaces avant la chaîne ``s``[cite: 4].
+
+    .. code-block:: python
+
+        def right_justify(s):
+            nb_espaces = 70 - len(s)
+            print(' ' * nb_espaces + s)
+
+        # Exemple d'appel
+        right_justify('monty')
+
+.. ia2:solution:: 03.2
+Passage de fonctions en arguments
+
+    Solution de :ia2:ex:`03.2`
+
+    a, b, c et d. **Définitions et utilisation :**
+
+    .. code-block:: python
+
+        def do_twice(f, val):
+            f(val)
+            f(val)
+
+        def print_twice(chaine):
+            print(chaine)
+            print(chaine)
+
+        # Appel de print_twice via do_twice (affiche 'spam' 4 fois au total)
+        do_twice(print_twice, 'spam')
+
+        def do_four(f, val):
+            do_twice(f, val)
+            do_twice(f, val)
+
+        # Exemple d'appel de do_four (affiche 'spam' 8 fois au total)
+        do_four(print_twice, 'spam')
+
+.. ia2:solution:: 03.3
+Conversions de types et module math
+
+    Solution de :ia2:ex:`03.3`
+
+    a. **Conversion de degrés en radians :**
+
+       .. code-block:: python
+
+           import math
+
+           def degres_vers_radians(degres):
+               return degres / 180.0 * math.pi
+
+    b. **Évaluation de ``int(float('3.9'))`` :**
+       * ``float('3.9')`` convertit la chaîne ``'3.9'`` en nombre à virgule flottante ``3.9``[cite: 4].
+       * ``int(3.9)`` tronque la partie décimale (sans arrondir) et retourne l'entier ``3``[cite: 4].
+
+    c. **Fonctions productives vs fonctions nulles :**
+       * Une **fonction productive** retourne une valeur exploitable à l'aide de l'instruction ``return``[cite: 4].
+       * Une **fonction nulle** (*void function*) effectue un effet de bord (ex. afficher à l'écran avec ``print``) sans retourner de valeur[cite: 4].
+       * Lorsqu'une fonction n'a pas d'instruction ``return``, elle retourne automatiquement la valeur spéciale ``None``[cite: 4], qui est du type ``NoneType``[cite: 4].
+
+.. ia2:solution:: 03.4
+Variables locales et flux d'exécution
+
+    Solution de :ia2:ex:`03.4`
+
+    a. **Ordre d'exécution :**
+       1. Les définitions des fonctions ``concatener_deux_fois`` et ``imprimer_deux_fois`` sont lues et enregistrées par l'interpréteur (sans exécuter leur corps)[cite: 4].
+       2. Affectation de la chaîne ``'Bing tiddle '`` à ``ligne1``[cite: 4].
+       3. Affectation de la chaîne ``'tiddle bang.'`` à ``ligne2``[cite: 4].
+       4. Appel de ``concatener_deux_fois(ligne1, ligne2)``[cite: 4].
+       5. Entrée dans ``concatener_deux_fois`` : calcul de ``partie1 + partie2`` et affectation à la variable locale ``chat``[cite: 4].
+       6. Appel de ``imprimer_deux_fois(chat)``[cite: 4].
+       7. Entrée dans ``imprimer_deux_fois`` : affectation de la valeur à la variable locale/paramètre ``bruce``[cite: 4].
+       8. Exécution des deux instructions ``print(bruce)`` (affichage des deux lignes)[cite: 4].
+       9. Fin de ``imprimer_deux_fois``, puis fin de ``concatener_deux_fois``[cite: 4].
+
+    b. **TENTATIVE d'accès aux variables locales :**
+       L'exécution de ``print(chat)`` ou ``print(bruce)`` hors des fonctions lève une exception ``NameError`` (ex. ``NameError: name 'chat' is not defined``)[cite: 4].
+       **Explication :** ``chat`` et ``bruce`` sont des variables locales et des paramètres définis uniquement à l'intérieur de leurs fonctions respectives[cite: 4]. Dès que l'exécution d'une fonction se termine, ses variables locales sont détruites[cite: 4].
