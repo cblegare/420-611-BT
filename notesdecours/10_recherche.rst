@@ -598,7 +598,7 @@ fonction d’évaluation est bonne, meilleur sera l’algorithme Minimax qui s�
 
     g. **Jeu de rôle / D&D 5e :** Un personnage navigue sur une grille où les déplacements orthogonaux ET diagonaux coûtent exactement 1 point de mouvement. Le programmeur décide d'utiliser la **distance de Manhattan** (qui compte les pas orthogonaux uniquement) comme heuristique.
 
-    h. **Covoiturage et tarification dynamique :** Le coût est le prix en dollars pour atteindre la destination. L'heuristique IA est instable : le point B est en zone de forte demande (surge pricing) et l'IA estime :math:`h(B) = 40$`. Le point A, situé à :math:`2$` de trajet de B, est hors de la zone et l'IA estime :math:`h(A) = 10$`. Le vrai coût depuis ces deux points vers la destination finale est d'environ :math:`15$`. L'agent évalue le trajet de B vers A.
+    h. **Covoiturage et tarification dynamique :** Le coût est le prix en dollars pour atteindre la destination. L'heuristique IA est instable : le point B est en zone de forte demande (surge pricing) et l'IA estime :math:`h(B) = 40\$`. Le point A, situé à :math:`2\$` de trajet de B, est hors de la zone et l'IA estime :math:`h(A) = 10\$`. Le vrai coût depuis ces deux points vers la destination finale est d'environ :math:`15\$`. L'agent évalue le trajet de B vers A.
 
     Solution: :ia2:solution:`10.7`
 
@@ -771,6 +771,6 @@ fonction d’évaluation est bonne, meilleur sera l’algorithme Minimax qui s�
 
     h. **Covoiturage - Modèle tarifaire instable :**
 
-       * **Admissible (Non) :** L'estimation au point B est de :math:`40$`, alors que le vrai coût vers l'objectif n'est que de :math:`15$`. L'algorithme surestime massivement.
+       * **Admissible (Non) :** L'estimation au point B est de :math:`40\$`, alors que le vrai coût vers l'objectif n'est que de :math:`15\$`. L'algorithme surestime massivement.
 
-       * **Cohérente (Non) :** Le déplacement du point B vers le point A coûte :math:`2$`. L'estimation au point A est de :math:`10$`. L'équation donne : :math:`h(B) \le c(B,A) + h(A) \implies 40 \le 2 + 10 \implies 40 \le 12`, ce qui est manifestement faux. Le modèle tarifaire chute de :math:`30$` alors que l'agent n'a dépensé que :math:`2$`.
+       * **Cohérente (Non) :** Le déplacement du point B vers le point A coûte :math:`2\$`. L'estimation au point A est de :math:`10\$`. L'équation donne : :math:`h(B) \le c(B,A) + h(A) \implies 40 \le 2 + 10 \implies 40 \le 12`, ce qui est manifestement faux. Le modèle tarifaire chute de :math:`30\$` alors que l'agent n'a dépensé que :math:`2\$`.
