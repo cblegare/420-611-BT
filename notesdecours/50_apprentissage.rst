@@ -596,3 +596,297 @@ l’algorithme est terminé, nous laissant avec des points divisés entre les
 différents regroupements.
 
 .. figure:: /assets/figures/kclustering.png
+
+
+***********
+ Exercices
+***********
+
+.. ia2:exercice:: 50.1
+    Classification avec les k plus proches voisins (k-NN)
+
+    Un système d'intelligence artificielle tente de prédire la météo (Pluie ou Pas de pluie) en se basant sur deux variables : le taux d'humidité et la pression atmosphérique. Le système utilise l'algorithme des k plus proches voisins (k-NN).
+
+    Voici les données existantes (les voisins observés) :
+
+    * Jour 1 : (Humidité élevée, Pression basse) -> Pluie
+    * Jour 2 : (Humidité faible, Pression haute) -> Pas de pluie
+    * Jour 3 : (Humidité moyenne, Pression basse) -> Pluie
+    * Jour 4 : (Humidité très faible, Pression très haute) -> Pas de pluie
+    * Jour 5 : (Humidité très élevée, Pression moyenne) -> Pluie
+
+    On évalue une nouvelle journée, le Jour 6, avec une humidité et une pression spécifiques.
+    Les distances mathématiques entre le Jour 6 et les autres jours dans l'espace des caractéristiques sont calculées ainsi :
+
+    * Distance avec Jour 1 : 2.23
+    * Distance avec Jour 2 : 2.23
+    * Distance avec Jour 3 : 1.00
+    * Distance avec Jour 4 : 2.82
+    * Distance avec Jour 5 : 3.16
+
+    a. Si l'algorithme utilise **k=1** (le plus proche voisin), quelle sera la prédiction pour le Jour 6 ?
+    b. Si l'algorithme utilise **k=3** (les 3 plus proches voisins), quelle sera la prédiction pour le Jour 6 ?
+    c. Expliquez comment la valeur de *k* permet de contourner les limites d'une classification avec un seul voisin (k=1).
+
+    Solution: :ia2:solution:`50.1`
+
+.. ia2:exercice:: 50.2
+    Apprentissage du Perceptron et règle de mise à jour
+
+    Une intelligence artificielle utilise un perceptron pour déterminer si un email est un pourriel (1) ou non (0).
+    La fonction d'hypothèse utilise un seuil strict : 1 si :math:`w_0 + w_1 x_1 + w_2 x_2 \ge 0`, sinon 0.
+
+    * Les poids actuels sont : :math:`(w_0=0, w_1=0.5, w_2=-0.5)`.
+    * Le taux d'apprentissage (:math:`\alpha`) est de 0.1.
+    * Un nouvel email arrive avec les caractéristiques : :math:`x_1=2` (nombre de mots « gratuit ») et :math:`x_2=1` (longueur de l'email).
+    * L'email est en réalité un pourriel, donc la valeur observée (:math:`y`) est 1.
+
+    a. Calculez la prédiction actuelle de la fonction d'hypothèse (:math:`h(x)`) pour cet email.
+    b. En utilisant la règle d'apprentissage du perceptron (:math:`w_i \leftarrow w_i + \alpha (y - h(x)) \times x_i`), calculez les nouveaux poids :math:`w_1` et :math:`w_2`. (Pour :math:`w_0`, considérez que :math:`x_0 = 1`).
+
+    Solution: :ia2:solution:`50.2`
+
+.. ia2:exercice:: 50.3
+    Machines à vecteurs de support (SVM) et frontières de décision
+
+    Un ingénieur de données entraîne un modèle SVM pour séparer des chats et des chiens selon leur poids et leur taille. L'ingénieur doit choisir entre deux frontières de décision possibles (Frontière A et Frontière B). Les deux frontières séparent correctement tous les points d'entraînement sans aucune erreur.
+
+    * La Frontière A passe très près de plusieurs observations.
+    * La Frontière B maintient la plus grande distance possible par rapport à chaque groupe d'observations.
+
+    a. Selon les principes des machines à vecteurs de support (SVM), quelle frontière l'algorithme privilégiera-t-il et pourquoi ? Comment nomme-t-on ce type de frontière ?
+    b. Identifiez un avantage supplémentaire des machines à vecteurs de support par rapport à une simple régression linéaire concernant la forme des frontières de décision.
+
+    Solution: :ia2:solution:`50.3`
+
+.. ia2:exercice:: 50.4
+    Régression, Fonctions de perte et Régularisation
+
+    Un modèle de régression linéaire tente de prédire le prix d'une maison (en milliers de dollars) en fonction de sa superficie.
+    Voici les prix réels (observés) et les prix prédits par le modèle pour 3 maisons :
+
+    * Maison 1 : Réel = 200, Prédit = 210
+    * Maison 2 : Réel = 350, Prédit = 350
+    * Maison 3 : Réel = 400, Prédit = 380
+
+    a. Calculez la perte totale en utilisant la fonction de perte :math:`L_1`.
+    b. Calculez la perte totale en utilisant la fonction de perte :math:`L_2`.
+    c. Laquelle de ces deux fonctions pénalise le plus durement les valeurs aberrantes (les grandes erreurs) ?
+    d. Pour éviter que le modèle ne colle trop parfaitement aux données (surapprentissage), l'ingénieur ajoute une mesure de complexité à la fonction de perte : :math:`\text{coût}(h) = \text{perte}(h) + \lambda \cdot \text{complexité}(h)`. Comment s'appelle ce processus et quel est le rôle de :math:`\lambda` ?
+
+    Solution: :ia2:solution:`50.4`
+
+.. ia2:exercice:: 50.5
+    Apprentissage par renforcement : Q-Learning et l'équation de mise à jour
+
+    Un robot-aspirateur utilise l'algorithme Q-Learning pour apprendre à naviguer dans une pièce.
+    L'estimation actuelle de la valeur d'avancer tout droit dans l'état actuel est :math:`Q(s, a) = 5`.
+    Le robot avance, reçoit une récompense immédiate :math:`r = 2`, et atteint un nouvel état :math:`s'`.
+    Dans ce nouvel état :math:`s'`, l'action ayant la plus haute estimation donne :math:`\max_{a'} Q(s', a') = 10`.
+    Le coefficient d'apprentissage est :math:`\alpha = 0.5` et le facteur d'escompte (gamma) est :math:`\gamma = 0.8`.
+
+    Rappel de l'équation : :math:`Q(s, a) \leftarrow Q(s, a) + \alpha \cdot ((r + \gamma \cdot \max_{a'} Q(s', a')) - Q(s, a))`.
+
+    a. Calculez la nouvelle estimation de valeur (c'est-à-dire :math:`r + \gamma \cdot \max_{a'} Q(s', a')`).
+    b. Calculez la valeur finale mise à jour de :math:`Q(s, a)`.
+    c. Si le robot utilise une approche :math:`\epsilon`-gloutonne pour choisir ses actions, expliquez la différence entre l'exploration et l'exploitation.
+
+    Solution: :ia2:solution:`50.5`
+
+.. ia2:exercice:: 50.6
+    Utilisation de scikit-learn en Python
+
+    Le cours montre comment utiliser la bibliothèque ``scikit-learn`` pour entraîner et évaluer des modèles d'apprentissage automatique de manière succincte[cite: 13].
+
+    Complétez le script Python ci-dessous en utilisant les méthodes standard de ``scikit-learn`` (comme démontré dans l'exemple des billets de banque contrefaits) pour accomplir les trois étapes manquantes[cite: 13] :
+    1. Initialiser le modèle des k plus proches voisins avec $k=3$[cite: 13].
+    2. Ajuster (entraîner) le modèle sur les données d'entraînement[cite: 13].
+    3. Générer les prédictions pour l'ensemble de test[cite: 13].
+
+    .. code-block:: python
+
+        from sklearn.neighbors import KNeighborsClassifier
+
+        X_training = [[0.8, 0.2], [0.4, 0.5], [0.9, 0.8], [0.1, 0.9]]
+        y_training = ["Pluie", "Pas de pluie", "Pluie", "Pas de pluie"]
+
+        X_testing = [[0.7, 0.3], [0.2, 0.8]]
+
+        # 1. Initialiser le modèle avec 3 voisins
+        model = # À COMPLÉTER
+
+        # 2. Entraîner le modèle sur les données d'entraînement (X_training, y_training)
+        # À COMPLÉTER
+
+        # 3. Faire une prédiction sur les données de test (X_testing)
+        predictions = # À COMPLÉTER
+
+        print(predictions)
+
+    Solution: :ia2:solution:`50.6`
+
+.. ia2:exercice:: 50.7
+    Implémentation de l'équation de mise à jour Q-Learning en Python
+
+    L'algorithme Q-Learning met à jour ses estimations de valeurs en se basant sur la formule suivante[cite: 13] :
+    :math:`Q(s, a) \leftarrow Q(s, a) + \alpha \cdot ((r + \gamma \cdot \max_{a'} Q(s', a')) - Q(s, a))`
+
+    Écrivez une fonction Python ``update_q_value`` qui prend en paramètres les valeurs nécessaires et retourne la nouvelle valeur calculée de :math:`Q(s, a)`[cite: 13].
+
+    .. code-block:: python
+
+        def update_q_value(current_q, reward, max_future_q, alpha, gamma):
+            """
+            Calcule et retourne la nouvelle valeur Q(s, a).
+            """
+            # À COMPLÉTER : Implémenter l'équation de mise à jour
+            pass
+
+        # Code de test avec les valeurs de l'exercice 50.5
+        # Le résultat attendu affiché devrait être 7.5
+        nouveau_q = update_q_value(current_q=5, reward=2, max_future_q=10, alpha=0.5, gamma=0.8)
+        print(nouveau_q)
+
+    Solution: :ia2:solution:`50.7`
+
+**********
+ Solutions
+**********
+
+.. ia2:solution:: 50.1
+    Classification avec les k plus proches voisins (k-NN)
+
+    Solution de :ia2:ex:`50.1`
+
+    a. Avec **k=1**, l'algorithme cherche le voisin le plus proche. La plus petite distance est 1.00, correspondant au Jour 3. Le Jour 3 a pour résultat « Pluie ». La prédiction pour le Jour 6 sera donc **Pluie**.
+    b. Avec **k=3**, l'algorithme identifie les 3 voisins les plus proches. Ce sont le Jour 3 (distance 1.00), le Jour 1 (distance 2.23) et le Jour 2 (distance 2.23). Leurs résultats respectifs sont : Pluie, Pluie, et Pas de pluie. La classe la plus fréquente (la majorité) parmi ces 3 voisins dictera la décision. Puisqu'il y a 2 « Pluie » et 1 « Pas de pluie », la prédiction sera **Pluie**.
+    c. Utiliser une approche basée sur plusieurs voisins (k > 1) permet de contourner les limites de la classification du plus proche voisin unique en rendant le modèle moins sensible au bruit. Si le point le plus proche est une anomalie ou une exception (par exemple, un jour de pluie atypique entouré de jours secs), examiner les *k* voisins permet de capturer la tendance générale locale et de prendre une meilleure décision.
+
+.. ia2:solution:: 50.2
+    Apprentissage du Perceptron et règle de mise à jour
+
+    Solution de :ia2:ex:`50.2`
+
+    a. Calcul de la fonction d'hypothèse :math:`h(x)` :
+       On calcule d'abord le produit scalaire : :math:`w_0 + w_1 x_1 + w_2 x_2 = 0 + (0.5 \times 2) + (-0.5 \times 1) = 0 + 1 - 0.5 = 0.5`.
+       Puisque la somme (0.5) est supérieure ou égale à 0, la prédiction :math:`h(x)` est **1 (Pourriel)**.
+
+    b. Mise à jour des poids :
+       Puisque la prédiction (1) est identique à la valeur observée (1), le perceptron a fait une bonne prédiction.
+       Le terme d'erreur :math:`(y - h(x))` est donc :math:`1 - 1 = 0`.
+       La règle d'apprentissage indique que chaque poids est mis à jour en ajoutant le produit de l'erreur, du taux d'apprentissage et de l'entrée.
+       Comme l'erreur est nulle, les poids **ne seront pas modifiés** :
+
+       * Nouveau :math:`w_1 = 0.5 + 0.1 \times 0 \times 2 = 0.5`
+       * Nouveau :math:`w_2 = -0.5 + 0.1 \times 0 \times 1 = -0.5`
+
+.. ia2:solution:: 50.3
+    Machines à vecteurs de support (SVM) et frontières de décision
+
+    Solution de :ia2:ex:`50.3`
+
+    a. L'algorithme privilégiera la **Frontière B**. Les Machines à Vecteurs de Support recherchent le **Séparateur à vaste marge**, c'est-à-dire une frontière de décision qui est aussi éloignée que possible des groupes qu'elle sépare. Cela offre la plus grande marge de manœuvre et réduit le risque qu'un nouveau point de données légèrement différent soit classé à tort.
+    b. Un avantage des machines à vecteurs de support est qu'elles peuvent représenter des frontières de décision **non linéaires** (comme des cercles) ainsi que des frontières avec plus de deux dimensions.
+
+.. ia2:solution:: 50.4
+    Régression, Fonctions de perte et Régularisation
+
+    Solution de :ia2:ex:`50.4`
+
+    a. La fonction de perte :math:`L_1` prend la valeur absolue de la différence entre la valeur réelle et la valeur prédite (:math:`|\text{réel} - \text{prédit}|`) :
+
+       * Maison 1 : :math:`|200 - 210| = 10`
+       * Maison 2 : :math:`|350 - 350| = 0`
+       * Maison 3 : :math:`|400 - 380| = 20`
+
+       Perte totale :math:`L_1 = 10 + 0 + 20 = 30`.
+
+    b. La fonction de perte :math:`L_2` prend la différence au carré (:math:`(\text{réel} - \text{prédit})^2`) :
+
+       * Maison 1 : :math:`(-10)^2 = 100`
+       * Maison 2 : :math:`(0)^2 = 0`
+       * Maison 3 : :math:`(20)^2 = 400`
+
+       Perte totale :math:`L_2 = 100 + 0 + 400 = 500`.
+
+    c. La fonction de perte **:math:`L_2`** pénalise plus durement les valeurs aberrantes (outliers) que la fonction :math:`L_1`, car elle élève la différence au carré.
+
+    d. Ce processus s'appelle la **régularisation**. Il pénalise les hypothèses complexes pour favoriser des modèles plus simples et plus généraux. La constante :math:`\lambda` (Lambda) permet de moduler la force de cette pénalité : plus :math:`\lambda` est élevé, plus la complexité du modèle est « coûteuse » dans le calcul global.
+
+.. ia2:solution:: 50.5
+    Apprentissage par renforcement : Q-Learning et l'équation de mise à jour
+
+    Solution de :ia2:ex:`50.5`
+
+    a. La nouvelle estimation de valeur est calculée en additionnant la récompense immédiate à l'estimation de la récompense future maximale, pondérée par gamma :
+
+       .. math::
+
+          \text{Nouvelle estimation} = r + \gamma \cdot \max_{a'} Q(s', a') = 2 + 0.8 \cdot 10 = 2 + 8 = 10
+
+    b. On applique l'équation de mise à jour complète :
+
+       .. math::
+
+          Q(s, a) \leftarrow Q(s, a) + \alpha \cdot (\text{nouvelle estimation} - Q(s, a))
+
+       En remplaçant par les valeurs :
+
+       .. math::
+
+          Q(s, a) \leftarrow 5 + 0.5 \cdot (10 - 5) = 5 + 0.5 \cdot 5 = 5 + 2.5 = 7.5
+
+    c. L'**exploitation** consiste à choisir l'action qui est déjà établie pour mener aux meilleurs résultats, maximisant ainsi les gains immédiats connus. L'**exploration** signifie que l'algorithme entreprend parfois des actions ou des itinéraires précédemment inexplorés (des mouvements aléatoires), ce qui lui permet de découvrir de nouvelles solutions qui pourraient être encore plus efficaces à long terme.
+
+
+.. ia2:solution:: 50.6
+    Utilisation de scikit-learn en Python
+
+    Solution de :ia2:ex:`50.6`
+
+    Pour utiliser ``scikit-learn``, on instancie la classe du modèle en passant les hyperparamètres requis, on utilise la méthode ``fit()`` pour l'entraînement et la méthode ``predict()`` pour évaluer de nouvelles données[cite: 13].
+
+    .. code-block:: python
+
+        from sklearn.neighbors import KNeighborsClassifier
+
+        X_training = [[0.8, 0.2], [0.4, 0.5], [0.9, 0.8], [0.1, 0.9]]
+        y_training = ["Pluie", "Pas de pluie", "Pluie", "Pas de pluie"]
+
+        X_testing = [[0.7, 0.3], [0.2, 0.8]]
+
+        # 1. Initialiser le modèle avec 3 voisins
+        model = KNeighborsClassifier(n_neighbors=3)
+
+        # 2. Entraîner le modèle sur les données d'entraînement
+        model.fit(X_training, y_training)
+
+        # 3. Faire une prédiction sur les données de test
+        predictions = model.predict(X_testing)
+
+        print(predictions)
+
+.. ia2:solution:: 50.7
+    Implémentation de l'équation de mise à jour Q-Learning en Python
+
+    Solution de :ia2:ex:`50.7`
+
+    La fonction traduit l'équation mathématique en code Python. Il est recommandé de calculer d'abord la nouvelle estimation pour rendre le code plus lisible, tel qu'expliqué dans la décomposition de la formule du cours[cite: 13].
+
+    .. code-block:: python
+
+        def update_q_value(current_q, reward, max_future_q, alpha, gamma):
+            """
+            Calcule et retourne la nouvelle valeur Q(s, a).
+            """
+            # 1. Calcul de la nouvelle estimation de valeur
+            nouvelle_estimation = reward + (gamma * max_future_q)
+
+            # 2. Application de la mise à jour pondérée par le taux d'apprentissage (alpha)
+            new_q = current_q + alpha * (nouvelle_estimation - current_q)
+
+            return new_q
+
+        # Code de test
+        nouveau_q = update_q_value(current_q=5, reward=2, max_future_q=10, alpha=0.5, gamma=0.8)
+        print(nouveau_q) # Affiche: 7.5
