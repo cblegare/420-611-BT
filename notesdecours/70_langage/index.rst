@@ -72,7 +72,7 @@ dans une langue. Dans une grammaire hors-contexte (Context-Free Grammar ou
 CFG), le texte est abstrait de sa signification afin de représenter la structure
 de la phrase à l’aide d'une grammaire formelle. Considérons la phrase suivante :
 
-« She saw the city. »
+    « She saw the city. »
 
 Il s’agit d’une phrase grammaticale simple, et nous aimerions générer un arbre
 syntaxique représentant sa structure.
@@ -226,13 +226,13 @@ exemple la distinction entre courriels légitimes et pourriels). L’analyse de
 sentiments peut être utilisée sur des avis de produits pour les catégoriser en
 avis positifs ou négatifs. Considérons les phrases suivantes :
 
-« My grandson loved it! So much fun! »
+    « My grandson loved it! So much fun! »
 
-« Product broke after a few days. »
+    « Product broke after a few days. »
 
-« One of the best games I’ve played in a long time. »
+    « One of the best games I’ve played in a long time. »
 
-« Kind of cheap and flimsy, not worth it. »
+    « Kind of cheap and flimsy, not worth it. »
 
 En nous basant uniquement sur les mots présents et en ignorant la grammaire, nous
 voyons que les phrases 1 et 3 sont positives (loved, fun, best) et que les
@@ -319,13 +319,15 @@ mots du vocabulaire. Toutes les valeurs du vecteur sont à 0, sauf une seule qui
 vaut 1 à l’indice correspondant au mot. Par exemple, pour un vocabulaire de 4
 mots (he, wrote, a, book) :
 
-[1, 0, 0, 0] (he)
+.. code-block:: none
 
-[0, 1, 0, 0] (wrote)
+    [1, 0, 0, 0] (he)
 
-[0, 0, 1, 0] (a)
+    [0, 1, 0, 0] (wrote)
 
-[0, 0, 0, 1] (book)
+    [0, 0, 1, 0] (a)
+
+    [0, 0, 0, 1] (book)
 
 Bien que simple, cette représentation pose deux problèmes majeurs :
 
@@ -340,13 +342,15 @@ Representation ou Word Embeddings), où le sens d’un mot est réparti sur les
 différentes dimensions d’un vecteur continu de taille réduite (par exemple 50 ou
 300 dimensions) :
 
-[-0.34, -0.08,  0.02, -0.18, ...] (he)
+.. code-block:: none
 
-[-0.27,  0.40,  0.00, -0.65, ...] (wrote)
+    [-0.34, -0.08,  0.02, -0.18, ...] (he)
 
-[-0.12, -0.25,  0.29, -0.09, ...] (a)
+    [-0.27,  0.40,  0.00, -0.65, ...] (wrote)
 
-[-0.23, -0.16, -0.05, -0.57, ...] (book)
+    [-0.12, -0.25,  0.29, -0.09, ...] (a)
+
+    [-0.23, -0.16, -0.05, -0.57, ...] (book)
 
 Cette méthode permet non seulement d'utiliser des vecteurs plus compacts, mais
 aussi de mesurer la similarité entre deux mots en calculant la distance géométrique
@@ -357,6 +361,7 @@ it keeps » (Vous connaîtrez un mot par les compagnies qu’il fréquente). On
 définit ainsi le sens d’un mot par son contexte d’apparition.
 
 word2vec
+========
 
 word2vec est un algorithme permettant de générer des représentations
 distribuées de mots. Il repose notamment sur l’architecture Skip-Gram, un
@@ -379,15 +384,16 @@ le sens des mots :
 
 .. math::
 
-\text{vecteur}(\text{king}) - \text{vecteur}(\text{man}) + \text{vecteur}(\text{woman}) \approx \text{vecteur}(\text{queen})
+    \text{vecteur}(\text{king}) - \text{vecteur}(\text{man}) + \text{vecteur}(\text{woman}) \approx \text{vecteur}(\text{queen})
 
 
 .. math::
 
-\text{vecteur}(\text{ramen}) - \text{vecteur}(\text{japan}) + \text{vecteur}(\text{america}) \approx \text{vecteur}(\text{burritos})
+    \text{vecteur}(\text{ramen}) - \text{vecteur}(\text{japan}) + \text{vecteur}(\text{america}) \approx \text{vecteur}(\text{burritos})
 
 
 Réseaux de neurones
+===================
 
 Dans les tâches de traduction automatique ou de dialogue (chatbots), l'IA doit
 traiter et générer des séquences de longueur variable.
@@ -410,6 +416,7 @@ seul état caché final. De plus, tous les mots d'entrée n'ont pas la même
 importance pour prédire un mot de sortie spécifique.
 
 Attention
+=========
 
 Le mécanisme d’attention permet au réseau de neurones de déterminer
 dynamiquement quelles parties de la séquence d’entrée sont les plus importantes à
@@ -430,6 +437,7 @@ la parallélisation des calculs et ralentit considérablement l'entraînement su
 très grands corpus.
 
 Transformers
+============
 
 L’architecture des Transformers résout ce problème de parallélisation. Au lieu
 de traiter les mots séquentiellement, le Transformer reçoit tous les mots de la
@@ -450,6 +458,7 @@ cartes graphiques (GPU) grâce à une parallélisation massive, permettant le
 développement des grands modèles de langage (Large Language Models ou LLM).
 
 Conclusion
+==========
 
 Au cours de ce cheminement à travers l’intelligence artificielle, nous avons
 exploré une grande variété de paradigmes :
@@ -760,4 +769,3 @@ Solutions du quiz
     1.  « *must be* »
     2.  « *be the* »
     3.  « *the truth* »
-
