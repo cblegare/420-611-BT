@@ -696,12 +696,12 @@ différents regroupements.
 .. ia2:exercice:: 50.6
     Utilisation de scikit-learn en Python
 
-    Le cours montre comment utiliser la bibliothèque ``scikit-learn`` pour entraîner et évaluer des modèles d'apprentissage automatique de manière succincte[cite: 13].
+    Le cours montre comment utiliser la bibliothèque ``scikit-learn`` pour entraîner et évaluer des modèles d'apprentissage automatique de manière succincte.
 
-    Complétez le script Python ci-dessous en utilisant les méthodes standard de ``scikit-learn`` (comme démontré dans l'exemple des billets de banque contrefaits) pour accomplir les trois étapes manquantes[cite: 13] :
-    1. Initialiser le modèle des k plus proches voisins avec $k=3$[cite: 13].
-    2. Ajuster (entraîner) le modèle sur les données d'entraînement[cite: 13].
-    3. Générer les prédictions pour l'ensemble de test[cite: 13].
+    Complétez le script Python ci-dessous en utilisant les méthodes standard de ``scikit-learn`` (comme démontré dans l'exemple des billets de banque contrefaits) pour accomplir les trois étapes manquantes :
+    1. Initialiser le modèle des k plus proches voisins avec $k=3$.
+    2. Ajuster (entraîner) le modèle sur les données d'entraînement.
+    3. Générer les prédictions pour l'ensemble de test.
 
     .. code-block:: python
 
@@ -728,10 +728,10 @@ différents regroupements.
 .. ia2:exercice:: 50.7
     Implémentation de l'équation de mise à jour Q-Learning en Python
 
-    L'algorithme Q-Learning met à jour ses estimations de valeurs en se basant sur la formule suivante[cite: 13] :
+    L'algorithme Q-Learning met à jour ses estimations de valeurs en se basant sur la formule suivante :
     :math:`Q(s, a) \leftarrow Q(s, a) + \alpha \cdot ((r + \gamma \cdot \max_{a'} Q(s', a')) - Q(s, a))`
 
-    Écrivez une fonction Python ``update_q_value`` qui prend en paramètres les valeurs nécessaires et retourne la nouvelle valeur calculée de :math:`Q(s, a)`[cite: 13].
+    Écrivez une fonction Python ``update_q_value`` qui prend en paramètres les valeurs nécessaires et retourne la nouvelle valeur calculée de :math:`Q(s, a)`.
 
     .. code-block:: python
 
@@ -844,7 +844,7 @@ différents regroupements.
 
     Solution de :ia2:ex:`50.6`
 
-    Pour utiliser ``scikit-learn``, on instancie la classe du modèle en passant les hyperparamètres requis, on utilise la méthode ``fit()`` pour l'entraînement et la méthode ``predict()`` pour évaluer de nouvelles données[cite: 13].
+    Pour utiliser ``scikit-learn``, on instancie la classe du modèle en passant les hyperparamètres requis, on utilise la méthode ``fit()`` pour l'entraînement et la méthode ``predict()`` pour évaluer de nouvelles données.
 
     .. code-block:: python
 
@@ -871,7 +871,7 @@ différents regroupements.
 
     Solution de :ia2:ex:`50.7`
 
-    La fonction traduit l'équation mathématique en code Python. Il est recommandé de calculer d'abord la nouvelle estimation pour rendre le code plus lisible, tel qu'expliqué dans la décomposition de la formule du cours[cite: 13].
+    La fonction traduit l'équation mathématique en code Python. Il est recommandé de calculer d'abord la nouvelle estimation pour rendre le code plus lisible, tel qu'expliqué dans la décomposition de la formule du cours.
 
     .. code-block:: python
 
@@ -890,3 +890,88 @@ différents regroupements.
         # Code de test
         nouveau_q = update_q_value(current_q=5, reward=2, max_future_q=10, alpha=0.5, gamma=0.8)
         print(nouveau_q) # Affiche: 7.5
+
+
+******
+ Quiz
+******
+
+.. ia2:exercice:: Question 1
+
+    Catégorisez ce qui suit : L'IA d'un réseau social utilise des photos déjà identifiées (marquées) de personnes pour reconnaître ces mêmes personnes lorsqu'elles apparaissent sur de nouvelles photos.
+
+    *   Il s'agit d'un exemple d'apprentissage supervisé
+    *   Il s'agit d'un exemple d'apprentissage par renforcement
+    *   Il s'agit d'un exemple d'apprentissage non supervisé
+    *   Il ne s'agit pas d'un exemple d'apprentissage automatique
+
+
+.. ia2:exercice:: Question 2
+
+    Imaginez une IA de régression qui effectue les prédictions suivantes pour 5 points de données. Quelle est la perte L2 totale (*L2 loss*) sur l'ensemble de ces points (c'est-à-dire la somme des pertes L2 individuelles pour chaque point) ?
+
+    1.  *La valeur réelle est 2 et l'IA a prédit 4.*
+    2.  *La valeur réelle me est 4 et l'IA a prédit 5.*
+    3.  *La valeur réelle est 4 et l'IA a prédit 3.*
+    4.  *La valeur réelle est 5 et l'IA a prédit 2.*
+    5.  *La valeur réelle est 6 et l'IA a prédit 5.*
+
+
+.. ia2:exercice:: Question 3
+
+    Si l'Hypothèse 1 présente une perte L1 plus faible et une perte L2 plus faible que l'Hypothèse 2 sur un jeu de données d'entraînement, pourquoi l'Hypothèse 2 pourrait-elle tout de même être préférable ?
+
+    *   L'Hypothèse 1 pourrait être le résultat d'une régularisation.
+    *   L'Hypothèse 1 pourrait être le résultat d'un surapprentissage (*overfitting*).
+    *   L'Hypothèse 1 pourrait être le résultat d'une perte.
+    *   L'Hypothèse 1 pourrait être le résultat d'une validation croisée.
+    *   L'Hypothèse 1 pourrait être le résultat d'une régression.
+
+.. ia2:exercice:: Question 4
+
+    Dans l'approche :math:`\epsilon`-gloutonne (*\epsilon-greedy*) de sélection d'action en apprentissage par renforcement, laquelle des valeurs suivantes de :math:`\epsilon` rend l'approche identique à une approche purement gloutonne (*purely greedy*) ?
+
+    *   :math:`\epsilon = 0`
+    *   :math:`\epsilon = 0{,}25`
+    *   :math:`\epsilon = 0{,}5`
+    *   :math:`\epsilon = 0{,}75`
+    *   :math:`\epsilon = 1`
+
+Solutions du quiz
+=================
+
+
+.. ia2:solution:: Question 1
+
+    **Il s'agit d'un exemple d'apprentissage supervisé**
+
+    *Explication :* Le modèle est entraîné sur des données d'entrée (les images) associées à des étiquettes cibles déjà connues (l'identité des personnes). C'est le principe fondamental de l'apprentissage supervisé.
+
+.. ia2:solution:: Question 2
+
+    **16**
+
+    *Explication :* La perte L2 pour un point est calculée comme le carré de la différence entre la valeur réelle :math:`y` et la valeur prédite :math:`\hat{y}` (soit :math:`(y - \hat{y})^2`) :
+
+    1.  :math:`(2 - 4)^2 = (-2)^2 = 4`
+    2.  :math:`(4 - 5)^2 = (-1)^2 = 1`
+    3.  :math:`(4 - 3)^2 = 1^2 = 1`
+    4.  :math:`(5 - 2)^2 = 3^2 = 9`
+    5.  :math:`(6 - 5)^2 = 1^2 = 1`
+
+    **Somme totale :** :math:`4 + 1 + 1 + 9 + 1 = 16`.
+
+
+.. ia2:solution:: Question 3
+
+    **L'Hypothèse 1 pourrait être le résultat d'un surapprentissage (*overfitting*).**
+
+    *Explication :* Un modèle qui s'ajuste trop parfaitement aux données d'entraînement (minimisant excessivement la perte) risque d'apprendre le bruit des données au lieu de la tendance générale. Il généralisera alors très mal sur de nouvelles données non vues.
+
+
+.. ia2:solution:: Question 4
+
+    **:math:`\epsilon = 0`**
+
+    *Explication :* La valeur de :math:`\epsilon` représente la probabilité de choisir une action au hasard (exploration). Si :math:`\epsilon = 0`, la probabilité d'explorer est nulle : l'agent choisit toujours l'action estimée comme étant la meilleure (exploitation pure, soit une approche purement gloutonne).
+

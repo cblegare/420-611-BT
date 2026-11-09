@@ -554,48 +554,82 @@ mots dans la langue cible).
 .. ia2:exercice:: 60.1
     Perceptron simple et fonctions d'activation
 
-    Un système d'agriculture intelligente utilise un perceptron pour décider s'il faut activer l'irrigation (1) ou non (0) dans une serre[cite: 15]. L'IA associe deux entrées : la température (:math:`x_1`) et la sécheresse du sol (:math:`x_2`)[cite: 15].
-    La fonction d'hypothèse est :math:`h(x_1, x_2) = w_0 + w_1 x_1 + w_2 x_2`[cite: 15].
-    Les poids configurés sont :math:`w_1 = 2` et :math:`w_2 = 3`, et le biais est :math:`w_0 = -10`[cite: 15].
+    Un système d'agriculture intelligente utilise un perceptron pour décider
+    s'il faut activer l'irrigation (1) ou non (0) dans une serre.
+    L'IA associe deux entrées :
+    la température (:math:`x_1`) et
+    la sécheresse du sol (:math:`x_2`).
 
-    a. Si les capteurs indiquent une température de 2 (:math:`x_1 = 2`) et une sécheresse de 1 (:math:`x_2 = 1`), quelle est la valeur de la somme pondérée (avant l'activation)[cite: 15] ?
-    b. Si le réseau utilise une **fonction échelon** (step function) avec un seuil de 0 (renvoie 1 si somme :math:`\ge 0`, sinon 0), l'irrigation sera-t-elle activée[cite: 15] ?
-    c. Si le réseau utilisait plutôt une unité linéaire rectifiée (**ReLU**), quelle serait la valeur de sortie exacte pour cette même somme pondérée négative[cite: 15] ?
+    La fonction d'hypothèse est :math:`h(x_1, x_2) = w_0 + w_1 x_1 + w_2 x_2`.
+    Les poids configurés sont :math:`w_1 = 2` et :math:`w_2 = 3`, et le
+    biais est :math:`w_0 = -10`.
+
+    a.  Si les capteurs indiquent une température de 2 (:math:`x_1 = 2`)
+        et une sécheresse de 1 (:math:`x_2 = 1`),
+        quelle est la valeur de la somme pondérée (avant l'activation) ?
+
+    b.  Si le réseau utilise une **fonction échelon** (step function) avec
+        un seuil de 0 (renvoie 1 si somme :math:`\ge 0`, sinon 0),
+        l'irrigation sera-t-elle activée ?
+
+    c.  Si le réseau utilisait plutôt une unité linéaire rectifiée (**ReLU**),
+        quelle serait la valeur de sortie exacte pour cette même somme pondérée
+        négative ?
 
     Solution: :ia2:solution:`60.1`
 
 .. ia2:exercice:: 60.2
     Convolution d'images : Détection de contours
 
-    Le système de vision par ordinateur d'un véhicule autonome analyse les marquages au sol[cite: 15]. Il applique un filtre de convolution pour la détection de contours sur une matrice de pixels[cite: 15].
+    Le système de vision par ordinateur d'un véhicule autonome analyse les
+    marquages au sol. Il applique un filtre de convolution pour la détection
+    de contours sur une matrice de pixels.
 
-    Le noyau (kernel) 3x3 de détection de contours mentionné dans le cours est[cite: 15] :
+    Le noyau (kernel) 3x3 de détection de contours mentionné dans le cours
+    est :
     ::
+
        [-1, -1, -1]
        [-1,  8, -1]
        [-1, -1, -1]
 
-    Supposons que la zone de l'image (3x3 pixels) analysée possède les valeurs d'intensité lumineuse suivantes :
+    Supposons que la zone de l'image (3x3 pixels) analysée possède les valeurs
+    d'intensité lumineuse suivantes :
     ::
-       [10, 10, 10]
-       [10, 50, 10]
-       [10, 10, 10]
 
-    a. Calculez la valeur finale du pixel central filtré en multipliant chaque valeur de l'image par la valeur correspondante du noyau et en additionnant le tout[cite: 15].
-    b. Expliquez intuitivement pourquoi un tel noyau donne une valeur de 0 lorsque tous les pixels voisins sont identiques[cite: 15].
+        [10, 10, 10]
+        [10, 50, 10]
+        [10, 10, 10]
+
+    a.  Calculez la valeur finale du pixel central filtré en multipliant
+        chaque valeur de l'image par la valeur correspondante du noyau et
+        en additionnant le tout.
+
+    b.  Expliquez intuitivement pourquoi un tel noyau donne une valeur de
+        0 lorsque tous les pixels voisins sont identiques.
 
     Solution: :ia2:solution:`60.2`
 
 .. ia2:exercice:: 60.3
     Modélisation avec TensorFlow / Keras (Code Python)
 
-    Une banque souhaite créer un réseau de neurones multicouches pour détecter les transactions frauduleuses en se basant sur 10 caractéristiques (features)[cite: 15].
+    Une banque souhaite créer un réseau de neurones multicouches pour détecter
+    les transactions frauduleuses en se basant sur 10 caractéristiques.
 
-    Complétez le code Python suivant utilisant TensorFlow/Keras pour modéliser ce réseau, en respectant les étapes décrites dans le cours[cite: 15] :
-    1. Créez un modèle séquentiel[cite: 15].
-    2. Ajoutez une couche cachée dense de 16 unités, recevant les 10 entrées, avec la fonction d'activation "relu"[cite: 15].
-    3. Ajoutez une couche de sortie dense d'une (1) unité avec la fonction d'activation "sigmoid" pour obtenir une probabilité entre 0 et 1[cite: 15].
-    4. Compilez le modèle avec l'optimiseur "adam", la perte "binary_crossentropy", et la métrique de précision ("accuracy")[cite: 15].
+    Complétez le code Python suivant utilisant TensorFlow/Keras pour modéliser
+    ce réseau, en respectant les étapes décrites dans le cours :
+
+    1.  Créez un modèle séquentiel.
+
+    2.  Ajoutez une couche cachée dense de 16 unités, recevant les 10 entrées,
+        avec la fonction d'activation "relu".
+
+    3.  Ajoutez une couche de sortie dense d'une (1) unité avec la fonction
+        d'activation "sigmoid" pour obtenir une probabilité entre 0 et 1.
+
+    4.  Compilez le modèle avec l'optimiseur "adam", la perte
+        "binary_crossentropy", et la métrique de précision ("accuracy").
+
 
     .. code-block:: python
 
@@ -615,35 +649,59 @@ mots dans la langue cible).
 
     Solution: :ia2:solution:`60.3`
 
+
 .. ia2:exercice:: 60.4
     Surapprentissage et technique du Dropout
 
-    Une équipe de chercheurs entraîne un réseau de neurones profond pour classifier des espèces d'oiseaux rares à partir de photos. Le modèle obtient une précision de 99,9% sur les données d'entraînement, mais échoue lamentablement lorsqu'il est déployé en forêt avec de nouvelles photos.
+    Une équipe de chercheurs entraîne un réseau de neurones profond pour
+    classifier des espèces d'oiseaux rares à partir de photos.
+    Le modèle obtient une précision de 99,9% sur les données d'entraînement,
+    mais échoue lamentablement lorsqu'il est déployé en forêt avec de nouvelles
+    photos.
 
-    a. Quel est le nom de ce phénomène où le modèle s'ajuste avec trop de précision aux données d'entraînement au détriment de la généralisation[cite: 15] ?
-    b. Les chercheurs décident d'ajouter une couche de **dépot (dropout)**. Expliquez en quoi consiste cette technique pendant la phase d'apprentissage et quel est son but principal[cite: 15].
-    c. Que se passe-t-il avec les unités désactivées une fois l'entraînement terminé et le modèle déployé[cite: 15] ?
+    a.  Quel est le nom de ce phénomène où le modèle s'ajuste avec trop
+        de précision aux données d'entraînement au détriment de la
+        généralisation ?
+
+    b.  Les chercheurs décident d'ajouter une couche de **dépot (dropout)**.
+        Expliquez en quoi consiste cette technique pendant la phase
+        d'apprentissage et quel est son but principal.
+
+    c.  Que se passe-t-il avec les unités désactivées une fois l'entraînement
+        terminé et le modèle déployé ?
+
 
     Solution: :ia2:solution:`60.4`
 
 .. ia2:exercice:: 60.5
     Architectures de réseaux de neurones (CNN vs RNN)
 
-    Le domaine de l'IA propose différentes architectures adaptées à des types de données spécifiques[cite: 15].
-    Pour chacun des projets d'intelligence artificielle suivants, déterminez s'il vaut mieux utiliser un **Réseau de neurones convolutionnel (CNN)** ou un **Réseau de neurones récurrent (RNN)**, en justifiant votre choix à partir des concepts du cours[cite: 15].
+    Le domaine de l'IA propose différentes architectures adaptées à des
+    types de données spécifiques.
+    Pour chacun des projets d'intelligence artificielle suivants, déterminez
+    s'il vaut mieux utiliser un **Réseau de neurones convolutionnel (CNN)**
+    ou un **Réseau de neurones récurrent (RNN)**,
+    en justifiant votre choix à partir des concepts du cours.
 
-    a. **Projet A :** Un outil de diagnostic médical qui analyse des radiographies pour identifier la présence de tumeurs[cite: 15].
-    b. **Projet B :** Un logiciel de traduction en temps réel qui convertit une séquence de mots d'un discours en anglais vers une séquence de mots en français[cite: 15].
-    c. **Projet C :** Un outil de description pour les personnes malvoyantes, générant une phrase descriptive (séquence de mots de longueur variable) à partir du contenu d'une image[cite: 15].
+    a.  **Projet A :** Un outil de diagnostic médical qui analyse des
+        radiographies pour identifier la présence de tumeurs.
+
+    b.  **Projet B :** Un logiciel de traduction en temps réel qui convertit
+        une séquence de mots d'un discours en anglais vers une séquence de mots en français.
+
+    c.  **Projet C :** Un outil de description pour les personnes malvoyantes,
+        générant une phrase descriptive (séquence de mots de longueur variable)
+        à partir du contenu d'une image.
+
 
     Solution: :ia2:solution:`60.5`
 
 .. ia2:exercice:: 60.6
     Implémentation du Max-Pooling en Python
 
-    Le sous-échantillonnage par max (max-pooling) permet de réduire la taille de l'entrée dans un réseau convolutionnel en échantillonnant des régions[cite: 15]. Le pixel sélectionné est celui possédant la valeur la plus élevée de sa région[cite: 15].
+    Le sous-échantillonnage par max (max-pooling) permet de réduire la taille de l'entrée dans un réseau convolutionnel en échantillonnant des régions. Le pixel sélectionné est celui possédant la valeur la plus élevée de sa région.
 
-    Écrivez une courte fonction Python ``apply_max_pooling_2x2(matrix)`` qui prend en entrée une matrice 2x2 (représentée par une liste de listes) et qui retourne la valeur unique résultant de l'opération de max-pooling[cite: 15].
+    Écrivez une courte fonction Python ``apply_max_pooling_2x2(matrix)`` qui prend en entrée une matrice 2x2 (représentée par une liste de listes) et qui retourne la valeur unique résultant de l'opération de max-pooling.
 
     .. code-block:: python
 
@@ -670,29 +728,29 @@ mots dans la langue cible).
 
     Solution de :ia2:ex:`60.1`
 
-    a. La valeur de la somme pondérée se calcule en multipliant les entrées par leurs poids et en y ajoutant le biais[cite: 15] :
-       :math:`h(x_1, x_2) = -10 + (2 \times 2) + (3 \times 1) = -10 + 4 + 3 = -3`[cite: 15].
-    b. La fonction échelon avec un seuil de 0 renvoie 0 si la valeur est inférieure au seuil, et 1 si elle l'atteint ou le dépasse[cite: 15]. Puisque -3 est inférieur à 0, la fonction renvoie 0[cite: 15]. L'irrigation ne sera pas activée.
-    c. L'unité linéaire rectifiée (ReLU) permet à la sortie d'être n'importe quelle valeur positive, mais définit toutes les valeurs négatives à 0[cite: 15]. Puisque la somme est -3 (négative), la sortie exacte de la fonction ReLU sera **0**[cite: 15].
+    a. La valeur de la somme pondérée se calcule en multipliant les entrées par leurs poids et en y ajoutant le biais :
+       :math:`h(x_1, x_2) = -10 + (2 \times 2) + (3 \times 1) = -10 + 4 + 3 = -3`.
+    b. La fonction échelon avec un seuil de 0 renvoie 0 si la valeur est inférieure au seuil, et 1 si elle l'atteint ou le dépasse. Puisque -3 est inférieur à 0, la fonction renvoie 0. L'irrigation ne sera pas activée.
+    c. L'unité linéaire rectifiée (ReLU) permet à la sortie d'être n'importe quelle valeur positive, mais définit toutes les valeurs négatives à 0. Puisque la somme est -3 (négative), la sortie exacte de la fonction ReLU sera **0**.
 
 .. ia2:solution:: 60.2
     Convolution d'images : Détection de contours
 
     Solution de :ia2:ex:`60.2`
 
-    a. Pour filtrer l'image, on multiplie chaque valeur de pixel par la valeur correspondante dans le noyau, puis on additionne le tout[cite: 15] :
-       :math:`(10 \times -1) + (10 \times -1) + (10 \times -1) + (10 \times -1) + (50 \times 8) + (10 \times -1) + (10 \times -1) + (10 \times -1) + (10 \times -1)`[cite: 15]
+    a. Pour filtrer l'image, on multiplie chaque valeur de pixel par la valeur correspondante dans le noyau, puis on additionne le tout :
+       :math:`(10 \times -1) + (10 \times -1) + (10 \times -1) + (10 \times -1) + (50 \times 8) + (10 \times -1) + (10 \times -1) + (10 \times -1) + (10 \times -1)`
        :math:`= -10 - 10 - 10 - 10 + 400 - 10 - 10 - 10 - 10`
-       :math:`= 400 - 80 = 320`[cite: 15].
+       :math:`= 400 - 80 = 320`.
        La valeur finale est 320.
-    b. Si tous les pixels voisins (et le pixel central) possèdent la même valeur (par exemple tous à 10), la multiplication du centre sera de :math:`10 \times 8 = 80`, et la somme des 8 voisins sera de :math:`8 \times (10 \times -1) = -80`[cite: 15]. Lorsqu'un pixel est similaire à tous ses voisins, l'addition de ces valeurs fait qu'ils s'annulent mutuellement, donnant 0, ce qui rend la zone sombre sur l'image filtrée[cite: 15]. Les valeurs élevées n'apparaissent que là où il y a une différence (un contour)[cite: 15].
+    b. Si tous les pixels voisins (et le pixel central) possèdent la même valeur (par exemple tous à 10), la multiplication du centre sera de :math:`10 \times 8 = 80`, et la somme des 8 voisins sera de :math:`8 \times (10 \times -1) = -80`. Lorsqu'un pixel est similaire à tous ses voisins, l'addition de ces valeurs fait qu'ils s'annulent mutuellement, donnant 0, ce qui rend la zone sombre sur l'image filtrée. Les valeurs élevées n'apparaissent que là où il y a une différence (un contour).
 
 .. ia2:solution:: 60.3
     Modélisation avec TensorFlow / Keras (Code Python)
 
     Solution de :ia2:ex:`60.3`
 
-    En utilisant l'API Keras dans TensorFlow, on définit un modèle séquentiel dans lequel les couches se succèdent[cite: 15]. On ajoute les couches denses avec ``model.add()`` en précisant le nombre d'unités, la forme de l'entrée et la fonction d'activation[cite: 15].
+    En utilisant l'API Keras dans TensorFlow, on définit un modèle séquentiel dans lequel les couches se succèdent. On ajoute les couches denses avec ``model.add()`` en précisant le nombre d'unités, la forme de l'entrée et la fonction d'activation.
 
     .. code-block:: python
 
@@ -715,25 +773,31 @@ mots dans la langue cible).
 
     Solution de :ia2:ex:`60.4`
 
-    a. Ce phénomène se nomme le **surapprentissage** (overfitting)[cite: 15]. Il s'agit du risque de modéliser les données d'entraînement avec trop de précision, empêchant ainsi la généralisation à de nouvelles données[cite: 15].
-    b. La technique du dépot (dropout) consiste à supprimer temporairement des unités sélectionnées au hasard pendant la phase d'apprentissage[cite: 15]. Le but principal est d'éviter une dépendance excessive du réseau envers une unité particulière, forçant le modèle à prendre différentes formes lors de l'entraînement[cite: 15].
-    c. Une fois l'entraînement terminé et le modèle prêt à être évalué ou déployé, l'intégralité du réseau de neurones (toutes les unités) est à nouveau utilisée pour la prédiction[cite: 15].
+    a.  Ce phénomène se nomme le **surapprentissage** (overfitting).
+        Il s'agit du risque de modéliser les données d'entraînement avec
+        trop de précision, empêchant ainsi la généralisation à de nouvelles
+        données.
+
+    b.  La technique du dépot (dropout) consiste à supprimer temporairement des unités sélectionnées au hasard pendant la phase d'apprentissage. Le but principal est d'éviter une dépendance excessive du réseau envers une unité particulière, forçant le modèle à prendre différentes formes lors de l'entraînement.
+
+    c.  Une fois l'entraînement terminé et le modèle prêt à être évalué ou déployé, l'intégralité du réseau de neurones (toutes les unités) est à nouveau utilisée pour la prédiction.
+
 
 .. ia2:solution:: 60.5
     Architectures de réseaux de neurones (CNN vs RNN)
 
     Solution de :ia2:ex:`60.5`
 
-    a. **Projet A (Radiographies) : CNN.** Un réseau de neurones convolutionnel (CNN) est généralement utilisé pour analyser des images numériques[cite: 15]. Il utilise des filtres et du sous-échantillonnage pour extraire des caractéristiques, ce qui le rend moins sensible aux variations de l'image (comme l'angle de la photo)[cite: 15].
-    b. **Projet B (Traduction) : RNN.** Un réseau de neurones récurrent (RNN) s'avère utile lorsque le réseau traite des séquences (comme des mots dans une phrase) plutôt qu'un objet individuel[cite: 15]. L'architecture d'un RNN permet de traiter une séquence d'entrées (la langue source) pour générer une séquence de sorties (la langue cible)[cite: 15].
-    c. **Projet C (Description d'images) : RNN.** Bien qu'il s'agisse d'une image en entrée, la génération d'une légende produit une sortie de longueur variable (une séquence de mots) selon les propriétés de l'image[cite: 15]. Les réseaux récurrents possèdent une structure non linéaire utilisant leur propre sortie comme entrée, ce qui leur permet de répéter l'opération autant de fois que nécessaire pour faire varier le nombre de sorties[cite: 15].
+    a. **Projet A (Radiographies) : CNN.** Un réseau de neurones convolutionnel (CNN) est généralement utilisé pour analyser des images numériques. Il utilise des filtres et du sous-échantillonnage pour extraire des caractéristiques, ce qui le rend moins sensible aux variations de l'image (comme l'angle de la photo).
+    b. **Projet B (Traduction) : RNN.** Un réseau de neurones récurrent (RNN) s'avère utile lorsque le réseau traite des séquences (comme des mots dans une phrase) plutôt qu'un objet individuel. L'architecture d'un RNN permet de traiter une séquence d'entrées (la langue source) pour générer une séquence de sorties (la langue cible).
+    c. **Projet C (Description d'images) : RNN.** Bien qu'il s'agisse d'une image en entrée, la génération d'une légende produit une sortie de longueur variable (une séquence de mots) selon les propriétés de l'image. Les réseaux récurrents possèdent une structure non linéaire utilisant leur propre sortie comme entrée, ce qui leur permet de répéter l'opération autant de fois que nécessaire pour faire varier le nombre de sorties.
 
 .. ia2:solution:: 60.6
     Implémentation du Max-Pooling en Python
 
     Solution de :ia2:ex:`60.6`
 
-    Le max-pooling consiste à sélectionner le pixel qui possède la valeur la plus élevée parmi tous les autres de la même région[cite: 15]. En Python, on peut extraire cette valeur en parcourant les sous-listes.
+    Le max-pooling consiste à sélectionner le pixel qui possède la valeur la plus élevée parmi tous les autres de la même région. En Python, on peut extraire cette valeur en parcourant les sous-listes.
 
     .. code-block:: python
 
@@ -748,3 +812,111 @@ mots dans la langue cible).
 
         # Autre approche valide (compréhension de liste) :
         # return max([valeur for ligne in matrix for valeur in ligne])
+
+
+******
+ Quiz
+******
+
+.. ia2:exercice:: Question 1
+
+    Considérez le réseau de neurones ci-dessous, où :
+
+    *   :math:`w_0 = -5` (le biais)
+    *   :math:`w_1 = 2`
+    *   :math:`w_2 = -1`
+    *   :math:`w_3 = 3`
+
+    Les variables :math:`x_1`, :math:`x_2` et :math:`x_3` représentent les neurones d'entrée, et :math:`y` représente le neurone de sortie.
+
+    Quelle valeur ce réseau calculera-t-il pour :math:`y` avec les entrées :math:`x_1 = 3`, :math:`x_2 = 2` et :math:`x_3 = 4` si nous utilisons une fonction d'activation de type **seuil** (*step*) ? Et si nous utilisons une fonction d'activation **ReLU** ?
+
+    *   0 pour la fonction seuil, 0 pour la fonction ReLU
+    *   0 pour la fonction seuil, 1 pour la fonction ReLU
+    *   1 pour la fonction seuil, 0 pour la fonction ReLU
+    *   1 pour la fonction seuil, 1 pour la fonction ReLU
+    *   1 pour la fonction seuil, 11 pour la fonction ReLU
+    *   1 pour la fonction seuil, 16 pour la fonction ReLU
+    *   11 pour la fonction seuil, 11 pour la fonction ReLU
+    *   16 pour la fonction seuil, 16 pour la fonction ReLU
+
+
+.. ia2:exercice:: Question 2
+
+    Combien de poids au total (incluant les biais) comportera un réseau de neurones entièrement connecté (*fully connected*) possédant :
+
+    * une unique couche d'entrée avec 3 unités,
+    * une unique couche cachée avec 5 unités,
+    * et une unique couche de sortie avec 4 unités ?
+
+.. ia2:exercice:: Question 3
+
+    Considérez un réseau de neurones récurrent (RNN) qui écoute un échantillon sonore de parole et le classifie pour déterminer à qui appartient cette voix. Quelle architecture de réseau est la mieux adaptée à ce problème ?
+
+    *   Un-à-un (*One-to-one* : entrée unique, sortie unique)
+    *   Plusieurs-à-un (*Many-to-one* : entrées multiples/séquence, sortie unique)
+    *   Un-à-plusieurs (*One-to-many* : entrée unique, sorties multiples/séquence)
+    *   Plusieurs-à-plusieurs (*Many-to-many* : entrées multiples, sorties multiples)
+
+.. ia2:exercice:: Question 4
+
+    Considérez une image en niveaux de gris de taille 4x4.
+
+    Quel serait le résultat de l'application d'un *max-pooling* de taille 2x2 à l'image originale ?
+
+    *(Note : Les réponses sont formatées sous forme de matrice ``[[a, b], [c, d]]`` où ``[a, b]`` est la première ligne et ``[c, d]`` la seconde ligne.)*
+
+    *   ``[[16, 12], [32, 28]]``
+    *   ``[[16, 14], [32, 30]]``
+    *   ``[[22, 24], [32, 30]]``
+    *   ``[[14, 12], [30, 28]]``
+    *   ``[[16, 14], [22, 24]]``
+    *   ``[[16, 12], [32, 30]]``
+
+
+Solutions du quiz
+=================
+
+.. ia2:solution:: Question 1
+
+    **1 pour la fonction seuil, 11 pour la fonction ReLU**
+
+    *Explication :*
+
+    On calcule d'abord la somme pondérée :math:`z` :
+
+    .. math::
+
+        z = w_0 + w_1 x_1 + w_2 x_2 + w_3 x_3 = -5 + (2 \cdot 3) + (-1 \cdot 2) + (3 \cdot 4) = -5 + 6 - 2 + 12 = 11
+
+    *   **Fonction seuil (*step*) :** Puisque :math:`z = 11 > 0`, la sortie vaut **1**.
+    *   **Fonction ReLU :** La fonction ReLU donne :math:`\max(0, z) = \max(0, 11) = \mathbf{11}`.
+
+.. ia2:solution:: Question 2
+
+    **44**
+
+    *Explication :*
+
+    1.  **Entre la couche d'entrée et la couche cachée :**
+        :math:`(3 \text{ entrées} \times 5 \text{ neurones cachés}) + 5 \text{ biais} = 15 + 5 = 20` poids.
+    2.  **Entre la couche cachée et la couche de sortie :**
+        :math:`(5 \text{ neurones cachés} \times 4 \text{ sorties}) + 4 \text{ biais} = 20 + 4 = 24` poids.
+
+    **Total :** :math:`20 + 24 = 44` poids.
+
+
+.. ia2:solution:: Question 3
+
+    **Plusieurs-à-un (*Many-to-one*)**
+
+    *Explication :* L'échantillon audio est une séquence de données temporelles (entrées multiples), tandis que le résultat recherché est une classification unique représentant la personne qui parle (sortie unique).
+
+
+
+.. ia2:solution:: Question 4
+
+    **[[16, 12], [32, 28]]**
+
+    *Explication :* Le *max-pooling* 2x2 divise l'image 4x4 en 4 quadrants non chevauchants de 2x2 pixels et extrait la valeur maximale de chaque quadrant.
+
