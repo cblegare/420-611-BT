@@ -1,6 +1,6 @@
-###############
- Connaissances
-###############
+##############
+ Connaissance
+##############
 
 Les humains raisonnent sur la base de connaissances existantes et en tirent des
 conclusions. Le concept consistant à représenter les connaissances et à en tirer

@@ -727,50 +727,101 @@ fonction d’évaluation est bonne, meilleur sera l’algorithme Minimax qui s�
 
     Solution de :ia2:ex:`10.7`
 
-    a. **GPS - Distance Euclidienne :**
+    a.  **GPS - Distance Euclidienne :**
 
-       * **Admissible (Oui) :** La ligne droite (vol d'oiseau) est le chemin mathématiquement le plus court entre deux points. Il est impossible que la route réelle soit plus courte, donc l'heuristique ne surestime jamais.
+        *   **Admissible (Oui) :** La ligne droite (vol d'oiseau) est le
+            chemin mathématiquement le plus court entre deux points.
+            Il est impossible que la route réelle soit plus courte, donc
+            l'heuristique ne surestime jamais.
 
-       * **Cohérente (Oui) :** En géométrie, la distance euclidienne respecte toujours l'inégalité triangulaire. La distance en ligne droite de A vers la cible sera toujours inférieure ou égale à la distance de A vers B plus la ligne droite de B vers la cible.
+       *    **Cohérente (Oui) :** En géométrie, la distance euclidienne
+            respecte toujours l'inégalité triangulaire.
+            La distance en ligne droite de A vers la cible sera toujours
+            inférieure ou égale à la distance de A vers B plus la ligne
+            droite de B vers la cible.
 
-    b. **Robot d'entrepôt - Palettes mal rangées :**
+    b.  **Robot d'entrepôt - Palettes mal rangées :**
 
-       * **Admissible (Oui) :** Chaque palette mal rangée nécessitera obligatoirement au moins un déplacement pour être corrigée. L'estimation est donc toujours inférieure ou égale au coût réel.
+        *   **Admissible (Oui) :** Chaque palette mal rangée nécessitera
+            obligatoirement au moins un déplacement pour être corrigée.
+            L'estimation est donc toujours inférieure ou égale au coût réel.
 
-       * **Cohérente (Oui) :** Une action (coût = 1) ne peut ranger qu'au maximum une seule palette à la fois. L'heuristique :math:`h` baissera donc d'au maximum 1. L'équation :math:`h(n) - h(n') \le 1 \implies h(n) \le 1 + h(n')` est respectée.
+       *    **Cohérente (Oui) :** Une action (coût = 1) ne peut ranger qu'au
+            maximum une seule palette à la fois. L'heuristique :math:`h`
+            baissera donc d'au maximum 1.
+            L'équation :math:`h(n) - h(n') \le 1 \implies h(n) \le 1 + h(n')`
+            est respectée.
 
-    c. **Drone - Capteurs hétérogènes :**
+    c.  **Drone - Capteurs hétérogènes :**
 
-       * **Admissible (Oui) :** Les deux capteurs sous-estiment la batterie réelle de :math:`20\%` (:math:`15\% \le 20\%` et :math:`2\% \le 19\%`).
+        *   **Admissible (Oui) :** Les deux capteurs sous-estiment la batterie
+            réelle de :math:`20\%` (:math:`15\% \le 20\%` et :math:`2\% \le 19\%`).
 
-       * **Cohérente (Non) :** Lors du passage de la zone A à B, l'estimation chute brusquement à cause du changement de capteur. On a :math:`h(A) \le c(A,B) + h(B) \implies 15 \le 1 + 2`, ce qui est faux (:math:`15 \not\le 3`).
+        *   **Cohérente (Non) :** Lors du passage de la zone A à B,
+            l'estimation chute brusquement à cause du changement de capteur.
+            On a :math:`h(A) \le c(A,B) + h(B) \implies 15 \le 1 + 2`,
+            ce qui est faux (:math:`15 \not\le 3`).
 
-    d. **Randonneur - Valeur manquante :**
+    d.  **Randonneur - Valeur manquante :**
 
-       * **Admissible (Oui) :** Le guide n'a jamais surestimé les temps (et :math:`0 \le` temps réel).
+        *   **Admissible (Oui) :** Le guide n'a jamais surestimé les temps
+            (et :math:`0 \le` temps réel).
 
-       * **Cohérente (Non) :** En faisant un pas qui coûte 5 minutes, l'heuristique chute de 60 minutes. L'inéquation de cohérence donne : :math:`60 \le 5 + 0`, ce qui est faux. L'heuristique est trop instable.
+        *   **Cohérente (Non) :** En faisant un pas qui coûte 5 minutes,
+            l'heuristique chute de 60 minutes.
+            L'inéquation de cohérence donne : :math:`60 \le 5 + 0`, ce qui
+            est faux. L'heuristique est trop instable.
 
-    e. **Camion - Pénalité de 10 km :**
+    e.  **Camion - Pénalité de 10 km :**
 
-       * **Admissible (Non) :** L'heuristique est :math:`h(n) = h^*(n) + 10`. Elle surestimera toujours la distance réelle exacte de 10 km.
+        *   **Admissible (Non) :** L'heuristique est :math:`h(n) = h^*(n) + 10`.
+            Elle surestimera toujours la distance réelle exacte de 10 km.
 
-       * **Cohérente (Oui) :** Le malus de 10 km s'applique à tous les nœuds uniformément. Dans l'inéquation :math:`h(n) \le c(n,n') + h(n')`, la constante de 10 km est présente des deux côtés et s'annule mathématiquement (:math:`h^*(n) + 10 \le c + h^*(n') + 10 \implies h^*(n) \le c + h^*(n')`). Puisque la distance réelle :math:`h^*` est cohérente, la version avec constante l'est aussi.
+        *   **Cohérente (Oui) :** Le malus de 10 km s'applique à tous les
+            nœuds uniformément.
+            Dans l'inéquation :math:`h(n) \le c(n,n') + h(n')`, la constante
+            de 10 km est présente des deux côtés et s'annule mathématiquement
+            (:math:`h^*(n) + 10 \le c + h^*(n') + 10 \implies h^*(n) \le c + h^*(n')`).
+            Puisque la distance réelle :math:`h^*` est cohérente, la version
+            avec constante l'est aussi.
 
-    f. **Gestion de projet - Coussin de 24h :**
+    f.  **Gestion de projet - Coussin de 24h :**
 
-       * **Admissible (Non) :** L'ajout de 24 heures aux estimations parfaites signifie que l'IA surestime volontairement le temps restant, ce qui casse l'admissibilité.
+        *   **Admissible (Non) :** L'ajout de 24 heures aux estimations
+            parfaites signifie que l'IA surestime volontairement le temps
+            restant, ce qui casse l'admissibilité.
 
-       * **Cohérente (Oui) :** Comme pour la situation précédente, le biais de 24h est constant sur tous les états. Une heure travaillée fait baisser l'estimation d'exactement une heure. L'inégalité :math:`h(n) \le 1 + h(n')` est toujours préservée.
+        *   **Cohérente (Oui) :** Comme pour la situation précédente, le
+            biais de 24h est constant sur tous les états.
+            Une heure travaillée fait baisser l'estimation d'exactement
+            une heure.
+            L'inégalité :math:`h(n) \le 1 + h(n')` est toujours préservée.
 
-    g. **D&D 5e - Diagonale vs Manhattan :**
+    g.  **D&D 5e - Diagonale vs Manhattan :**
 
-       * **Admissible (Non) :** La distance de Manhattan surestime le coût. Si la cible est à 5 cases en diagonale, le coût réel est de 5 (puisqu'une diagonale coûte 1). La distance de Manhattan comptera 5 pas horizontaux et 5 pas verticaux, donnant une heuristique de 10 (:math:`10 > 5`).
+        *   **Admissible (Non) :** La distance de Manhattan surestime le
+            coût. Si la cible est à 5 cases en diagonale, le coût réel est
+            de 5 (puisqu'une diagonale coûte 1).
+            La distance de Manhattan comptera 5 pas horizontaux et 5 pas
+            verticaux, donnant une heuristique de 10 (:math:`10 > 5`).
 
-       * **Cohérente (Non) :** Imaginons le départ à :math:`(0,0)` avec une cible à :math:`(5,5)`. :math:`h(0,0) = 10`. Le personnage fait un pas diagonal vers :math:`(1,1)` pour un coût de 1. La nouvelle heuristique est :math:`h(1,1) = 8`. Vérification de la cohérence : :math:`10 \le 1 + 8 \implies 10 \le 9`. C'est faux, l'heuristique chute trop vite par rapport au coût.
+        *   **Cohérente (Non) :** Imaginons le départ à :math:`(0,0)` avec
+            une cible à :math:`(5,5)`. :math:`h(0,0) = 10`.
+            Le personnage fait un pas diagonal vers :math:`(1,1)` pour un
+            coût de 1. La nouvelle heuristique est :math:`h(1,1) = 8`.
+            Vérification de la cohérence : :math:`10 \le 1 + 8 \implies 10 \le 9`.
+            C'est faux, l'heuristique chute trop vite par rapport au coût.
 
-    h. **Covoiturage - Modèle tarifaire instable :**
+    h.  **Covoiturage - Modèle tarifaire instable :**
 
-       * **Admissible (Non) :** L'estimation au point B est de :math:`40\$`, alors que le vrai coût vers l'objectif n'est que de :math:`15\$`. L'algorithme surestime massivement.
+        *   **Admissible (Non) :** L'estimation au point B est de :math:`40\$`,
+            alors que le vrai coût vers l'objectif n'est que de :math:`15\$`.
+            L'algorithme surestime massivement.
 
-       * **Cohérente (Non) :** Le déplacement du point B vers le point A coûte :math:`2\$`. L'estimation au point A est de :math:`10\$`. L'équation donne : :math:`h(B) \le c(B,A) + h(A) \implies 40 \le 2 + 10 \implies 40 \le 12`, ce qui est manifestement faux. Le modèle tarifaire chute de :math:`30\$` alors que l'agent n'a dépensé que :math:`2\$`.
+        *   **Cohérente (Non) :** Le déplacement du point B vers le point
+            A coûte :math:`2\$`. L'estimation au point A est de :math:`10\$`.
+            L'équation donne :
+            :math:`h(B) \le c(B,A) + h(A) \implies 40 \le 2 + 10 \implies 40 \le 12`,
+            ce qui est manifestement faux.
+            Le modèle tarifaire chute de :math:`30\$` alors que l'agent
+            n'a dépensé que :math:`2\$`.

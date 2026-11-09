@@ -1,0 +1,11 @@
+Loading data...
+81: ('it', 'was', 'a')
+72: ('one', 'of', 'the')
+65: ('i', 'think', 'that')
+59: ('out', 'of', 'the')
+55: ('that', 'it', 'was')
+55: ('that', 'he', 'had')
+55: ('that', 'he', 'was')
+55: ('there', 'was', 'a')
+54: ('it', 'is', 'a')
+49: ('that', 'i', 'have')

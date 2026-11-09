@@ -314,7 +314,7 @@ Pour que l’IA manipule le sens des mots, il faut représenter les mots sous fo
 numérique.
 
 Une première approche est la représentation One-Hot (One-Hot Representation),
-où chaque mot est représenté par un vecteur de taille égale au nombre total de
+où chaque mot est représenté par un vecteur de taille égale au nombre total de«fpapi
 mots du vocabulaire. Toutes les valeurs du vecteur sont à 0, sauf une seule qui
 vaut 1 à l’indice correspondant au mot. Par exemple, pour un vocabulaire de 4
 mots (he, wrote, a, book) :
@@ -473,3 +473,200 @@ complexes.
 
 Et enfin, le traitement du langage naturel, qui permet aux machines de
 comprendre, d'analyser et de générer la langue humaine.
+
+
+***********
+ Exercices
+***********
+
+.. ia2:exercice:: 70.1
+    Grammaire hors-contexte (CFG) et arbre syntaxique
+
+    Un système d'analyse automatique du langage doit traiter des commandes simples transmises à un assistant virtuel.
+    Considérez la phrase suivante : « *The drone detects the target.* »
+
+    a. Identifiez la catégorie grammaticale (partie du discours : N, V, D) de chaque mot de cette phrase[cite: 17].
+    b. En utilisant les règles de grammaire hors-contexte (CFG) suivantes :
+
+       * :math:`S \rightarrow NP \quad VP`
+       * :math:`NP \rightarrow D \quad N \mid N`
+       * :math:`VP \rightarrow V \quad NP \mid V`
+
+       Rédigez la décomposition pas à pas montrant comment la phrase est structurée sous forme de groupes (NP, VP, S)[cite: 17].
+
+    Solution: :ia2:solution:`70.1`
+
+.. ia2:exercice:: 70.2
+    Tokenisation et extraction de n-grammes
+
+    Un système d'analyse de presse scrute des dépêches d'actualité. On extrait l'extrait de texte suivant :
+    « *The robot moves fast.* »
+
+    a. Expliquez pourquoi le simple découpage par espace (*split*) est insuffisant pour un système de tokenisation robuste lors du traitement de textes réels comportant de la ponctuation ou des contractions[cite: 17].
+    b. Listez tous les **unigrammes**, **bigrammes** et **trigrammes** de mots obtenus à partir de cette phrase de 4 mots[cite: 17].
+
+    Solution: :ia2:solution:`70.2`
+
+.. ia2:exercice:: 70.3
+    Classificateur de Bayes naïf avec Lissage de Laplace
+
+    Un modèle du sac de mots (*Bag-of-Words*) est entraîné pour classifier des avis sur des produits en deux catégories : **Positif** et **Négatif**[cite: 17].
+
+    Voici les données d'entraînement :
+
+    * **Avis Positifs (2 phrases) :**
+
+      1. « *excellent produit fiable* »
+      2. « *excellent service* »
+    * **Avis Négatifs (2 phrases) :**
+
+      1. « *produit défectueux* »
+      2. « *service médiocre défectueux* »
+
+    Le vocabulaire total du corpus contient :math:`|V| = 6` mots uniques : {*excellent*, *produit*, *fiable*, *service*, *défectueux*, *médiocre*}[cite: 17].
+    On suppose que les probabilités a priori sont égales : :math:`P(\text{Positif}) = 0{,}5` et :math:`P(\text{Négatif}) = 0{,}5`[cite: 17].
+
+    On évalue un nouvel avis : « *excellent produit* »[cite: 17].
+
+    a. À quoi sert le **lissage de Laplace** (:math:`\alpha = 1`) lors du calcul des probabilités conditionnelles[cite: 17] ?
+    b. Calculez les probabilités conditionnelles avec lissage de Laplace : :math:`P(\text{« excellent »} \mid \text{Positif})`, :math:`P(\text{« produit »} \mid \text{Positif})`, :math:`P(\text{« excellent »} \mid \text{Négatif})` et :math:`P(\text{« produit »} \mid \text{Négatif})`[cite: 17].
+    c. Calculez la probabilité a posteriori normalisée :math:`P(\text{Positif} \mid \text{« excellent produit »})` et concluez quant à la classe attribuée[cite: 17].
+
+    Solution: :ia2:solution:`70.3`
+
+.. ia2:exercice:: 70.4
+    Représentation vectorielle des mots : One-Hot vs Embeddings et Algèbre vectorielle
+
+    Pour traiter le sens des mots, les modèles de NLP convertissent le texte en représentations numériques[cite: 17].
+
+    a. Présentez deux limites majeures de la représentation **One-Hot** par rapport aux représentations distribuées (**Word Embeddings** / *word2vec*)[cite: 17].
+    b. Dans un espace vectoriel dense à 3 dimensions, supposons les vecteurs *word2vec* suivants :
+
+       * :math:`\text{vec}(\text{Paris}) = [0{,}8\,;\; 0{,}2\,;\; 0{,}9]`
+       * :math:`\text{vec}(\text{France}) = [0{,}7\,;\; 0{,}1\,;\; 0{,}2]`
+       * :math:`\text{vec}(\text{Japon}) = [0{,}1\,;\; 0{,}9\,;\; 0{,}3]`
+
+       Calculez le vecteur cible résultant de l'opération d'analogie :
+       :math:`\vec{v}_{\text{cible}} = \text{vec}(\text{Paris}) - \text{vec}(\text{France}) + \text{vec}(\text{Japon})`[cite: 17].
+    c. Entre deux candidats possédant les vecteurs :math:`\text{vec}(\text{Tokyo}) = [0{,}2\,;\; 1{,}0\,;\; 1{,}0]` et :math:`\text{vec}(\text{Kyoto}) = [0{,}5\,;\; 0{,}4\,;\; 0{,}1]`, déterminez quel mot est le plus proche de :math:`\vec{v}_{\text{cible}}` en calculant la distance euclidienne[cite: 17].
+
+    Solution: :ia2:solution:`70.4`
+
+.. ia2:exercice:: 70.5
+    Architectures de séquences : RNN, Attention et Transformers
+
+    Le traitement de séquences de texte a évolué à travers plusieurs architectures clés[cite: 17].
+
+    a. Quel est le goulot d'étranglement principal des réseaux de neurones récurrents (**RNN**) traditionnels lorsqu'ils traitent de très longues phrases[cite: 17] ?
+    b. Quel est le rôle du mécanisme d'**attention** dans une architecture de traduction de séquence à séquence[cite: 17] ?
+    c. Pourquoi les **Transformers** permettent-ils un entraînement nettement plus rapide que les RNN sur de grands corpus, et quel mécanisme permet aux Transformers de préserver l'ordre des mots sans traitement séquentiel[cite: 17] ?
+
+    Solution: :ia2:solution:`70.5`
+
+.. ia2:exercice:: 70.6
+    Code Python : Parsing de grammaire CFG avec NLTK
+
+    La bibliothèque ``nltk`` permet de définir des grammaires hors-contexte et d'analyser des phrases[cite: 17].
+
+    Complétez le script Python ci-dessous pour :
+    1. Définir une grammaire CFG acceptant les phrases formées d'un groupe nominal (NP) et d'un groupe verbal (VP)[cite: 17].
+    2. Instancier le parseur ``ChartParser``[cite: 17].
+    3. Parcourir et afficher les arbres syntaxiques générés pour la phrase « *she walked a car* »[cite: 17].
+
+    .. code-block:: python
+
+        import nltk
+
+        # 1. Définition des règles de grammaire
+        grammar = nltk.CFG.fromstring("""
+            S -> NP VP
+            NP -> D N | N
+            VP -> V NP | V
+
+            D -> "a" | "the"
+            N -> "she" | "car" | "city"
+            V -> "walked" | "saw"
+        """)
+
+        # 2. Instancier le parseur
+        parser = # À COMPLÉTER
+
+        sentence = "she walked a car".split()
+
+        # 3. Analyser la phrase et afficher l'arbre
+        # À COMPLÉTER
+
+    Solution: :ia2:solution:`70.6`
+
+.. ia2:exercice:: 70.7
+    Code Python : Extraction de n-grammes de mots
+
+    Écrivez une fonction Python ``generate_ngrams(tokens, n)`` qui prend en entrée une liste de mots (jetons) et un entier :math:`n`, puis retourne la liste de tous les :math:`n`-grammes (sous forme de tuples de longueur :math:`n`)[cite: 17].
+
+    .. code-block:: python
+
+        def generate_ngrams(tokens, n):
+            """
+            Génère la liste des n-grammes à partir d'une liste de mots.
+            """
+            # À COMPLÉTER
+            pass
+
+        # Données de test
+        texte = ["Sherlock", "Holmes", "stepped", "into", "the", "room"]
+
+        # Test bigrammes (n=2)
+        print(generate_ngrams(texte, 2))
+        # Résultat attendu :
+        # [('Sherlock', 'Holmes'), ('Holmes', 'stepped'), ('stepped', 'into'), ('into', 'the'), ('the', 'room')]
+
+    Solution: :ia2:solution:`70.7`
+
+
+***********
+ Solutions
+***********
+
+.. ia2:solution:: 70.1
+    Grammaire hors-contexte (CFG) et arbre syntaxique
+
+    Solution de :ia2:ex:`70.1`
+
+    a. **Catégories grammaticales :**
+
+       * *The* : Déterminant (D)[cite: 17]
+       * *drone* : Nom (N)[cite: 17]
+       * *detects* : Verbe (V)[cite: 17]
+       * *the* : Déterminant (D)[cite: 17]
+       * *target* : Nom (N)[cite: 17]
+
+    b. **Décomposition et structure de l'arbre syntaxique :**
+
+       * Groupe nominal sujet : :math:`NP_1 \rightarrow D + N \Rightarrow \text{« The drone »}`[cite: 17]
+       * Groupe nominal objet : :math:`NP_2 \rightarrow D + N \Rightarrow \text{« the target »}`[cite: 17]
+       * Groupe verbal : :math:`VP \rightarrow V + NP_2 \Rightarrow \text{« detects the target »}`[cite: 17]
+       * Phrase complète : :math:`S \rightarrow NP_1 + VP \Rightarrow \text{« The drone detects the target »}`[cite: 17]
+
+.. ia2:solution:: 70.2
+    Tokenisation et extraction de n-grammes
+
+    Solution de :ia2:ex:`70.2`
+
+    a. **Limites du simple découpage par espace :**
+       Un simple ``.split()`` conserve les signes de ponctuation collés aux mots (ex. « *room.* » devient distinct de « *room* »)[cite: 17]. De plus, il ne sait pas traiter correctement les apostrophes (ex. « *o'clock* »), les mots composés avec tirets (ex. « *pearl-grey* ») ou distinguer un point abréviatif (ex. « *Mr.* ») d'une fin de phrase[cite: 17].
+
+    b. **n-grammes pour « The robot moves fast » :**
+
+       * **Unigrammes (n=1) :** ``["The", "robot", "moves", "fast"]``[cite: 17]
+       * **Bigrammes (n=2) :** ``[("The", "robot"), ("robot", "moves"), ("moves", "fast")]``[cite: 17]
+       * **Trigrammes (n=3) :** ``[("The", "robot", "moves"), ("robot", "moves", "fast")]``[cite: 17]
+
+.. ia2:solution:: 70.3
+    Classificateur de Bayes naïf avec Lissage de Laplace
+
+    Solution de :ia2:ex:`70.3`
+
+    a. **Rôle du lissage de Laplace :**
+       Le lissage de Laplace (:math:`\alpha = 1`) évite qu'un mot jamais observé dans une classe lors de l'entraînement n'ait une probabilité conditionnelle nulle (:math:`P=0`)[cite: 17]. Sans ce lissage, un seul mot inédit annulerait complètement le produit global de probabilité de la classe concernée[cite: 17].
+
+    b. **Calcul des probabilités conditionnelles (

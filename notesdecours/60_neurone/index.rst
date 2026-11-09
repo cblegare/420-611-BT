@@ -1,6 +1,6 @@
-#####################
- Réseaux de neurones
-#####################
+#########
+ Neurone
+#########
 
 Les réseaux de neurones artificiels s’inspirent des neurosciences. Dans le
 cerveau, les neurones sont des cellules connectées entre elles qui forment des

@@ -14,14 +14,14 @@ Consultez l'index à :ref:`ia2-index`.
 
 .. toctree::
     :numbered:
-    :maxdepth: 2
+    :maxdepth: 1
 
-    10_recherche
-    20_connaissance
-    30_incertitude
-    50_apprentissage
-    60_neuronnes
-    70_langage/index.rst
+    10_recherche/index
+    20_connaissance/index
+    30_incertitude/index
+    50_apprentissage/index
+    60_neurone/index
+    70_langage/index
     00_python/index
     about
 

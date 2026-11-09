@@ -1,0 +1,11 @@
+Loading data...
+1158: ('of', 'the')
+880: ('in', 'the')
+527: ('it', 'was')
+498: ('to', 'the')
+482: ('it', 'is')
+457: ('i', 'have')
+406: ('that', 'i')
+378: ('at', 'the')
+372: ('and', 'i')
+336: ('and', 'the')

@@ -1,6 +1,6 @@
-#########################
- Apprentissage supervisé
-#########################
+###############
+ Apprentissage
+###############
 
 L’apprentissage supervisé est une tâche dans laquelle un ordinateur apprend une
 fonction qui associe des entrées à des sorties sur la base d’un ensemble de
