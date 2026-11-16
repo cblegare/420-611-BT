@@ -256,7 +256,156 @@ lever une exception en cas d'échec :
  Exercices
 ***********
 
-.. topic:: Exercice
+.. ia2:exercice:: 13.1
+
+    Écrivez une fonction appelée ``print_time`` qui prend un objet ``Time`` et
+    l'affiche sous la forme ``heure:minute:seconde``[cite: 3].
+
+    *Indice* : La séquence de format ``'%.2d'`` (ou ``f"{val:02d}"``) affiche
+    un entier en utilisant au moins deux chiffres, incluant un zéro non
+    significatif si nécessaire[cite: 3].
+
+.. ia2:solution:: 13.1
+
+    .. code-block:: python
+
+        def print_time(t):
+            print(f"{t.hour:02d}:{t.minute:02d}:{t.second:02d}")
+
+.. ia2:exercice:: 13.2
+
+    Écrivez une fonction booléenne appelée ``is_after`` qui prend deux objets
+    ``Time``, ``t1`` et ``t2``, et renvoie ``True`` si ``t1`` suit ``t2``
+    chronologiquement, et ``False`` sinon[cite: 3].
+
+    *Défi* : N'utilisez pas d'instruction ``if``[cite: 3].
+
+.. ia2:solution:: 13.2
+
+    .. code-block:: python
+
+        def is_after(t1, t2):
+            return (t1.hour, t1.minute, t1.second) > (t2.hour, t2.minute, t2.second)
+
+.. ia2:exercice:: 13.3
+
+    Écrivez une version modificateur correcte de ``increment(time, seconds)``
+    qui ajoute un nombre quelconque de secondes à un objet ``Time`` sans
+    utiliser aucune boucle[cite: 3].
+
+.. ia2:solution:: 13.3
+
+    .. code-block:: python
+
+        def increment(time, seconds):
+            time.second += seconds
+
+            minutes_sup, time.second = divmod(time.second, 60)
+            time.minute += minutes_sup
+
+            heures_sup, time.minute = divmod(time.minute, 60)
+            time.hour += heures_sup
+
+.. ia2:exercice:: 13.4
+
+    Écrivez une version « pure » de ``increment(time, seconds)`` qui crée et
+    renvoie un nouvel objet ``Time`` plutôt que de modifier le paramètre[cite: 3].
+
+.. ia2:solution:: 13.4
+
+    .. code-block:: python
+
+        import copy
+
+        def increment_pure(time, seconds):
+            nouveau = copy.copy(time)
+            increment(nouveau, seconds)
+            return nouveau
+
+.. ia2:exercice:: 13.5
+
+    Réécrivez la fonction pure ``increment`` en utilisant les fonctions de
+    conversion ``time_to_int`` et ``int_to_time``[cite: 3].
+
+.. ia2:solution:: 13.5
+
+    .. code-block:: python
+
+        def increment(time, seconds):
+            total_secondes = time_to_int(time) + seconds
+            return int_to_time(total_secondes)
+
+.. ia2:exercice:: 13.6
+
+    Écrivez une fonction appelée ``mul_time`` qui prend un objet ``Time`` et un
+    nombre, et renvoie un nouvel objet ``Time`` contenant le produit du temps
+    initial et du nombre[cite: 3].
+
+    Utilisez ensuite ``mul_time`` pour écrire une fonction ``allure_moyenne``
+    qui prend le temps d'arrivée d'une course (un objet ``Time``) et la
+    distance parcourue (un nombre), et renvoie le rythme moyen (temps par unité
+    de distance) sous forme d'un objet ``Time``[cite: 3].
+
+.. ia2:solution:: 13.6
+
+    .. code-block:: python
+
+        def mul_time(time, facteur):
+            secondes = int(time_to_int(time) * facteur)
+            return int_to_time(secondes)
+
+        def allure_moyenne(temps_course, distance):
+            return mul_time(temps_course, 1.0 / distance)
+
+.. ia2:exercice:: 13.7
+
+    À l'aide du module standard ``datetime``[cite: 3] :
+
+    1. Écrivez un programme qui obtient la date courante et affiche le jour de
+       la semaine correspondant[cite: 3].
+    2. Écrivez une fonction qui prend une date de naissance (``datetime``) et
+       affiche l'âge actuel de la personne ainsi que le nombre de jours,
+       d'heures, de minutes et de secondes restant avant son prochain
+       anniversaire[cite: 3].
+    3. Pour deux personnes nées à des dates différentes, il existe un jour où
+       l'une a exactement deux fois l'âge de l'autre (le « Double Jour »).
+       Écrivez une fonction qui prend deux dates de naissance et calcule ce
+       Double Jour[cite: 3].
+
+.. ia2:solution:: 13.7
+
+    .. code-block:: python
+
+        from datetime import datetime, date
+
+        # 1. Jour de la semaine actuel
+        aujourd_hui = date.today()
+        jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"]
+        print(f"Aujourd'hui, nous sommes {jours[aujourd_hui.weekday()]}.")
+
+        # 2. Âge et compte à rebours avant le prochain anniversaire
+        def info_anniversaire(naissance):
+            maintenant = datetime.now()
+            age = maintenant.year - naissance.year
+            if (maintenant.month, maintenant.day) < (naissance.month, naissance.day):
+                age -= 1
+
+            prochain = datetime(maintenant.year, naissance.month, naissance.day)
+            if prochain <= maintenant:
+                prochain = datetime(maintenant.year + 1, naissance.month, naissance.day)
+
+            reste = prochain - maintenant
+            print(f"Âge : {age} ans")
+            print(f"Prochain anniversaire dans : {reste}")
+
+        # 3. Calcul du Double Jour
+        def double_jour(d1, d2):
+            aine = min(d1, d2)
+            cadet = max(d1, d2)
+            ecart = cadet - aine
+            return cadet + ecart
+
+.. ia2:exercice:: 13.8
 
     Écrivez une fonction appelée ``mul_time`` qui prend un objet ``Time`` et un
     nombre, et renvoie un nouvel objet ``Time`` contenant le produit du temps
@@ -264,7 +413,7 @@ lever une exception en cas d'échec :
     qui prend le temps d'arrivée d'une course et la distance, et renvoie le
     rythme moyen (temps par mile).
 
-.. topic:: Exercice
+.. ia2:exercice:: 13.9
 
     Le module ``datetime`` fournit des objets de date et d'heure similaires aux
     objets de ce chapitre. Lisez la documentation sur

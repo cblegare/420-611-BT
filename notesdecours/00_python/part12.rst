@@ -398,7 +398,153 @@ chaîne qui contient le nom de l'attribut.
  Exercices
 ***********
 
-.. topic:: Exercice
+.. ia2:exercice:: 12.1
+
+    Écrivez une fonction appelée ``distance_between_points`` qui prend deux
+    ``Point`` en arguments et renvoie la distance euclidienne qui les sépare.
+
+.. ia2:solution:: 12.1
+
+    .. code-block:: python
+
+        import math
+
+        def distance_between_points(p1, p2):
+            dx = p2.x - p1.x
+            dy = p2.y - p1.y
+            return math.sqrt(dx**2 + dy**2)
+
+.. ia2:exercice:: 12.2
+
+    Écrivez une fonction nommée ``move_rectangle`` qui prend un ``Rectangle`` et
+    deux nombres nommés ``dx`` et ``dy``. Elle doit modifier l'emplacement du
+    rectangle en ajoutant ``dx`` à la coordonnée ``x`` de ``corner`` et ``dy`` à
+    la coordonnée ``y`` de ``corner``.
+
+.. ia2:solution:: 12.2
+
+    .. code-block:: python
+
+        def move_rectangle(rect, dx, dy):
+            rect.corner.x += dx
+            rect.corner.y += dy
+
+.. ia2:exercice:: 12.3
+
+    Écrivez une version pure de ``move_rectangle`` (nommée
+    ``move_rectangle_copy``) qui crée et renvoie un nouveau ``Rectangle``
+    déplacé au lieu de modifier l'ancien. Assurez-vous qu'il n'y ait aucun
+    crénelage (*aliasing*) sur le point ``corner``.
+
+.. ia2:solution:: 12.3
+
+    .. code-block:: python
+
+        import copy
+
+        def move_rectangle_copy(rect, dx, dy):
+            nouveau_rect = copy.deepcopy(rect)
+            nouveau_rect.corner.x += dx
+            nouveau_rect.corner.y += dy
+            return nouveau_rect
+
+.. ia2:exercice:: 12.4
+
+    Définissez une nouvelle classe appelée ``Circle`` avec deux attributs :
+    ``center`` (un objet ``Point``) et ``radius`` (un nombre). Instanciez un
+    objet ``Circle`` représentant un cercle dont le centre est à ``(150, 100)``
+    et le rayon vaut ``75``.
+
+    Écrivez ensuite une fonction nommée ``point_in_circle`` qui prend un
+    ``Circle`` et un ``Point`` en arguments et renvoie ``True`` si le point se
+    trouve à l'intérieur ou sur la frontière du cercle, et ``False`` sinon.
+
+.. ia2:solution:: 12.4
+
+    .. code-block:: python
+
+        class Circle(object):
+            """Représente un cercle.
+
+            attributes: center, radius.
+            """
+
+        cercle = Circle()
+        cercle.center = Point()
+        cercle.center.x = 150.0
+        cercle.center.y = 100.0
+        cercle.radius = 75.0
+
+        def point_in_circle(cercle, point):
+            d = distance_between_points(cercle.center, point)
+            return d <= cercle.radius
+
+.. ia2:exercice:: 12.5
+
+    Écrivez une fonction nommée ``rect_in_circle`` qui prend un ``Circle`` et un
+    ``Rectangle`` en arguments et renvoie ``True`` si le rectangle se trouve
+    entièrement à l'intérieur ou sur la frontière du cercle.
+
+    *Indice* : Un rectangle est entièrement contenu dans un cercle si et
+    seulement si ses quatre sommets le sont.
+
+.. ia2:solution:: 12.5
+
+    .. code-block:: python
+
+        import copy
+
+        def rect_in_circle(cercle, rect):
+            p = copy.copy(rect.corner)
+            if not point_in_circle(cercle, p):
+                return False
+
+            p.x += rect.width
+            if not point_in_circle(cercle, p):
+                return False
+
+            p.y += rect.height
+            if not point_in_circle(cercle, p):
+                return False
+
+            p.x -= rect.width
+            if not point_in_circle(cercle, p):
+                return False
+
+            return True
+
+.. ia2:exercice:: 12.6
+
+    Écrivez une fonction nommée ``rect_circle_overlap`` qui prend un ``Circle``
+    et un ``Rectangle`` en arguments et renvoie ``True`` si au moins l'un des
+    sommets du rectangle se trouve à l'intérieur du cercle.
+
+.. ia2:solution:: 12.6
+
+    .. code-block:: python
+
+        import copy
+
+        def rect_circle_overlap(cercle, rect):
+            p = copy.copy(rect.corner)
+            if point_in_circle(cercle, p):
+                return True
+
+            p.x += rect.width
+            if point_in_circle(cercle, p):
+                return True
+
+            p.y += rect.height
+            if point_in_circle(cercle, p):
+                return True
+
+            p.x -= rect.width
+            if point_in_circle(cercle, p):
+                return True
+
+            return False
+
+.. ia2:exercice:: 12.7
 
     Écrivez une fonction appelée ``draw_rectangle`` qui prend un ``Canvas`` et
     un ``Rectangle`` en arguments et dessine une représentation du ``Rectangle``

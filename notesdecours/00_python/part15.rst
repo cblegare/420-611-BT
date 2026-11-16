@@ -247,3 +247,130 @@ associées en attributs et méthodes d'une nouvelle classe.
     multiplicité
     multiplicity
         Une notation dans un diagramme de classes qui indique, pour une relation HAS-A, le nombre de références vers des instances d'une autre classe.
+
+
+***********
+ Exercices
+***********
+
+.. ia2:exercice:: 15.1
+
+    Pour permettre la comparaison de cartes en Python 3, écrivez la méthode
+    spéciale ``__lt__`` pour la classe ``Card``[cite: 5]. Elle doit comparer deux
+    cartes en accordant la priorité à la couleur (``suit``), puis à la valeur
+    (``rank``) à l'aide d'une comparaison de tuples[cite: 5].
+
+.. ia2:solution:: 15.1
+
+    .. code-block:: python
+
+        class Card(object):
+            def __init__(self, suit=0, rank=2):
+                self.suit = suit
+                self.rank = rank
+
+            def __lt__(self, other):
+                t1 = self.suit, self.rank
+                t2 = other.suit, other.rank
+                return t1 < t2
+
+.. ia2:exercice:: 15.2
+
+    Ajoutez à la classe ``Deck``[cite: 5] :
+
+    1. Une méthode ``__str__`` qui renvoie une chaîne contenant toutes les
+       cartes du paquet, séparées par des retours à la ligne.
+    2. Une méthode ``sort`` (placage autour de la méthode de liste ``sort``)
+       qui trie les cartes du paquet par ordre croissant[cite: 5].
+
+.. ia2:solution:: 15.2
+
+    .. code-block:: python
+
+        class Deck(object):
+            # ... méthodes __init__, pop_card, add_card, shuffle ...
+
+            def __str__(self):
+                res = [str(card) for card in self.cards]
+                return "\n".join(res)
+
+            def sort(self):
+                self.cards.sort()
+
+.. ia2:exercice:: 15.3
+
+    Écrivez une méthode de ``Deck`` nommée ``move_cards`` qui prend deux
+    paramètres, ``hand`` (un objet ``Hand`` ou ``Deck``) et ``num`` (un
+    entier), et déplace ``num`` cartes du paquet courant vers ``hand``.
+
+.. ia2:solution:: 15.3
+
+    .. code-block:: python
+
+        class Deck(object):
+            # ...
+
+            def move_cards(self, hand, num):
+                for _ in range(num):
+                    hand.add_card(self.pop_card())
+
+.. ia2:exercice:: 15.4
+
+    Écrivez une méthode de ``Deck`` nommée ``deal_hands`` qui prend deux
+    paramètres : le nombre de mains (``num_hands``) et le nombre de cartes par
+    main (``num_cards``). Elle doit créer le nombre demandé d'objets ``Hand``
+    (étiquetés ``"Main 1"``, ``"Main 2"``, etc.), distribuer le bon nombre de
+    cartes à chacune d'elles, puis renvoyer la liste des mains.
+
+.. ia2:solution:: 15.4
+
+    .. code-block:: python
+
+        class Deck(object):
+            # ...
+
+            def deal_hands(self, num_hands, num_cards):
+                hands = []
+                for i in range(num_hands):
+                    hand = Hand(f"Main {i + 1}")
+                    self.move_cards(hand, num_cards)
+                    hands.append(hand)
+                return hands
+
+.. ia2:exercice:: 15.5
+
+    Identifiez la relation entre les paires de classes suivantes (**relation
+    IS-A** ou **relation HAS-A**) et justifiez brièvement[cite: 5] :
+
+    1. ``Hand`` et ``Deck``[cite: 5]
+    2. ``Deck`` et ``Card``[cite: 5]
+    3. ``Hand`` et ``Card``[cite: 5]
+
+.. ia2:solution:: 15.5
+
+    1. **Relation IS-A (est un)** : ``Hand`` hérite directement de ``Deck``
+       (``class Hand(Deck):``)[cite: 5]. Une main est une version spécialisée d'un
+       paquet de cartes[cite: 5].
+    2. **Relation HAS-A (a un)** : Chaque instance de ``Deck`` possède un
+       attribut ``cards`` qui contient des références vers plusieurs instances
+       de ``Card``[cite: 5].
+    3. **Relation HAS-A (a un)** : Puisque ``Hand`` hérite de ``Deck``, elle
+       possède également l'attribut ``cards`` contenant des références vers des
+       objets ``Card``[cite: 5].
+
+.. ia2:exercice:: 15.6
+
+    Écrivez une fonction nommée ``find_defining_class`` qui prend un objet et
+    un nom de méthode (sous forme de chaîne de caractères), et renvoie l'objet
+    classe qui fournit effectivement la définition de cette méthode dans
+    l'ordre de résolution des méthodes (MRO) de l'objet[cite: 5].
+
+.. ia2:solution:: 15.6
+
+    .. code-block:: python
+
+        def find_defining_class(obj, method_name):
+            for ty in type(obj).mro():
+                if method_name in ty.__dict__:
+                    return ty
+            return None

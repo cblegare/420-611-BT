@@ -270,7 +270,196 @@ hiding*).
  Exercices
 ***********
 
-.. topic:: Exercice
+.. ia2:exercice:: 14.1
+
+    Réécrivez la fonction ``time_to_int`` sous forme de méthode de la classe
+    ``Time``[cite: 4].
+
+.. ia2:solution:: 14.1
+
+    .. code-block:: python
+
+        class Time(object):
+            def time_to_int(self):
+                minutes = self.hour * 60 + self.minute
+                seconds = minutes * 60 + self.second
+                return seconds
+
+.. ia2:exercice:: 14.2
+
+    Écrivez une méthode ``__init__`` pour la classe ``Point`` qui prend ``x`` et
+    ``y`` comme paramètres optionnels (avec ``0`` comme valeur par défaut) et
+    les affecte aux attributs correspondants[cite: 4].
+
+.. ia2:solution:: 14.2
+
+    .. code-block:: python
+
+        class Point(object):
+            def __init__(self, x=0, y=0):
+                self.x = x
+                self.y = y
+
+.. ia2:exercice:: 14.3
+
+    Écrivez une méthode ``__str__`` pour la classe ``Point`` qui renvoie une
+    chaîne de la forme ``(x, y)``[cite: 4]. Instanciez un objet ``Point`` et
+    affichez-le[cite: 4].
+
+.. ia2:solution:: 14.3
+
+    .. code-block:: python
+
+        class Point(object):
+            def __init__(self, x=0, y=0):
+                self.x = x
+                self.y = y
+
+            def __str__(self):
+                return f"({self.x}, {self.y})"
+
+        p = Point(3, 4)
+        print(p)
+
+.. ia2:exercice:: 14.4
+
+    Écrivez une méthode ``__add__`` pour la classe ``Point`` afin de pouvoir
+    additionner deux objets ``Point`` avec l'opérateur ``+`` (en additionnant
+    leurs coordonnées ``x`` et ``y`` respectives pour renvoyer un nouveau
+    ``Point``)[cite: 4].
+
+.. ia2:solution:: 14.4
+
+    .. code-block:: python
+
+        class Point(object):
+            def __init__(self, x=0, y=0):
+                self.x = x
+                self.y = y
+
+            def __str__(self):
+                return f"({self.x}, {self.y})"
+
+            def __add__(self, other):
+                return Point(self.x + other.x, self.y + other.y)
+
+.. ia2:exercice:: 14.5
+
+    Modifiez la méthode ``__add__`` de la classe ``Point`` en utilisant la
+    répartition basée sur le type (``isinstance``) afin qu'elle fonctionne soit
+    avec un autre objet ``Point``, soit avec un tuple ``(x, y)``[cite: 4].
+    Ajoutez également la méthode ``__radd__`` pour permettre l'addition
+    lorsque le tuple est à gauche de l'opérateur ``+``[cite: 4].
+
+.. ia2:solution:: 14.5
+
+    .. code-block:: python
+
+        class Point(object):
+            def __init__(self, x=0, y=0):
+                self.x = x
+                self.y = y
+
+            def __str__(self):
+                return f"({self.x}, {self.y})"
+
+            def __add__(self, other):
+                if isinstance(other, Point):
+                    return Point(self.x + other.x, self.y + other.y)
+                elif isinstance(other, tuple):
+                    return Point(self.x + other[0], self.y + other[1])
+                else:
+                    return NotImplemented
+
+            def __radd__(self, other):
+                return self.__add__(other)
+
+.. ia2:exercice:: 14.6
+
+    Modifiez l'implémentation de la classe ``Time`` afin que son unique attribut
+    soit un entier ``seconds`` représentant le nombre de secondes écoulées
+    depuis minuit[cite: 4]. Adaptez les méthodes ``__init__``, ``__str__``,
+    ``time_to_int``, ``increment``, ``is_after`` et ``__add__`` (ainsi que la
+    fonction ``int_to_time``) pour conserver exactement la même interface[cite: 4].
+
+.. ia2:solution:: 14.6
+
+    .. code-block:: python
+
+        class Time(object):
+            def __init__(self, hour=0, minute=0, second=0):
+                minutes = hour * 60 + minute
+                self.seconds = minutes * 60 + second
+
+            def __str__(self):
+                minutes, second = divmod(self.seconds, 60)
+                hour, minute = divmod(minutes, 60)
+                return f"{hour:02d}:{minute:02d}:{second:02d}"
+
+            def time_to_int(self):
+                return self.seconds
+
+            def increment(self, seconds):
+                return int_to_time(self.seconds + seconds)
+
+            def is_after(self, other):
+                return self.seconds > other.seconds
+
+            def __add__(self, other):
+                if isinstance(other, Time):
+                    return int_to_time(self.seconds + other.seconds)
+                return int_to_time(self.seconds + other)
+
+        def int_to_time(seconds):
+            return Time(0, 0, seconds)
+
+.. ia2:exercice:: 14.7
+
+    Écrivez une définition pour une classe nommée ``Kangaroo`` avec les méthodes
+    suivantes[cite: 4] :
+
+    1. Une méthode ``__init__`` qui initialise un attribut nommé
+       ``pouch_contents`` à une liste vide (attention au piège des arguments par
+       défaut mutables !)[cite: 4].
+    2. Une méthode nommée ``put_in_pouch`` qui prend un objet quelconque et
+       l'ajoute à ``pouch_contents``[cite: 4].
+    3. Une méthode ``__str__`` qui renvoie une représentation sous forme de
+       chaîne de l'objet ``Kangaroo`` et du contenu de sa poche[cite: 4].
+
+    Testez votre code en créant deux objets ``Kangaroo`` nommés ``kanga`` et
+    ``roo``, en ajoutant ``roo`` dans la poche de ``kanga`` et en vérifiant que
+    la poche de ``roo`` reste bien vide.
+
+.. ia2:solution:: 14.7
+
+    .. code-block:: python
+
+        class Kangaroo(object):
+            def __init__(self, name, contents=None):
+                self.name = name
+                if contents is None:
+                    contents = []
+                self.pouch_contents = contents
+
+            def put_in_pouch(self, item):
+                self.pouch_contents.append(item)
+
+            def __str__(self):
+                lignes = [f"{self.name} contient dans sa poche :"]
+                for obj in self.pouch_contents:
+                    lignes.append("  " + object.__str__(obj))
+                return "\n".join(lignes)
+
+        kanga = Kangaroo("Kanga")
+        roo = Kangaroo("Roo")
+        kanga.put_in_pouch("portefeuille")
+        kanga.put_in_pouch("clés")
+        kanga.put_in_pouch(roo)
+
+        print(kanga)
+        print(roo)
+
+.. ia2:exercice:: 14.8
 
     Écrivez une définition pour une classe nommée ``Kangaroo`` avec les méthodes
     suivantes : une méthode ``__init__`` qui initialise un attribut nommé
@@ -278,7 +467,7 @@ hiding*).
     qui ajoute un objet à la poche ; et une méthode ``__str__`` pour afficher le
     kangourou et le contenu de sa poche.
 
-.. topic:: Exercice
+.. ia2:exercice:: 14.9
 
     Le module ``Visual`` fournit des graphiques 3D. Modifiez le programme pour
     que chaque sphère dans un cube ait la couleur qui correspond à sa position
