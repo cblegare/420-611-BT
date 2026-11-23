@@ -249,9 +249,9 @@ superposées.
 
         asyncio.run(main())
 
-***********************
+************************
  Gestion avec les Tasks
-***********************
+************************
 
 Parfois, vous souhaitez lancer une coroutine en arrière-plan, faire autre
 chose pendant qu'elle avance, puis récupérer son résultat plus tard. Pour cela,
@@ -320,6 +320,137 @@ Vous pouvez également annuler une tâche en cours grâce à sa méthode
 
         asyncio.run(main())
 
+
+*****************************************
+ Synchronisation : Verrous et Sémaphores
+*****************************************
+
+Lorsque plusieurs coroutines s'exécutent de manière concurrente, il est parfois
+nécessaire de coordonner leur accès à une ressource partagée ou de limiter le
+nombre d'opérations simultanées. Le module ``asyncio`` fournit deux mécanismes
+principaux pour contrôler cette concurrence : les **verrous** (*locks* ou
+*mutex*) et les **sémaphores**.
+
+
+Verrous (``asyncio.Lock``)
+==========================
+
+Même si le code asynchrone s'exécute sur un seul fil d'exécution, une coroutine
+peut être interrompue à chaque instruction ``await``. Si deux coroutines lisent
+et modifient une même ressource partagée de part et d'autre d'un ``await``,
+leurs opérations peuvent s'entrelacer et produire un résultat incohérent. Ce
+problème s'appelle une **situation de compétition** (*race condition*).
+
+Un **verrou** (*mutex*, pour *mutual exclusion*) garantit qu'une seule
+coroutine à la fois peut exécuter une portion critique de code. On l'utilise
+généralement avec le gestionnaire de contexte asynchrone ``async with`` :
+
+.. code-block:: python
+
+    import asyncio
+
+    solde = 100
+    verrou = asyncio.Lock()
+
+    async def retirer(montant):
+        global solde
+        async with verrou:  # Acquiert le verrou (attend s'il est déjà pris)
+            if solde >= montant:
+                nouveau_solde = solde - montant
+                await asyncio.sleep(0.1)  # Simule une opération réseau/BD
+                solde = nouveau_solde
+                print(f"Retrait de {montant} $ réussi. Solde : {solde} $")
+            else:
+                print(f"Fonds insuffisants pour {montant} $.")
+
+    async def main():
+        await asyncio.gather(retirer(80), retirer(80))
+
+    asyncio.run(main())
+
+Sans ``async with verrou:``, les deux coroutines liraient un solde de ``100``
+avant la mise à jour et autoriseraient deux retraits de ``80 $``, laissant un
+solde de ``20 $`` au lieu de refuser la seconde opération.
+
+.. note::
+
+    N'utilisez jamais ``threading.Lock`` dans une coroutine : s'il est déjà
+    verrouillé, il bloquera toute la boucle d'événements. Utilisez toujours
+    ``asyncio.Lock``.
+
+
+Sémaphores (``asyncio.Semaphore``)
+==================================
+
+Alors qu'un verrou limite l'accès à **une seule** coroutine, un **sémaphore**
+permet à au plus $N$ coroutines d'accéder simultanément à une ressource.
+
+Un sémaphore maintient un compteur interne initialisé à $N$ :
+
+* À l'entrée d'un bloc ``async with semaphore:``, le compteur est décrémenté.
+  Si le compteur est supérieur à zéro, la coroutine poursuit immédiatement.
+  S'il vaut zéro, la coroutine est mise en pause jusqu'à ce qu'une place se
+  libère.
+* À la sortie du bloc ``async with semaphore:``, le compteur est incrémenté,
+  réveillant la prochaine coroutine en attente.
+
+Les sémaphores sont très utiles pour éviter de saturer un serveur distant ou
+un disque lors du lancement d'un grand nombre de tâches avec
+``asyncio.gather()`` :
+
+.. code-block:: python
+
+    import asyncio
+
+    # Autorise au maximum 3 requêtes simultanées
+    limite = asyncio.Semaphore(3)
+
+    async def interroger_api(numero):
+        async with limite:
+            print(f"Requête {numero} : début")
+            await asyncio.sleep(1)
+            print(f"Requête {numero} : fin")
+
+    async def main():
+        taches = [interroger_api(i) for i in range(1, 8)]
+        await asyncio.gather(*taches)
+
+    asyncio.run(main())
+
+Dans cet exemple, bien que 7 tâches soient lancées en même temps, elles
+s'exécutent par vagues de 3 maximum.
+
+.. ia2:exercice::
+    :id: async-sync-1
+
+    Vous devez télécharger 10 fichiers identifiés par les entiers ``1`` à
+    ``10``. Écrivez une coroutine ``telecharger_fichier(id_fichier, semaphore)``
+    qui affiche ``"Téléchargement #<id>..."``, attend 1 seconde avec
+    ``asyncio.sleep(1)``, puis affiche ``"Fichier #<id> terminé."``.
+    Utilisez un ``asyncio.Semaphore(2)`` dans ``main()`` pour garantir qu'au
+    plus 2 téléchargements s'exécutent en parallèle.
+
+.. ia2:solution::
+    :id: async-sync-1
+
+    .. code-block:: python
+
+        import asyncio
+
+        async def telecharger_fichier(id_fichier, semaphore):
+            async with semaphore:
+                print(f"Téléchargement #{id_fichier}...")
+                await asyncio.sleep(1)
+                print(f"Fichier #{id_fichier} terminé.")
+
+        async def main():
+            sem = asyncio.Semaphore(2)
+            taches = [telecharger_fichier(i, sem) for i in range(1, 11)]
+            await asyncio.gather(*taches)
+
+        asyncio.run(main())
+
+
 **********
  Débogage
 **********
@@ -385,6 +516,8 @@ lèvera une erreur de syntaxe :
     concurrence
     concurrency
         Capacité d'un programme à gérer plusieurs tâches qui progressent durant la même période, en alternant leur exécution lors des temps d'attente.
+
+
 
 ***********
  Exercices
