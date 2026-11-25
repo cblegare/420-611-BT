@@ -251,17 +251,18 @@ et à la règle de Bayes :
 
 .. figure:: /assets/figures/bayesrule.png
 
-Nous cherchons à calculer :math:P(\text{sentiment} \mid \text{texte}), par
-exemple :math:P(\text{positif} \mid \text{« my grandson loved it »}). Après
-tokenisation, cela équivaut à calculer :math:P(\text{positif} \mid \text{« my »}, \text{« grandson »}, \text{« loved »}, \text{« it »}). En appliquant
-directement la règle de Bayes :
+Nous cherchons à calculer :math:`P(\text{sentiment} \mid \text{texte})`, par
+exemple :math:`P(\text{positif} \mid \text{« my grandson loved it »})`. Après
+tokenisation, cela équivaut à calculer
+:math:`P(\text{positif} \mid \text{« my »}, \text{« grandson »}, \text{« loved »}, \text{« it »})`.
+En appliquant directement la règle de Bayes :
 
 .. math::
 
     P(\text{positif} \mid \text{mots}) = \frac{P(\text{mots} \mid \text{positif}) \cdot P(\text{positif})}{P(\text{mots})}
 
 
-Pour comparer les classes (positif vs négatif), le dénominateur :math:P(\text{mots})
+Pour comparer les classes (positif vs négatif), le dénominateur :math:`P(\text{mots})`
 est identique et peut être omis, car nous cherchons une valeur proportionnelle
 que nous pourrons normaliser à la fin pour que la somme des probabilités soit
 égale à 1. Nous simplifions donc le calcul au numérateur :
@@ -287,8 +288,8 @@ formule devient :
 
 
 Chaque terme est facile à calculer à partir des données d’entraînement :
-:math:P(\text{positif}) est la proportion de phrases positives, et
-:math:P(\text{« loved »} \mid \text{positif}) est le nombre de fois où le mot
+:math:`P(\text{positif})` est la proportion de phrases positives, et
+:math:`P(\text{« loved »} \mid \text{positif})` est le nombre de fois où le mot
 loved apparaît dans les phrases positives divisé par le nombre total de mots dans
 les phrases positives.
 
@@ -304,8 +305,8 @@ d’entraînement pour une classe donnée (par exemple si grandson n’apparaiss
 dans aucune phrase positive). La probabilité conditionnelle associée serait de 0,
 annulant la probabilité totale de la classe. Pour résoudre ce problème, on utilise
 le lissage additif (Additive Smoothing), qui consiste à ajouter une valeur
-:math:\alpha à tous les comptages. Un cas particulier est le lissage de
-Laplace, où :math:\alpha = 1, simulant le fait que chaque mot a été observé au
+:math:`\alpha` à tous les comptages. Un cas particulier est le lissage de
+Laplace, où :math:`\alpha = 1`, simulant le fait que chaque mot a été observé au
 moins une fois dans chaque classe.
 
 Représentation des mots
@@ -313,8 +314,8 @@ Représentation des mots
 Pour que l’IA manipule le sens des mots, il faut représenter les mots sous forme
 numérique.
 
-Une première approche est la représentation One-Hot (One-Hot Representation),
-où chaque mot est représenté par un vecteur de taille égale au nombre total de«fpapi
+Une première approche est la représentation One-Hot (*One-Hot Representation*),
+où chaque mot est représenté par un vecteur de taille égale au nombre total de
 mots du vocabulaire. Toutes les valeurs du vecteur sont à 0, sauf une seule qui
 vaut 1 à l’indice correspondant au mot. Par exemple, pour un vocabulaire de 4
 mots (he, wrote, a, book) :
@@ -635,7 +636,6 @@ comprendre, d'analyser et de générer la langue humaine.
 ***********
  Solutions
 ***********
-
 .. ia2:solution:: 70.1
     Grammaire hors-contexte (CFG) et arbre syntaxique
 
@@ -643,18 +643,18 @@ comprendre, d'analyser et de générer la langue humaine.
 
     a. **Catégories grammaticales :**
 
-       * *The* : Déterminant (D)
-       * *drone* : Nom (N)
-       * *detects* : Verbe (V)
-       * *the* : Déterminant (D)
-       * *target* : Nom (N)
+       * *The* : Déterminant (D)[cite: 17]
+       * *drone* : Nom (N)[cite: 17]
+       * *detects* : Verbe (V)[cite: 17]
+       * *the* : Déterminant (D)[cite: 17]
+       * *target* : Nom (N)[cite: 17]
 
     b. **Décomposition et structure de l'arbre syntaxique :**
 
-       * Groupe nominal sujet : :math:`NP_1 \rightarrow D + N \Rightarrow \text{« The drone »}`
-       * Groupe nominal objet : :math:`NP_2 \rightarrow D + N \Rightarrow \text{« the target »}`
-       * Groupe verbal : :math:`VP \rightarrow V + NP_2 \Rightarrow \text{« detects the target »}`
-       * Phrase complète : :math:`S \rightarrow NP_1 + VP \Rightarrow \text{« The drone detects the target »}`
+       * Groupe nominal sujet : :math:`NP_1 \rightarrow D + N \Rightarrow \text{« The drone »}`[cite: 17]
+       * Groupe nominal objet : :math:`NP_2 \rightarrow D + N \Rightarrow \text{« the target »}`[cite: 17]
+       * Groupe verbal : :math:`VP \rightarrow V + NP_2 \Rightarrow \text{« detects the target »}`[cite: 17]
+       * Phrase complète : :math:`S \rightarrow NP_1 + VP \Rightarrow \text{« The drone detects the target »}`[cite: 17]
 
 .. ia2:solution:: 70.2
     Tokenisation et extraction de n-grammes
@@ -662,13 +662,13 @@ comprendre, d'analyser et de générer la langue humaine.
     Solution de :ia2:ex:`70.2`
 
     a. **Limites du simple découpage par espace :**
-       Un simple ``.split()`` conserve les signes de ponctuation collés aux mots (ex. « *room.* » devient distinct de « *room* »). De plus, il ne sait pas traiter correctement les apostrophes (ex. « *o'clock* »), les mots composés avec tirets (ex. « *pearl-grey* ») ou distinguer un point abréviatif (ex. « *Mr.* ») d'une fin de phrase.
+       Un simple ``.split()`` conserve les signes de ponctuation collés aux mots (ex. « *room.* » devient distinct de « *room* »)[cite: 17]. De plus, il ne sait pas traiter correctement les apostrophes (ex. « *o'clock* »), les mots composés avec tirets (ex. « *pearl-grey* ») ou distinguer un point abréviatif (ex. « *Mr.* ») d'une fin de phrase[cite: 17].
 
     b. **n-grammes pour « The robot moves fast » :**
 
-       * **Unigrammes (n=1) :** ``["The", "robot", "moves", "fast"]``
-       * **Bigrammes (n=2) :** ``[("The", "robot"), ("robot", "moves"), ("moves", "fast")]``
-       * **Trigrammes (n=3) :** ``[("The", "robot", "moves"), ("robot", "moves", "fast")]``
+       * **Unigrammes (n=1) :** ``["The", "robot", "moves", "fast"]``[cite: 17]
+       * **Bigrammes (n=2) :** ``[("The", "robot"), ("robot", "moves"), ("moves", "fast")]``[cite: 17]
+       * **Trigrammes (n=3) :** ``[("The", "robot", "moves"), ("robot", "moves", "fast")]``[cite: 17]
 
 .. ia2:solution:: 70.3
     Classificateur de Bayes naïf avec Lissage de Laplace
@@ -676,9 +676,144 @@ comprendre, d'analyser et de générer la langue humaine.
     Solution de :ia2:ex:`70.3`
 
     a. **Rôle du lissage de Laplace :**
-       Le lissage de Laplace (:math:`\alpha = 1`) évite qu'un mot jamais observé dans une classe lors de l'entraînement n'ait une probabilité conditionnelle nulle (:math:`P=0`). Sans ce lissage, un seul mot inédit annulerait complètement le produit global de probabilité de la classe concernée.
+       Le lissage de Laplace (:math:`\alpha = 1`) évite qu'un mot jamais observé dans une classe lors de l'entraînement n'ait une probabilité conditionnelle nulle (:math:`P=0`)[cite: 17]. Sans ce lissage, un seul mot inédit annulerait complètement le produit global de probabilité de la classe concernée[cite: 17].
 
-    b. **Calcul des probabilités conditionnelles (
+    b. **Calcul des probabilités conditionnelles (avec :math:`|V| = 6`) :**
+
+       * **Classe Positif :** Nombre total de mots dans Positif = 5[cite: 17]. Dénominateur = :math:`5 + 6 = 11`[cite: 17].
+
+         * :math:`P(\text{« excellent »} \mid \text{Positif}) = \frac{2 + 1}{11} = \frac{3}{11}`[cite: 17]
+         * :math:`P(\text{« produit »} \mid \text{Positif}) = \frac{1 + 1}{11} = \frac{2}{11}`[cite: 17]
+
+       * **Classe Négatif :** Nombre total de mots dans Négatif = 5[cite: 17]. Dénominateur = :math:`5 + 6 = 11`[cite: 17].
+
+         * :math:`P(\text{« excellent »} \mid \text{Négatif}) = \frac{0 + 1}{11} = \frac{1}{11}`[cite: 17]
+         * :math:`P(\text{« produit »} \mid \text{Négatif}) = \frac{1 + 1}{11} = \frac{2}{11}`[cite: 17]
+
+    c. **Calcul a posteriori et décision :**
+
+       .. math::
+
+          P(\text{Positif}, \text{« excellent produit »}) = 0{,}5 \times \left(\frac{3}{11}\right) \times \left(\frac{2}{11}\right) = 0{,}5 \times \frac{6}{121} = \frac{3}{121} \approx 0{,}02479
+
+       .. math::
+
+          P(\text{Négatif}, \text{« excellent produit »}) = 0{,}5 \times \left(\frac{1}{11}\right) \times \left(\frac{2}{11}\right) = 0{,}5 \times \frac{2}{121} = \frac{1}{121} \approx 0{,}00826
+
+       **Normalisation :**
+
+       .. math::
+
+          \text{Somme} = \frac{3}{121} + \frac{1}{121} = \frac{4}{121}
+
+       .. math::
+
+          P(\text{Positif} \mid \text{« excellent produit »}) = \frac{3/121}{4/121} = \frac{3}{4} = 0{,}75 \quad (75\%)
+
+       .. math::
+
+          P(\text{Négatif} \mid \text{« excellent produit »}) = \frac{1/121}{4/121} = \frac{1}{4} = 0{,}25 \quad (25\%)
+
+       L'avis est classé comme **Positif** avec une probabilité de 75%[cite: 17].
+
+.. ia2:solution:: 70.4
+    Représentation vectorielle des mots : One-Hot vs Embeddings et Algèbre vectorielle
+
+    Solution de :ia2:ex:`70.4`
+
+    a. **Deux limites de la représentation One-Hot :**
+
+       1. **Dimensionnalité et parcimonie :** Pour un vocabulaire de :math:`N` mots, les vecteurs ont une taille :math:`N` très élevée et creuse (remplie de 0), ce qui est inefficace en mémoire et en calcul[cite: 17].
+       2. **Absence de proximité sémantique :** Tous les vecteurs One-Hot sont orthogonaux entre eux (produit scalaire nul), rendant impossible la mesure de similarité entre mots proches comme *wrote* et *authored*[cite: 17].
+
+    b. **Calcul du vecteur cible :**
+
+       .. math::
+
+          \vec{v}_{\text{cible}} = [0{,}8 - 0{,}7 + 0{,}1\,;\; 0{,}2 - 0{,}1 + 0{,}9\,;\; 0{,}9 - 0{,}2 + 0{,}3] = [0{,}2\,;\; 1{,}0\,;\; 1{,}0]
+
+    c. **Calcul de la distance euclidienne :**
+
+       * **Distance à Tokyo ([0.2, 1.0, 1.0]) :**
+
+         .. math::
+
+            d(\vec{v}_{\text{cible}}, \text{Tokyo}) = \sqrt{(0{,}2 - 0{,}2)^2 + (1{,}0 - 1{,}0)^2 + (1{,}0 - 1{,}0)^2} = \sqrt{0} = 0
+
+       * **Distance à Kyoto ([0.5, 0.4, 0.1]) :**
+
+         .. math::
+
+            d(\vec{v}_{\text{cible}}, \text{Kyoto}) = \sqrt{(0{,}2 - 0{,}5)^2 + (1{,}0 - 0{,}4)^2 + (1{,}0 - 0{,}1)^2} = \sqrt{(-0{,}3)^2 + 0{,}6^2 + 0{,}9^2} = \sqrt{0{,}09 + 0{,}36 + 0{,}81} = \sqrt{1{,}26} \approx 1{,}122
+
+       Le mot **Tokyo** est exactement identique au vecteur cible (distance 0), il est donc le plus proche sémantiquement[cite: 17].
+
+.. ia2:solution:: 70.5
+    Architectures de séquences : RNN, Attention et Transformers
+
+    Solution de :ia2:ex:`70.5`
+
+    a. **Goulot d'étranglement des RNN :**
+       Les RNN doivent compresser toute l'information d'une longue séquence d'entrée dans un unique vecteur d'état caché final, ce qui entraîne une perte d'information sur les premiers mots de la phrase[cite: 17].
+
+    b. **Rôle du mécanisme d'attention :**
+       L'attention permet au réseau d'attribuer un poids dynamique aux différents mots d'entrée à chaque étape du décodage, construisant un vecteur de contexte ciblé sur les mots les plus pertinents pour prédire le mot suivant[cite: 17].
+
+    c. **Avantages des Transformers :**
+
+       * **Parallélisation :** Les Transformers traitent tous les mots de la séquence d'entrée simultanément (et non mot après mot), permettant une parallélisation massive sur GPU[cite: 17].
+       * **Encodage positionnel :** Pour préserver l'ordre des mots sans traitement séquentiel, on ajoute un encodage positionnel (*positional encoding*) aux vecteurs d'entrée[cite: 17].
+
+.. ia2:solution:: 70.6
+    Code Python : Parsing de grammaire CFG avec NLTK
+
+    Solution de :ia2:ex:`70.6`
+
+    .. code-block:: python
+
+        import nltk
+
+        # 1. Définition des règles de grammaire
+        grammar = nltk.CFG.fromstring("""
+            S -> NP VP
+            NP -> D N | N
+            VP -> V NP | V
+
+            D -> "a" | "the"
+            N -> "she" | "car" | "city"
+            V -> "walked" | "saw"
+        """)
+
+        # 2. Instanciation du parseur
+        parser = nltk.ChartParser(grammar)
+
+        sentence = "she walked a car".split()
+
+        # 3. Analyse de la phrase et affichage des arbres
+        for tree in parser.parse(sentence):
+            tree.pretty_print()
+
+.. ia2:solution:: 70.7
+    Code Python : Extraction de n-grammes de mots
+
+    Solution de :ia2:ex:`70.7`
+
+    .. code-block:: python
+
+        def generate_ngrams(tokens, n):
+            """
+            Génère la liste des n-grammes à partir d'une liste de mots.
+            """
+            ngrams = []
+            for i in range(len(tokens) - n + 1):
+                ngram = tuple(tokens[i : i + n])
+                ngrams.append(ngram)
+            return ngrams
+
+        # Test
+        texte = ["Sherlock", "Holmes", "stepped", "into", "the", "room"]
+        print(generate_ngrams(texte, 2))
+        # Affichage : [('Sherlock', 'Holmes'), ('Holmes', 'stepped'), ('stepped', 'into'), ('into', 'the'), ('the', 'room')]
 
 
 ******

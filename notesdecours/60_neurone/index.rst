@@ -19,8 +19,9 @@ En intelligence artificielle, l’équivalent de chaque neurone est une **unité
 connectée à d’autres unités. Par exemple, tout comme dans le cours précédent,
 l’IA peut associer deux entrées, :math:`x_1` et :math:`x_2`, pour déterminer
 s’il va pleuvoir aujourd’hui ou non. Au cours précédent, nous avons suggéré la
-forme suivante pour cette fonction d’hypothèse : :math:`h(x_1, x_2) = w_0 +
-w_1x_1 + w_2x_2`, où :math:`w_1` et :math:`w_2` sont des poids qui modifient les
+forme suivante pour cette fonction d’hypothèse :
+:math:`h(x_1, x_2) = w_0 + w_1x_1 + w_2x_2`, où :math:`w_1` et :math:`w_2`
+sont des poids qui modifient les
 entrées, et :math:`w_0` est une constante, également appelée **biais**, qui
 modifie la valeur de l’expression entière.
 
@@ -366,9 +367,9 @@ L’image filtrée obtenue est la petite matrice en bas à droite. Pour filtrer
 l’image à l’aide du noyau, nous commençons par le pixel de valeur 20 situé dans
 le coin supérieur gauche de l’image (coordonnées 1,1). Ensuite, nous multiplions
 toutes les valeurs qui l’entourent par la valeur correspondante dans le noyau et
-nous les additionnons (:math:`10\times0 + 20\times(-1) + 30\times0 +
-10\times(-1) + 20\times5 + 30\times(-1) + 20\times0 + 30\times(-1) +
-40\times0`), ce qui donne la valeur 10. Nous faisons ensuite de même pour le
+nous les additionnons (
+:math:`10\times0 + 20\times(-1) + 30\times0 + 10\times(-1) + 20\times5 + 30\times(-1) + 20\times0 + 30\times(-1) + 40\times0`),
+ce qui donne la valeur 10. Nous faisons ensuite de même pour le
 pixel situé à droite (30), le pixel situé sous le premier (30), et le pixel
 situé à droite de celui-ci (40). Cela génère une image filtrée avec les valeurs
 visibles en bas à droite.
@@ -919,4 +920,3 @@ Solutions du quiz
     **[[16, 12], [32, 28]]**
 
     *Explication :* Le *max-pooling* 2x2 divise l'image 4x4 en 4 quadrants non chevauchants de 2x2 pixels et extrait la valeur maximale de chaque quadrant.
-
